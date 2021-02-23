@@ -20,10 +20,10 @@ local snazzy = {
   black = '#282a36';
 
   -- Grayscale
-  ui_0     =  '#F9F9F9';
-  ui_1     =  '#f9f9ff';
-  ui_2     =  '#eff0eb';
-  ui_3     =  '#e2e4e5';
+  ui_0 = '#F9F9F9';
+  ui_1 = '#f9f9ff';
+  ui_2 = '#eff0eb';
+  ui_3 = '#e2e4e5';
   ui_4     =  '#a1a6a8';
   ui_5     =  '#848688';
   ui_6     =  '#5e6c70';
@@ -167,12 +167,15 @@ end
 
 function snazzy.load_plugin_syntax()
   local plugin_syntax = {
-    TSFunction = {fg=snazzy.yellow,style='bold'};
+    TSFunction = {fg=snazzy.cyan,style='bold'};
     TSMethod = {fg=snazzy.yellow,style='bold'};
-    TSKeywordFunction = {fg=snazzy.blue};
+    TSKeyword = {fg=snazzy.magenta,style='bold'};
+    TSKeywordFunction = {fg=snazzy.magenta,style='bold'};
     TSProperty = {fg=snazzy.cyan};
-    TSType = {fg=snazzy.teal};
-    TSPunctBracket = {fg=snazzy.bracket};
+    TSType = {fg=snazzy.cyan, style='bold'};
+    TSPunctBracket = {fg=snazzy.white};
+    TSInclude = {fg=snazzy.magenta};
+    TSConstructor = {fg=snazzy.white};
 
     vimCommentTitle = {fg=snazzy.grey,style='bold'};
     vimLet = {fg=snazzy.yellow};
