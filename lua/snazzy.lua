@@ -10,11 +10,11 @@ local snazzy = {
   base8      = '#b1b1b1';
 
   red = '#ff5c57';
-  green    =  '#5af78e';
-  yellow   =  '#f3f99d';
-  blue     =  '#57c7ff';
-  magenta  =  '#ff6ac1';
-  cyan     =  '#9aedfe';
+  green = '#5af78e';
+  yellow = '#f3f99d';
+  blue = '#57c7ff';
+  magenta = '#ff6ac1';
+  cyan = '#9aedfe';
   white = '#f1f1f0';
   grey = '#686868';
   black = '#282a36';
@@ -24,7 +24,7 @@ local snazzy = {
   ui_1 = '#f9f9ff';
   ui_2 = '#eff0eb';
   ui_3 = '#e2e4e5';
-  ui_4     =  '#a1a6a8';
+  ui_4 = '#a1a6a8';
   ui_5     =  '#848688';
   ui_6     =  '#5e6c70';
   ui_7     =  '#536991';
@@ -94,7 +94,7 @@ function snazzy.load_syntax()
     DiffChange = {fg=snazzy.yellow,bg=snazzy.ui_11};
     DiffDelete = {fg=snazzy.red,bg=snazzy.ui_11};
     DiffText = {fg=snazzy.red,bg=snazzy.ui_9,sp=snazzy.ui_9};
-    Directory = {fg=snazzy.ui_8,bg=snazzy.none, style='bold'};
+    Directory = {fg=snazzy.cyan,bg=snazzy.none, style='bold'};
     ErrorMsg = {fg=snazzy.red,bg=snazzy.none,style='bold'};
     WarningMsg = {fg=snazzy.yellow,bg=snazzy.none,style='bold'};
     ModeMsg = {fg=snazzy.ui_0,bg=snazzy.ui_12,sp=snazzy.ui_12,style='bold'};
@@ -160,7 +160,7 @@ function snazzy.load_syntax()
     Todo = {fg=snazzy.yellow,style='italic'};
     Delimiter = {fg=snazzy.yellow};
     Ignore = {fg=snazzy.grey};
-    Underlined = {fg=snazzy.ui_1,bg=snazzy.ui_12,sp=snazzy.ui_12,style='underline'};
+    Underlined = {fg=snazzy.ui_1,sp=snazzy.white,style='underline'};
   }
   return syntax
 end
@@ -176,6 +176,9 @@ function snazzy.load_plugin_syntax()
     TSPunctBracket = {fg=snazzy.white};
     TSInclude = {fg=snazzy.magenta};
     TSConstructor = {fg=snazzy.white};
+    TSTag = {fg=snazzy.cyan};
+    TSTagDelimiter = {fg=snazzy.white};
+    TSStringEscape = {fg=snazzy.ui_8,style='bold'};
 
     vimCommentTitle = {fg=snazzy.grey,style='bold'};
     vimLet = {fg=snazzy.yellow};
@@ -259,8 +262,12 @@ function snazzy.load_plugin_syntax()
     NvimTreeSpecialFile = {fg=snazzy.fg,bg=snazzy.none,style='NONE'};
 
     TelescopeBorder = {fg=snazzy.cyan};
-    TelescopePromptBorder = {fg=snazzy.blue}
+    TelescopePromptBorder = {fg=snazzy.blue},
+
+    LspSagaDiagnosticBorder = {fg=snazzy.blue},
+    LspSagaDiagnosticHeader = {fg=snazzy.green, style='bold'}
   }
+
   return plugin_syntax
 end
 
