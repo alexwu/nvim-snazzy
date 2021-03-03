@@ -281,6 +281,17 @@ function snazzy.load_plugin_syntax()
     DashboardCenter = {fg = snazzy.blue},
     DashboardFooter = {fg = snazzy.grey},
 
+    LspDiagnosticsDefaultError = {fg = snazzy.red},
+    LspDiagnosticsFloatingError = {fg = snazzy.red},
+    LspDiagnosticsDefaultWarning = {fg = snazzy.yellow},
+    LspDiagnosticsFloatingWarning = {fg = snazzy.yellow},
+    LspDiagnosticsDefaultHint = {fg = snazzy.cyan},
+    LspDiagnosticsFloatingHint = {fg = snazzy.cyan},
+
+    LspReferenceRead = {bg = snazzy.grey, style = "bold"},
+    LspReferenceText = {style = "bold", bg = snazzy.grey},
+    LspReferenceWrite = {style = "bold", bg = snazzy.grey},
+
     LspDiagnosticsSignError = {fg = snazzy.red},
     LspDiagnosticsSignWarning = {fg = snazzy.yellow},
     LspDiagnosticsSignInformation = {fg = snazzy.blue},
@@ -291,10 +302,26 @@ function snazzy.load_plugin_syntax()
     LspDiagnosticsVirtualTextInformation = {fg = snazzy.blue},
     LspDiagnosticsVirtualTextHint = {fg = snazzy.cyan},
 
-    LspDiagnosticsUnderlineError = {style = "underline", sp = snazzy.red},
-    LspDiagnosticsUnderlineWarning = {style = "underline", sp = snazzy.yellow},
-    LspDiagnosticsUnderlineInformation = {style = "underline", sp = snazzy.blue},
-    LspDiagnosticsUnderlineHint = {style = "underline", sp = snazzy.cyan},
+    LspDiagnosticsUnderlineError = {
+      style = "underline",
+      sp = snazzy.red,
+      fg = snazzy.red
+    },
+    LspDiagnosticsUnderlineWarning = {
+      style = "underline",
+      sp = snazzy.yellow,
+      fg = snazzy.yellow
+    },
+    LspDiagnosticsUnderlineInformation = {
+      style = "underline",
+      sp = snazzy.blue,
+      fg = snazzy.blue
+    },
+    LspDiagnosticsUnderlineHint = {
+      style = "underline",
+      sp = snazzy.cyan,
+      fg = snazzy.cyan
+    },
 
     CursorWord0 = {bg = snazzy.grey},
     CursorWord1 = {bg = snazzy.grey},
@@ -304,7 +331,15 @@ function snazzy.load_plugin_syntax()
     NvimTreeSpecialFile = {fg = snazzy.fg, bg = snazzy.none, style = "NONE"},
 
     LspSagaDiagnosticBorder = {fg = snazzy.blue},
-    LspSagaDiagnosticHeader = {fg = snazzy.green, style = "bold"},
+    LspSagaDiagnosticHeader = {fg = snazzy.yellow, style = "bold"},
+    LspSagaDiagnosticTruncateLine = {fg = snazzy.blue},
+    LspSagaFinderSelection = {fg = snazzy.green},
+    LspSagaLspFinderBorder = {fg = snazzy.blue},
+    LspSagaHoverBorder = {fg = snazzy.blue},
+    LspSagaDocTruncateLine = {fg = snazzy.blue},
+    LspSagaCodeActionTruncateLine = {fg = snazzy.blue},
+    LspSagaSignatureHelpBorder = {fg = snazzy.blue},
+    LspSagaCodeActionTitle = {fg = snazzy.yellow},
 
     TelescopeBorder = {fg = snazzy.cyan},
     TelescopeMatching = {fg = snazzy.green, style = "bold"},
@@ -315,7 +350,11 @@ function snazzy.load_plugin_syntax()
     TelescopePromptPrefix = {fg = snazzy.magenta, style = "bold"},
     TelescopeResultsBorder = {fg = snazzy.blue},
     TelescopeSelection = {bg = snazzy.none, style = "bold"},
-    TelescopeSelectionCaret = {fg = snazzy.magenta, style = "bold"}
+    TelescopeSelectionCaret = {fg = snazzy.magenta, style = "bold"},
+
+    DevIconRake = {fg = snazzy.red},
+    DevIconRakeFile = {fg = snazzy.red},
+    DevIconRb = {fg = snazzy.red}
   }
 
   return plugin_syntax
