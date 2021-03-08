@@ -204,6 +204,8 @@ function snazzy.load_plugin_syntax()
   local plugin_syntax = {
     TSBoolean = {fg = snazzy.magenta},
     TSConstructor = {fg = snazzy.white},
+    TSError = {fg = snazzy.red, style = "bold"},
+    TSQueryLinterError = {fg = snazzy.red, style = "bold"},
     TSField = {fg = snazzy.cyan},
     TSFunction = {fg = snazzy.green, style = "bold"},
     TSInclude = {fg = snazzy.magenta},
@@ -221,6 +223,8 @@ function snazzy.load_plugin_syntax()
     TSTagDelimiter = {fg = snazzy.white},
     TSType = {fg = snazzy.blue, style = "bold"},
     TSURI = {fg = snazzy.blue, style = "underline"},
+    TSDefinition = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
+    TSDefinitionUsage = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
 
     vimCommentTitle = {fg = snazzy.grey, style = "bold"},
     vimLet = {fg = snazzy.yellow},
@@ -288,9 +292,9 @@ function snazzy.load_plugin_syntax()
     LspDiagnosticsDefaultHint = {fg = snazzy.cyan},
     LspDiagnosticsFloatingHint = {fg = snazzy.cyan},
 
-    LspReferenceRead = {bg = snazzy.grey, style = "bold"},
-    LspReferenceText = {style = "bold", bg = snazzy.grey},
-    LspReferenceWrite = {style = "bold", bg = snazzy.grey},
+    LspReferenceRead = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
+    LspReferenceText = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
+    LspReferenceWrite = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
 
     LspDiagnosticsSignError = {fg = snazzy.red},
     LspDiagnosticsSignWarning = {fg = snazzy.yellow},
@@ -354,7 +358,14 @@ function snazzy.load_plugin_syntax()
 
     DevIconRake = {fg = snazzy.red},
     DevIconRakeFile = {fg = snazzy.red},
-    DevIconRb = {fg = snazzy.red}
+    DevIconRb = {fg = snazzy.red},
+
+    -- Transparent version, put this behind an option
+    Normal = {fg = snazzy.fg, bg = snazzy.none},
+    SignColumn = {fg = snazzy.fg, bg = snazzy.none},
+    DiffAdd = {fg = snazzy.green, bg = snazzy.none},
+    DiffChange = {fg = snazzy.yellow, bg = snazzy.none},
+    DiffDelete = {fg = snazzy.red, bg = snazzy.none}
   }
 
   return plugin_syntax
