@@ -269,6 +269,9 @@ function snazzy.load_plugin_syntax()
     GitGutterChange = {fg = snazzy.yellow},
     GitGutterDelete = {fg = snazzy.red},
     GitGutterChangeDelete = {fg = snazzy.red},
+    GitSignsAdd = {fg = snazzy.green},
+    GitSignsChange = {fg = snazzy.yellow},
+    GitSignsDelete = {fg = snazzy.red},
 
     SignifySignAdd = {fg = snazzy.green},
     SignifySignChange = {fg = snazzy.blue},
