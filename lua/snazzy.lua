@@ -195,7 +195,10 @@ function snazzy.load_syntax()
     Todo = {fg = snazzy.yellow, style = "italic"},
     Delimiter = {fg = snazzy.yellow},
     Ignore = {fg = snazzy.grey},
-    Underlined = {fg = snazzy.ui_1, sp = snazzy.white, style = "underline"}
+    Underlined = {fg = snazzy.ui_1, sp = snazzy.white, style = "underline"},
+
+    NvimInternalError = {fg = snazzy.red, bg = snazzy.red},
+    RedrawDebugRecompose = {fg = snazzy.white, bg = snazzy.red}
   }
   return syntax
 end
@@ -334,7 +337,10 @@ function snazzy.load_plugin_syntax()
     CursorWord1 = {bg = snazzy.grey},
 
     NvimTreeFolderName = {fg = snazzy.blue},
-    NvimTreeRootFolder = {fg = snazzy.red},
+    NvimTreeGitDeleted = {fg = snazzy.red},
+    NvimTreeGitDirty = {fg = snazzy.yellow},
+    NvimTreeGitNew = {fg = snazzy.green},
+    NvimTreeRootFolder = {fg = snazzy.yellow},
     NvimTreeSpecialFile = {fg = snazzy.fg, bg = snazzy.none, style = "NONE"},
 
     LspSagaDiagnosticBorder = {fg = snazzy.blue},
@@ -359,9 +365,25 @@ function snazzy.load_plugin_syntax()
     TelescopeSelection = {bg = snazzy.none, style = "bold"},
     TelescopeSelectionCaret = {fg = snazzy.magenta, style = "bold"},
 
+    DevIconC = {fg = snazzy.cyan},
+    DevIconCPlusPlus = {fg = snazzy.magenta},
+    DevIconGemfile = {fg = snazzy.red},
+    DevIconGo = {fg = snazzy.cyan},
+    DevIconJs = {fg = snazzy.yellow},
+    DevIconJson = {fg = snazzy.yellow},
+    DevIconJsx = {fg = snazzy.cyan},
+    DevIconLua = {fg = snazzy.blue},
     DevIconRake = {fg = snazzy.red},
     DevIconRakeFile = {fg = snazzy.red},
     DevIconRb = {fg = snazzy.red},
+    DevIconTerminal = {fg = snazzy.green},
+    DevIconTs = {fg = snazzy.blue},
+    DevIconTsx = {fg = snazzy.cyan},
+    DevIconVim = {fg = snazzy.green},
+    DevIconVimrc = {fg = snazzy.green},
+    DevIconGvimrc = {fg = snazzy.green},
+    DevIconZsh = {fg = snazzy.green},
+    DevIconZshrc = {fg = snazzy.green},
 
     -- Transparent version, put this behind an option
     Normal = {fg = snazzy.fg, bg = snazzy.none},
