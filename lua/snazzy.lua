@@ -36,7 +36,7 @@ local snazzy = {
   fg = "#eff0eb",
   bg = "#282a36",
 
-  cursor = "#f1f1f0",
+  cursor = "#3a3d4d",
   none = "NONE"
 }
 
@@ -81,11 +81,12 @@ function snazzy.load_syntax()
     Search = {fg = snazzy.ui_11, bg = snazzy.yellow, sp = snazzy.yellow},
     ColorColumn = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
     Conceal = {fg = snazzy.grey, bg = snazzy.none},
-    Cursor = {fg = snazzy.ui_12, bg = snazzy.ui_0, sp = snazzy.ui_0},
+    TermCursor = {fg = snazzy.ui_12, bg = snazzy.cursor, sp = snazzy.cursor},
+    Cursor = {fg = snazzy.ui_12, bg = snazzy.cursor, sp = snazzy.cursor},
     vCursor = {fg = snazzy.none, bg = snazzy.none, style = "reverse"},
     iCursor = {fg = snazzy.none, bg = snazzy.none, style = "reverse"},
     lCursor = {fg = snazzy.none, bg = snazzy.none, style = "reverse"},
-    CursorIM = {fg = snazzy.none, bg = snazzy.none, style = "reverse"},
+    CursorIM = {fg = snazzy.none, bg = snazzy.cursor},
     CursorColumn = {fg = snazzy.ui_3, bg = snazzy.ui_9, sp = snazzy.ui_9},
     CursorLine = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
     LineNr = {fg = snazzy.ui_8},
@@ -103,7 +104,7 @@ function snazzy.load_syntax()
       sp = snazzy.ui_12,
       style = "bold"
     },
-    MatchParen = {fg = snazzy.yellow, bg = snazzy.ui_4, style = "bold"},
+    MatchParen = {bg = snazzy.none, style = "bold"},
     NonText = {fg = snazzy.ui_6, style = "italic"},
     Whitespace = {fg = snazzy.base4},
     SpecialKey = {fg = snazzy.ui_6, style = "italic"},
@@ -334,7 +335,7 @@ function snazzy.load_plugin_syntax()
     },
 
     CursorWord0 = {bg = snazzy.grey},
-    CursorWord1 = {bg = snazzy.grey},
+    CursorWord1 = {bg = snazzy.green},
 
     NvimTreeFolderName = {fg = snazzy.blue},
     NvimTreeGitDeleted = {fg = snazzy.red},
@@ -353,6 +354,7 @@ function snazzy.load_plugin_syntax()
     LspSagaCodeActionTruncateLine = {fg = snazzy.blue},
     LspSagaSignatureHelpBorder = {fg = snazzy.blue},
     LspSagaCodeActionTitle = {fg = snazzy.yellow},
+    LspSagaBorderTitle = {fg = snazzy.yellow, style = "bold"},
 
     TelescopeBorder = {fg = snazzy.cyan},
     TelescopeMatching = {fg = snazzy.green, style = "bold"},
@@ -390,7 +392,15 @@ function snazzy.load_plugin_syntax()
     SignColumn = {fg = snazzy.fg, bg = snazzy.none},
     DiffAdd = {fg = snazzy.green, bg = snazzy.none},
     DiffChange = {fg = snazzy.yellow, bg = snazzy.none},
-    DiffDelete = {fg = snazzy.red, bg = snazzy.none}
+    DiffDelete = {fg = snazzy.red, bg = snazzy.none},
+
+    rainbowcol1 = {fg = snazzy.white},
+    rainbowcol2 = {fg = snazzy.cyan},
+    rainbowcol3 = {fg = snazzy.blue},
+    rainbowcol4 = {fg = snazzy.magenta},
+    rainbowcol5 = {fg = snazzy.red},
+    rainbowcol6 = {fg = snazzy.yellow},
+    rainbowcol7 = {fg = snazzy.green},
   }
 
   return plugin_syntax
