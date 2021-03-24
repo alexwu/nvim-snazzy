@@ -83,7 +83,7 @@ function snazzy.load_syntax()
     Conceal = {fg = snazzy.grey, bg = snazzy.none},
     TermCursor = {fg = snazzy.ui_12, bg = snazzy.cursor, sp = snazzy.cursor},
     Cursor = {fg = snazzy.ui_12, bg = snazzy.cursor, sp = snazzy.cursor},
-    vCursor = {fg = snazzy.none, bg = snazzy.none, style = "reverse"},
+    vCursor = {fg = snazzy.ui_12, bg = snazzy.ui_1, sp = snazzy.ui_1},
     iCursor = {fg = snazzy.none, bg = snazzy.none, style = "reverse"},
     lCursor = {fg = snazzy.none, bg = snazzy.none, style = "reverse"},
     CursorIM = {fg = snazzy.none, bg = snazzy.cursor},
@@ -402,7 +402,13 @@ function snazzy.load_plugin_syntax()
     rainbowcol4 = {fg = snazzy.magenta},
     rainbowcol5 = {fg = snazzy.red},
     rainbowcol6 = {fg = snazzy.yellow},
-    rainbowcol7 = {fg = snazzy.green}
+    rainbowcol7 = {fg = snazzy.green},
+
+    UltestPass = {fg = snazzy.green},
+    UltestFail = {fg = snazzy.red},
+    UltestRunning = {fg = snazzy.yellow},
+    UltestBorder = {fg = snazzy.red},
+    UltestInfo = {fg = snazzy.cyan, style = "bold"}
   }
 
   return plugin_syntax
