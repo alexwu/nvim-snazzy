@@ -344,17 +344,19 @@ function snazzy.load_plugin_syntax()
     NvimTreeRootFolder = {fg = snazzy.yellow},
     NvimTreeSpecialFile = {fg = snazzy.fg, bg = snazzy.none, style = "NONE"},
 
+    LspSagaBorderTitle = {fg = snazzy.yellow, style = "bold"},
+    LspSagaCodeActionContent = {fg = snazzy.green},
+    LspSagaCodeActionTitle = {fg = snazzy.yellow},
+    LspSagaCodeActionTruncateLine = {fg = snazzy.blue},
     LspSagaDiagnosticBorder = {fg = snazzy.blue},
     LspSagaDiagnosticHeader = {fg = snazzy.yellow, style = "bold"},
     LspSagaDiagnosticTruncateLine = {fg = snazzy.blue},
-    LspSagaFinderSelection = {fg = snazzy.green},
-    LspSagaLspFinderBorder = {fg = snazzy.blue},
-    LspSagaHoverBorder = {fg = snazzy.blue},
     LspSagaDocTruncateLine = {fg = snazzy.blue},
-    LspSagaCodeActionTruncateLine = {fg = snazzy.blue},
+    LspSagaFinderSelection = {fg = snazzy.green},
+    LspSagaHoverBorder = {fg = snazzy.blue},
+    LspSagaLightBulb = {fg = snazzy.yellow},
+    LspSagaLspFinderBorder = {fg = snazzy.blue},
     LspSagaSignatureHelpBorder = {fg = snazzy.blue},
-    LspSagaCodeActionTitle = {fg = snazzy.yellow},
-    LspSagaBorderTitle = {fg = snazzy.yellow, style = "bold"},
 
     TelescopeBorder = {fg = snazzy.cyan},
     TelescopeMatching = {fg = snazzy.green, style = "bold"},
@@ -400,7 +402,7 @@ function snazzy.load_plugin_syntax()
     rainbowcol4 = {fg = snazzy.magenta},
     rainbowcol5 = {fg = snazzy.red},
     rainbowcol6 = {fg = snazzy.yellow},
-    rainbowcol7 = {fg = snazzy.green},
+    rainbowcol7 = {fg = snazzy.green}
   }
 
   return plugin_syntax
