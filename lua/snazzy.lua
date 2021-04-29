@@ -104,7 +104,7 @@ function snazzy.load_syntax()
       sp = snazzy.ui_12,
       style = "bold"
     },
-    MatchParen = {bg = snazzy.none, style = "bold"},
+    MatchParen = {bg = snazzy.none, fg = snazzy.green, style = "bold"},
     NonText = {fg = snazzy.ui_6, style = "italic"},
     Whitespace = {fg = snazzy.base4},
     SpecialKey = {fg = snazzy.ui_6, style = "italic"},
@@ -354,6 +354,7 @@ function snazzy.load_plugin_syntax()
     LspSagaCodeActionTruncateLine = {fg = snazzy.blue},
     LspSagaSignatureHelpBorder = {fg = snazzy.blue},
     LspSagaCodeActionTitle = {fg = snazzy.yellow},
+    LspSagaCodeActionContent = {fg = snazzy.green},
     LspSagaBorderTitle = {fg = snazzy.yellow, style = "bold"},
 
     TelescopeBorder = {fg = snazzy.cyan},
