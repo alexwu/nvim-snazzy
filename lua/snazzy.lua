@@ -120,7 +120,6 @@ function snazzy.load_syntax()
     PmenuThumb = {fg = snazzy.none, bg = snazzy.ui_4, sp = snazzy.ui_4},
     WildMenu = {fg = snazzy.none, bg = snazzy.ui_4, sp = snazzy.ui_4},
     Question = {fg = snazzy.yellow},
-    NormalFloat = {fg = snazzy.base8, bg = snazzy.ui_9},
     TabLineFill = {
       fg = snazzy.ui_12,
       bg = snazzy.ui_9,
@@ -340,6 +339,10 @@ function snazzy.load_plugin_syntax()
       fg = snazzy.cyan
     },
 
+    LspFloatWinBorder = {fg = snazzy.blue},
+    FloatBorder = {fg = snazzy.blue},
+    NormalFloat = {fg = snazzy.fg, bg = snazzy.bg},
+
     CursorWord0 = {bg = snazzy.grey},
     CursorWord1 = {bg = snazzy.green},
 
@@ -363,9 +366,6 @@ function snazzy.load_plugin_syntax()
     LspSagaLightBulb = {fg = snazzy.yellow},
     LspSagaLspFinderBorder = {fg = snazzy.blue},
     LspSagaSignatureHelpBorder = {fg = snazzy.blue},
-    LspSagaCodeActionTitle = {fg = snazzy.yellow},
-    LspSagaCodeActionContent = {fg = snazzy.green},
-    LspSagaBorderTitle = {fg = snazzy.yellow, style = "bold"},
 
     TelescopeBorder = {fg = snazzy.cyan},
     TelescopeMatching = {fg = snazzy.green, style = "bold"},
