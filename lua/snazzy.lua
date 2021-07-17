@@ -301,8 +301,10 @@ function snazzy.load_plugin_syntax()
     LspDiagnosticsFloatingError = {fg = snazzy.red},
     LspDiagnosticsDefaultWarning = {fg = snazzy.yellow},
     LspDiagnosticsFloatingWarning = {fg = snazzy.yellow},
-    LspDiagnosticsDefaultHint = {fg = snazzy.cyan},
-    LspDiagnosticsFloatingHint = {fg = snazzy.cyan},
+    LspDiagnosticsDefaultHint = {fg = snazzy.green},
+    LspDiagnosticsFloatingHint = {fg = snazzy.green},
+    LspDiagnosticsDefaultInformation = {fg = snazzy.cyan},
+    LspDiagnosticsFloatingInformation = {fg = snazzy.cyan},
 
     LspReferenceRead = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
     LspReferenceText = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
