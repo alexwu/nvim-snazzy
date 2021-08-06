@@ -1,4 +1,5 @@
-local snazzy = {
+local M = {}
+local dark = {
   base0 = "#1B2229",
   base1 = "#1c1f24",
   base2 = "#202328",
@@ -36,11 +37,73 @@ local snazzy = {
   fg = "#eff0eb",
   bg = "#282a36",
 
+  selection_background = "#273d57",
+
   cursor = "#3a3d4d",
+  cursorline = "#3a3d4d",
   none = "NONE"
 }
 
-function snazzy.terminal_color()
+local light = {
+  base0 = "#1B2229",
+  base1 = "#1c1f24",
+  base2 = "#202328",
+  base3 = "#23272e",
+  base4 = "#3f444a",
+  base5 = "#5B6268",
+  base6 = "#73797e",
+  base7 = "#9ca0a4",
+  base8 = "#b1b1b1",
+
+  black = "#565869",
+  brightBlack = "#75798F",
+
+  red = "#FF5C57",
+  brightRed = "#FFAEAC",
+
+  green = "#2DAE58",
+  brightGreen = "#35CF68",
+
+  yellow = "#CF9C00",
+  brightYellow = "#F5B900",
+
+  blue = "#09A1ED",
+  brightBlue = "#14B1FF",
+
+  magenta = "#F767BB",
+  brightMagenta = "#FF94D2",
+
+  cyan = "#13BBB7",
+  brightCyan = "#13BBB7",
+
+  white = "#FAFBF9",
+  brightWhite = "#FFFFFF",
+
+  bg = "#FAFBFC",
+  fg = "#565869",
+
+  -- Grayscale
+  ui_0 = "#F9F9F9",
+  ui_1 = "#f9f9ff",
+  ui_2 = "#eff0eb",
+  ui_3 = "#e2e4e5",
+  ui_4 = "#a1a6a8",
+  ui_5 = "#848688",
+  ui_6 = "#5e6c70",
+  ui_7 = "#536991",
+  ui_8 = "#606580",
+  ui_9 = "#3a3d4d",
+  ui_11 = "#282a36",
+  ui_12 = "#192224",
+
+  selection_background = "#ebf5f0",
+
+  cursor = "#3a3d4d",
+  cursorline = "#e2e4e5",
+  none = "NONE"
+}
+
+function M.terminal_color()
   vim.g.terminal_color_0 = "#282a36";
   vim.g.terminal_color_1 = "#ff5c57";
   vim.g.terminal_color_2 = "#5af78e";
@@ -59,7 +122,7 @@ function snazzy.terminal_color()
   vim.g.terminal_color_15 = "#eff0eb";
 end
 
-function snazzy.highlight(group, color)
+function M.highlight(group, color)
   local style = color.style and "gui=" .. color.style or "gui=NONE"
   local fg = color.fg and "guifg=" .. color.fg or "guifg=NONE"
   local bg = color.bg and "guibg=" .. color.bg or "guibg=NONE"
@@ -68,7 +131,14 @@ function snazzy.highlight(group, color)
     "highlight " .. group .. " " .. style .. " " .. fg .. " " .. bg .. " " .. sp)
 end
 
-function snazzy.load_syntax()
+function M.load_syntax(theme)
+  local snazzy;
+  if theme == "dark" then
+    snazzy = dark
+  else
+    snazzy = light
+  end
+
   local syntax = {
     Normal = {fg = snazzy.fg, bg = snazzy.bg},
     Terminal = {fg = snazzy.fg, bg = snazzy.bg},
@@ -82,13 +152,17 @@ function snazzy.load_syntax()
     ColorColumn = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
     Conceal = {fg = snazzy.grey, bg = snazzy.none},
     TermCursor = {fg = snazzy.ui_12, bg = snazzy.cursor, sp = snazzy.cursor},
-    Cursor = {fg = snazzy.ui_12, bg = snazzy.cursor, sp = snazzy.cursor},
+    Cursor = {fg = snazzy.none, bg = snazzy.none, style = "reverse"},
     vCursor = {fg = snazzy.ui_12, bg = snazzy.ui_1, sp = snazzy.ui_1},
     iCursor = {fg = snazzy.none, bg = snazzy.none, style = "reverse"},
     lCursor = {fg = snazzy.none, bg = snazzy.none, style = "reverse"},
     CursorIM = {fg = snazzy.none, bg = snazzy.cursor},
     CursorColumn = {fg = snazzy.ui_3, bg = snazzy.ui_9, sp = snazzy.ui_9},
-    CursorLine = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
+    CursorLine = {
+      fg = snazzy.none,
+      bg = snazzy.cursorline,
+      sp = snazzy.cursorline
+    },
     LineNr = {fg = snazzy.ui_8},
     CursorLineNr = {fg = snazzy.yellow},
     DiffAdd = {fg = snazzy.green, bg = snazzy.ui_11},
@@ -105,7 +179,6 @@ function snazzy.load_syntax()
       style = "bold"
     },
     MatchParen = {bg = snazzy.none, fg = snazzy.green, style = "bold"},
-    NonText = {fg = snazzy.ui_6, style = "italic"},
     Whitespace = {fg = snazzy.base4},
     SpecialKey = {fg = snazzy.ui_6, style = "italic"},
     Pmenu = {fg = snazzy.ui_2, bg = snazzy.ui_9, sp = snazzy.ui_9},
@@ -144,11 +217,20 @@ function snazzy.load_syntax()
       sp = snazzy.ui_9,
       style = snazzy.none
     },
-    SpellBad = {fg = snazzy.red, bg = snazzy.none, style = "underline"},
+    SpellBad = {
+      fg = snazzy.none,
+      bg = snazzy.none,
+      sp = snazzy.red,
+      style = "underline"
+    },
     SpellCap = {fg = snazzy.blue, bg = snazzy.none, style = "underline"},
     SpellLocal = {fg = snazzy.cyan, bg = snazzy.none, style = "underline"},
     SpellRare = {fg = snazzy.magenta, bg = snazzy.none, style = "underline"},
-    Visual = {fg = snazzy.ui_12, bg = snazzy.ui_1, sp = snazzy.ui_1},
+    Visual = {
+      fg = snazzy.fg,
+      bg = snazzy.selection_background,
+      sp = snazzy.selection_background
+    },
     VisualNOS = {
       fg = snazzy.ui_12,
       bg = snazzy.ui_1,
@@ -191,6 +273,7 @@ function snazzy.load_syntax()
     Identifier = {fg = snazzy.cyan},
 
     Comment = {fg = snazzy.ui_8, style = "italic"},
+    NonText = {fg = snazzy.ui_8, style = "italic"},
     SpecialComment = {fg = snazzy.yellow},
     Todo = {fg = snazzy.yellow, style = "italic"},
     Delimiter = {fg = snazzy.yellow},
@@ -198,24 +281,39 @@ function snazzy.load_syntax()
     Underlined = {fg = snazzy.ui_1, sp = snazzy.white, style = "underline"},
 
     NvimInternalError = {fg = snazzy.red, bg = snazzy.red},
-    RedrawDebugRecompose = {fg = snazzy.white, bg = snazzy.red}
+    RedrawDebugRecompose = {fg = snazzy.white, bg = snazzy.red},
+
+    SnapBorder = {fg = snazzy.blue},
+    SnapPosition = {fg = snazzy.yellow, style = "bold"},
+    SnapSelect = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
+    SnapPrompt = {fg = snazzy.magenta},
+
+    CompeDocumentationBorder = {fg = snazzy.blue}
   }
   return syntax
 end
 
-function snazzy.load_plugin_syntax()
+function M.load_plugin_syntax(theme)
+  local snazzy;
+  if theme == "dark" then
+    snazzy = dark
+  else
+    snazzy = light
+  end
+
   local plugin_syntax = {
     TSBoolean = {fg = snazzy.magenta},
+    TSConditional = {fg = snazzy.yellow, style = "bold"},
+    TSConstMacro = {fg = snazzy.green},
     TSConstructor = {fg = snazzy.white},
-    TSError = {fg = snazzy.red, style = "bold"},
     TSDanger = {fg = snazzy.red, style = "bold"},
-    TSWarning = {fg = snazzy.red},
-    TSQueryLinterError = {fg = snazzy.red, style = "bold"},
+    TSDefinition = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
+    TSDefinitionUsage = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
+    TSError = {fg = snazzy.red, style = "bold"},
     TSField = {fg = snazzy.cyan},
     TSFloat = {fg = snazzy.ui_4},
-    TSConstMacro = {fg = snazzy.green},
     TSFuncMacro = {fg = snazzy.green},
-    TSFunction = {fg = snazzy.cyan, style = "bold"},
+    TSFunction = {fg = snazzy.blue, style = "bold"},
     TSInclude = {fg = snazzy.magenta},
     TSKeyword = {fg = snazzy.magenta, style = "bold"},
     TSKeywordFunction = {fg = snazzy.magenta, style = "bold"},
@@ -224,16 +322,17 @@ function snazzy.load_plugin_syntax()
     TSParameter = {fg = snazzy.white},
     TSProperty = {fg = snazzy.cyan},
     TSPunctBracket = {fg = snazzy.white},
-    TSRepeat = {fg = snazzy.green, style = "bold"},
     TSPunctDelimiter = {fg = snazzy.white},
-    TSString = {fg = snazzy.green},
+    TSQueryLinterError = {fg = snazzy.red, style = "bold"},
+    TSRepeat = {fg = snazzy.green, style = "bold"},
+    TSString = {fg = snazzy.yellow},
     TSStringEscape = {fg = snazzy.ui_8, style = "bold"},
+    TSSymbol = {fg = snazzy.green},
     TSTag = {fg = snazzy.cyan},
     TSTagDelimiter = {fg = snazzy.magenta},
-    TSType = {fg = snazzy.blue, style = "bold"},
+    TSType = {fg = snazzy.green, style = "bold"},
     TSURI = {fg = snazzy.blue, style = "underline"},
-    TSDefinition = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
-    TSDefinitionUsage = {fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9},
+    TSWarning = {fg = snazzy.yellow},
 
     vimCommentTitle = {fg = snazzy.grey, style = "bold"},
     vimLet = {fg = snazzy.yellow},
@@ -281,6 +380,11 @@ function snazzy.load_plugin_syntax()
     GitSignsAdd = {fg = snazzy.green},
     GitSignsChange = {fg = snazzy.yellow},
     GitSignsDelete = {fg = snazzy.red},
+    GitSignsCurrentLineBlame = {
+      fg = snazzy.ui_8,
+      bg = snazzy.cursorline,
+      style = "italic"
+    },
 
     SignifySignAdd = {fg = snazzy.green},
     SignifySignChange = {fg = snazzy.blue},
@@ -425,28 +529,25 @@ function snazzy.load_plugin_syntax()
   return plugin_syntax
 end
 
-local async_load_plugin
-
-async_load_plugin = vim.loop.new_async(vim.schedule_wrap(
-                                         function()
-    snazzy.terminal_color()
-    local syntax = snazzy.load_plugin_syntax()
-    for group, colors in pairs(syntax) do snazzy.highlight(group, colors) end
-    async_load_plugin:close()
-  end))
-
-function snazzy.setup()
+function M.setup(theme)
   vim.api.nvim_command("hi clear")
   if vim.fn.exists("syntax_on") then vim.api.nvim_command("syntax reset") end
 
-  vim.o.background = "dark"
+  if theme == "dark" then
+    vim.opt.background = "dark"
+  else
+    vim.opt.background = "light"
+  end
+
   vim.o.termguicolors = true
   vim.g.colors_name = "snazzy"
-  local syntax = snazzy.load_syntax()
-  for group, colors in pairs(syntax) do snazzy.highlight(group, colors) end
-  async_load_plugin:send()
+  local syntax = M.load_syntax(theme)
+  for group, colors in pairs(syntax) do M.highlight(group, colors) end
+
+  M.terminal_color()
+
+  local plugin_syntax = M.load_plugin_syntax(theme)
+  for group, colors in pairs(plugin_syntax) do M.highlight(group, colors) end
 end
 
-snazzy.setup()
-
-return snazzy
+return M
