@@ -513,7 +513,7 @@ function M.load_plugin_syntax(theme)
 		-- DiffAdd = { fg = snazzy.green, bg = snazzy.none },
 		-- DiffChange = { fg = snazzy.yellow, bg = snazzy.none },
 		-- DiffDelete = { fg = snazzy.red, bg = snazzy.none },
-		CopilotSuggestion = { fg = snazzy.blue },
+		CopilotSuggestion = { fg = snazzy.blue, bg = snazzy.cursorline },
 
 
 		rainbowcol1 = { fg = snazzy.white },
