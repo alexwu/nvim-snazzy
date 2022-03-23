@@ -11,9 +11,11 @@ local dark = {
 	base8 = "#b1b1b1",
 
 	red = "#ff5c57",
-	green = "#5af78e",
+	orange = "#FF8F57",
 	yellow = "#f3f99d",
+	green = "#5af78e",
 	blue = "#57c7ff",
+	purple = "#A39DF9",
 	magenta = "#ff6ac1",
 	cyan = "#9aedfe",
 	white = "#f1f1f0",
@@ -511,6 +513,8 @@ function M.load_plugin_syntax(theme)
 		-- DiffAdd = { fg = snazzy.green, bg = snazzy.none },
 		-- DiffChange = { fg = snazzy.yellow, bg = snazzy.none },
 		-- DiffDelete = { fg = snazzy.red, bg = snazzy.none },
+		CopilotSuggestion = { fg = snazzy.blue },
+
 
 		rainbowcol1 = { fg = snazzy.white },
 		rainbowcol2 = { fg = snazzy.cyan },
