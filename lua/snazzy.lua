@@ -1,3 +1,5 @@
+local if_nil = vim.F.if_nil
+
 local M = {}
 local dark = {
 	base0 = "#1B2229",
@@ -11,7 +13,7 @@ local dark = {
 	base8 = "#b1b1b1",
 
 	red = "#ff5c57",
-	orange = "#FF8F57",
+	orange = "#FF9F43",
 	yellow = "#f3f99d",
 	green = "#5af78e",
 	blue = "#57c7ff",
@@ -43,7 +45,7 @@ local dark = {
 
 	cursor = "#3a3d4d",
 	cursorline = "#3a3d4d",
-	none = "NONE",
+	none = nil,
 }
 
 local light = {
@@ -105,6 +107,14 @@ local light = {
 	none = "NONE",
 }
 
+local snazzy_fn = function(theme)
+	if theme == "dark" then
+		return dark
+	else
+		return light
+	end
+end
+
 function M.terminal_color()
 	vim.g.terminal_color_0 = "#282a36"
 	vim.g.terminal_color_1 = "#ff5c57"
@@ -125,26 +135,35 @@ function M.terminal_color()
 end
 
 function M.highlight(group, color)
-	local style = color.style and "gui=" .. color.style or "gui=NONE"
-	local fg = color.fg and "guifg=" .. color.fg or "guifg=NONE"
-	local bg = color.bg and "guibg=" .. color.bg or "guibg=NONE"
-	local sp = color.sp and "guisp=" .. color.sp or ""
-	vim.api.nvim_command("highlight " .. group .. " " .. style .. " " .. fg .. " " .. bg .. " " .. sp)
-	-- TODO: vim.api.nvim_set_hl(0, group, { ctermfg = fg, ctermbg = bg, special = sp })
+	local style = color.style or nil
+	local fg = color.fg
+	local bg = color.bg
+	local sp = color.sp
+
+	local args = { fg = fg, bg = bg, sp = sp }
+	if style then
+		args[style] = true
+	end
+	vim.api.nvim_set_hl(0, group, args)
 end
 
-function M.load_syntax(theme)
-	local snazzy
-	if theme == "dark" then
-		snazzy = dark
-	else
-		snazzy = light
+function M.load_syntax(theme, transparent)
+	transparent = if_nil(transparent, false)
+
+	local snazzy = snazzy_fn(theme)
+
+	local use_transparent = function(color)
+		if transparent then
+			return nil
+		else
+			return color
+		end
 	end
 
 	local syntax = {
-		Normal = { fg = snazzy.fg, bg = snazzy.bg },
+		Normal = { fg = snazzy.fg, bg = use_transparent(snazzy.bg) },
 		Terminal = { fg = snazzy.fg, bg = snazzy.bg },
-		SignColumn = { bg = snazzy.ui_11 },
+		SignColumn = { bg = use_transparent(snazzy.ui_11) },
 		FoldColumn = { fg = snazzy.ui_12, bg = snazzy.ui_4, style = "italic" },
 		VertSplit = { fg = snazzy.ui_8, bg = snazzy.ui_11, style = "bold" },
 		Folded = { fg = snazzy.ui_12, bg = snazzy.ui_4 },
@@ -173,7 +192,7 @@ function M.load_syntax(theme)
 		DiffChange = { bg = "#434805" },
 		Directory = { fg = snazzy.cyan, bg = snazzy.none, style = "bold" },
 		ErrorMsg = { fg = snazzy.red, bg = snazzy.none, style = "bold" },
-		WarningMsg = { fg = snazzy.yellow, bg = snazzy.none, style = "bold" },
+		WarningMsg = { fg = snazzy.orange, bg = snazzy.none, style = "bold" },
 		ModeMsg = {
 			fg = snazzy.ui_0,
 			bg = snazzy.ui_12,
@@ -289,8 +308,6 @@ function M.load_syntax(theme)
 		SnapPosition = { fg = snazzy.yellow, style = "bold" },
 		SnapSelect = { fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9 },
 		SnapPrompt = { fg = snazzy.magenta },
-
-		CompeDocumentationBorder = { fg = snazzy.blue },
 	}
 	return syntax
 end
@@ -303,40 +320,76 @@ function M.load_plugin_syntax(theme)
 		snazzy = light
 	end
 
-  local plugin_syntax = {
-    TSBoolean = { fg = snazzy.magenta },
-    TSConditional = { fg = snazzy.yellow, style = "bold" },
-    TSConstMacro = { fg = snazzy.green },
-    TSConstructor = { fg = snazzy.white },
-    TSDanger = { fg = snazzy.red, style = "bold" },
-    TSDefinition = { fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9 },
-    TSDefinitionUsage = { fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9 },
-    TSError = { fg = snazzy.red, style = "bold" },
-    TSField = { fg = snazzy.cyan },
-    TSFloat = { fg = snazzy.ui_4 },
-    TSFuncMacro = { fg = snazzy.green },
-    TSFunction = { fg = snazzy.cyan, style = "bold" },
-    TSInclude = { fg = snazzy.magenta },
-    TSKeyword = { fg = snazzy.magenta, style = "bold" },
-    TSKeywordFunction = { fg = snazzy.magenta, style = "bold" },
-    TSLabel = { fg = snazzy.yellow },
-    TSMethod = { fg = snazzy.cyan, style = "bold" },
-    TSNumber = { fg = snazzy.ui_4 },
-    TSParameter = { fg = snazzy.white },
-    TSProperty = { fg = snazzy.cyan },
-    TSPunctBracket = { fg = snazzy.white },
-    TSPunctDelimiter = { fg = snazzy.white },
-    TSQueryLinterError = { fg = snazzy.red, style = "bold" },
-    TSRepeat = { fg = snazzy.green, style = "bold" },
-    TSString = { fg = snazzy.yellow },
-    TSStringEscape = { fg = snazzy.ui_8, style = "bold" },
-    TSSymbol = { fg = snazzy.green },
-    TSTag = { fg = snazzy.cyan },
-    TSTagDelimiter = { fg = snazzy.magenta },
-    TSType = { fg = snazzy.blue, style = "bold" },
-    TSURI = { fg = snazzy.blue, style = "underline" },
-    TSVariableBuiltin = { fg = snazzy.red, style = "italic" },
-    TSWarning = { fg = snazzy.yellow },
+	local plugin_syntax = {
+		-- TODO: TSAttribute
+		TSBoolean = { fg = snazzy.magenta },
+		-- TODO: TSCharacter
+		-- TODO: TSCharacterSpecial
+		-- TODO: TSComment
+		TSConditional = { fg = snazzy.yellow, style = "bold" },
+		-- TODO: TSConstant
+		-- TODO: TSConstBuiltin
+		TSConstMacro = { fg = snazzy.green },
+		TSConstructor = { fg = snazzy.white },
+		-- TODO: TSDebug
+		-- TODO: TSDefine
+		TSDefinition = { fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9 },
+		TSDefinitionUsage = { fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9 },
+		TSError = { fg = snazzy.red, style = "bold" },
+		-- TODO: TSException
+		TSField = { fg = snazzy.cyan },
+		TSFloat = { fg = snazzy.ui_4 },
+		TSFunction = { fg = snazzy.blue, style = "bold" },
+		-- TODO: TSFuncBuiltin = { fg = snazzy.blue, style = "bold" },
+		TSFuncMacro = { fg = snazzy.green },
+		TSInclude = { fg = snazzy.magenta },
+		TSKeyword = { fg = snazzy.magenta, style = "bold" },
+		TSKeywordFunction = { fg = snazzy.magenta, style = "bold" },
+		-- TODO: TSKeywordOperator
+		-- TODO: TSKeywordReturn
+		TSLabel = { fg = snazzy.yellow },
+		TSMethod = { fg = snazzy.blue, style = "bold" },
+		-- TODO: TSNamespace
+		-- TODO: TSNone
+		TSNumber = { fg = snazzy.ui_4 },
+		-- TODO: TSOperator
+		TSParameter = { fg = snazzy.white },
+		-- TODO: TSParameterReference
+		TSPunctBracket = { fg = snazzy.white },
+		TSPunctDelimiter = { fg = snazzy.white },
+		TSQueryLinterError = { fg = snazzy.red, style = "bold" },
+		TSRepeat = { fg = snazzy.green, style = "bold" },
+		-- TODO: TSStorageClass
+		TSString = { fg = snazzy.yellow },
+		-- TODO: TSStringRegex
+		TSStringEscape = { fg = snazzy.ui_8, style = "bold" },
+		-- TODO: TSStringSpecial
+		TSSymbol = { fg = snazzy.green },
+		TSTag = { fg = snazzy.cyan },
+		-- TODO: TSTagAttribute
+		TSTagDelimiter = { fg = snazzy.magenta },
+		-- TODO: TSText
+		-- TODO: TSStrong
+		-- TODO: TSEmphasis
+		-- TODO: TSUnderline
+		-- TODO: TSStrike
+		-- TODO: TSTitle
+		-- TODO: TSLiteral
+		TSURI = { fg = snazzy.blue, style = "underline" },
+		-- TODO: TSMath
+		-- TODO: TSTextReference
+		-- TODO: TSEnvironment
+		-- TODO: TSEnvironmentName
+		-- TODO: TSNote
+		TSWarning = { fg = snazzy.orange },
+		TSDanger = { fg = snazzy.orange, style = "bold" },
+		TSTodo = { fg = snazzy.cyan },
+		TSType = { fg = snazzy.blue, style = "bold" },
+		-- TODO: TSTypeBuiltin
+		-- TODO: TSTypeQualifier
+		-- TODO: TSTypeDefinition
+		-- TODO: TSVariable
+		TSVariableBuiltin = { fg = snazzy.red, style = "italic" },
 
 		vimCommentTitle = { fg = snazzy.grey, style = "bold" },
 		vimLet = { fg = snazzy.yellow },
@@ -365,17 +418,6 @@ function M.load_plugin_syntax(theme)
 		gitcommitOnBranch = { fg = snazzy.grey },
 		gitcommitArrow = { fg = snazzy.grey },
 		gitcommitFile = { fg = snazzy.green },
-
-		VistaBracket = { fg = snazzy.grey },
-		VistaChildrenNr = { fg = snazzy.yellow },
-		VistaKind = { fg = snazzy.magenta },
-		VistaScope = { fg = snazzy.red },
-		VistaScopeKind = { fg = snazzy.blue },
-		VistaTag = { fg = snazzy.green, style = "bold" },
-		VistaPrefix = { fg = snazzy.grey },
-		VistaColon = { fg = snazzy.green },
-		VistaIcon = { fg = snazzy.yellow },
-		VistaLineNr = { fg = snazzy.fg },
 
 		GitGutterAdd = { fg = snazzy.green },
 		GitGutterChange = { fg = snazzy.yellow },
@@ -407,8 +449,8 @@ function M.load_plugin_syntax(theme)
 
 		DiagnosticDefaultError = { fg = snazzy.red },
 		DiagnosticFloatingError = { fg = snazzy.red },
-		DiagnosticDefaultWarn = { fg = snazzy.yellow },
-		DiagnosticFloatingWarn = { fg = snazzy.yellow },
+		DiagnosticDefaultWarn = { fg = snazzy.orange },
+		DiagnosticFloatingWarn = { fg = snazzy.orange },
 		DiagnosticDefaultHint = { fg = snazzy.green },
 		DiagnosticFloatingHint = { fg = snazzy.green },
 		DiagnosticDefaultInfo = { fg = snazzy.cyan },
@@ -419,12 +461,12 @@ function M.load_plugin_syntax(theme)
 		LspReferenceWrite = { fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9 },
 
 		DiagnosticSignError = { fg = snazzy.red },
-		DiagnosticSignWarn = { fg = snazzy.yellow },
+		DiagnosticSignWarn = { fg = snazzy.orange },
 		DiagnosticSignInfo = { fg = snazzy.blue },
 		DiagnosticSignHint = { fg = snazzy.cyan },
 
 		DiagnosticVirtualTextError = { fg = snazzy.red },
-		DiagnosticVirtualTextWarn = { fg = snazzy.yellow },
+		DiagnosticVirtualTextWarn = { fg = snazzy.orange },
 		DiagnosticVirtualTextInfo = { fg = snazzy.blue },
 		DiagnosticVirtualTextHint = { fg = snazzy.cyan },
 
@@ -435,8 +477,8 @@ function M.load_plugin_syntax(theme)
 		},
 		DiagnosticUnderlineWarn = {
 			style = "underline",
-			sp = snazzy.yellow,
-			fg = snazzy.yellow,
+			sp = snazzy.orange,
+			fg = snazzy.orange,
 		},
 		DiagnosticUnderlineInfo = {
 			style = "underline",
@@ -461,21 +503,7 @@ function M.load_plugin_syntax(theme)
 		NvimTreeGitDirty = { fg = snazzy.yellow },
 		NvimTreeGitNew = { fg = snazzy.green },
 		NvimTreeRootFolder = { fg = snazzy.yellow },
-		NvimTreeSpecialFile = { fg = snazzy.fg, bg = snazzy.none, style = "NONE" },
-
-		LspSagaBorderTitle = { fg = snazzy.yellow, style = "bold" },
-		LspSagaCodeActionContent = { fg = snazzy.green },
-		LspSagaCodeActionTitle = { fg = snazzy.yellow },
-		LspSagaCodeActionTruncateLine = { fg = snazzy.blue },
-		LspSagaDiagnosticBorder = { fg = snazzy.blue },
-		LspSagaDiagnosticHeader = { fg = snazzy.yellow, style = "bold" },
-		LspSagaDiagnosticTruncateLine = { fg = snazzy.blue },
-		LspSagaDocTruncateLine = { fg = snazzy.blue },
-		LspSagaFinderSelection = { fg = snazzy.green },
-		LspSagaHoverBorder = { fg = snazzy.blue },
-		LspSagaLightBulb = { fg = snazzy.yellow },
-		LspSagaLspFinderBorder = { fg = snazzy.blue },
-		LspSagaSignatureHelpBorder = { fg = snazzy.blue },
+		NvimTreeSpecialFile = { fg = snazzy.fg, bg = snazzy.none },
 
 		TelescopeBorder = { fg = snazzy.cyan },
 		TelescopeMatching = { fg = snazzy.green, style = "bold" },
@@ -508,21 +536,10 @@ function M.load_plugin_syntax(theme)
 		DevIconZsh = { fg = snazzy.green },
 		DevIconZshrc = { fg = snazzy.green },
 
-		-- Transparent version, put this behind an option
-		SignColumn = { fg = snazzy.fg, bg = snazzy.none },
-		-- DiffAdd = { fg = snazzy.green, bg = snazzy.none },
-		-- DiffChange = { fg = snazzy.yellow, bg = snazzy.none },
-		-- DiffDelete = { fg = snazzy.red, bg = snazzy.none },
 		CopilotSuggestion = { fg = snazzy.blue, bg = snazzy.cursorline },
 
-
-		rainbowcol1 = { fg = snazzy.white },
-		rainbowcol2 = { fg = snazzy.cyan },
-		rainbowcol3 = { fg = snazzy.blue },
-		rainbowcol4 = { fg = snazzy.magenta },
-		rainbowcol5 = { fg = snazzy.red },
-		rainbowcol6 = { fg = snazzy.yellow },
-		rainbowcol7 = { fg = snazzy.green },
+		CmpCompletionWindowBorder = { fg = snazzy.blue },
+		CmpDocumentationWindowBorder = { fg = snazzy.blue },
 	}
 
 	return plugin_syntax
@@ -542,7 +559,8 @@ function M.setup(theme)
 
 	vim.o.termguicolors = true
 	vim.g.colors_name = "snazzy"
-	local syntax = M.load_syntax(theme)
+	local transparent = vim.env.TERM ~= "xterm-kitty"
+	local syntax = M.load_syntax(theme, transparent)
 	for group, colors in pairs(syntax) do
 		M.highlight(group, colors)
 	end
