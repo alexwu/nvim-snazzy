@@ -286,7 +286,7 @@ function M.load_syntax(theme, transparent)
 		Special = { fg = snazzy.yellow },
 		SpecialChar = { fg = snazzy.yellow },
 		Type = { fg = snazzy.cyan },
-		Function = { fg = snazzy.blue, style = "bold" },
+		Function = { fg = snazzy.purple, style = "bold" },
 		String = { fg = snazzy.yellow },
 		Character = { fg = snazzy.ui_3 },
 		Constant = { fg = snazzy.green },
@@ -339,8 +339,8 @@ function M.load_plugin_syntax(theme)
 		-- TODO: TSException
 		TSField = { fg = snazzy.cyan },
 		TSFloat = { fg = snazzy.ui_4 },
-		TSFunction = { fg = snazzy.blue, style = "bold" },
-		-- TODO: TSFuncBuiltin = { fg = snazzy.blue, style = "bold" },
+		TSFunction = { fg = snazzy.purple, style = "bold" },
+		TSFuncBuiltin = { fg = snazzy.purple, style = "bold" },
 		TSFuncMacro = { fg = snazzy.green },
 		TSInclude = { fg = snazzy.magenta },
 		TSKeyword = { fg = snazzy.magenta, style = "bold" },
@@ -358,9 +358,9 @@ function M.load_plugin_syntax(theme)
 		TSPunctBracket = { fg = snazzy.white },
 		TSPunctDelimiter = { fg = snazzy.white },
 		TSQueryLinterError = { fg = snazzy.red, style = "bold" },
-		TSRepeat = { fg = snazzy.green, style = "bold" },
+		TSRepeat = { fg = snazzy.yellow, style = "bold" },
 		-- TODO: TSStorageClass
-		TSString = { fg = snazzy.yellow },
+		TSString = { fg = snazzy.green },
 		-- TODO: TSStringRegex
 		TSStringEscape = { fg = snazzy.ui_8, style = "bold" },
 		-- TODO: TSStringSpecial
@@ -385,11 +385,11 @@ function M.load_plugin_syntax(theme)
 		TSDanger = { fg = snazzy.orange, style = "bold" },
 		TSTodo = { fg = snazzy.cyan },
 		TSType = { fg = snazzy.blue, style = "bold" },
-		-- TODO: TSTypeBuiltin
+		TSTypeBuiltin = { fg = snazzy.purple, style = "bold" },
 		-- TODO: TSTypeQualifier
 		-- TODO: TSTypeDefinition
 		-- TODO: TSVariable
-		TSVariableBuiltin = { fg = snazzy.red, style = "italic" },
+		TSVariableBuiltin = { fg = snazzy.purple, style = "italic" },
 
 		vimCommentTitle = { fg = snazzy.grey, style = "bold" },
 		vimLet = { fg = snazzy.yellow },
@@ -545,7 +545,11 @@ function M.load_plugin_syntax(theme)
 	return plugin_syntax
 end
 
-function M.setup(theme)
+function M.setup(opts)
+	opts = if_nil(opts, {})
+	local theme = if_nil(opts.theme, "dark")
+	local transparent = if_nil(opts.transparent, false)
+
 	vim.api.nvim_command("hi clear")
 	if vim.fn.exists("syntax_on") then
 		vim.api.nvim_command("syntax reset")
@@ -559,7 +563,7 @@ function M.setup(theme)
 
 	vim.o.termguicolors = true
 	vim.g.colors_name = "snazzy"
-	local transparent = vim.env.TERM ~= "xterm-kitty"
+
 	local syntax = M.load_syntax(theme, transparent)
 	for group, colors in pairs(syntax) do
 		M.highlight(group, colors)
