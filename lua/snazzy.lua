@@ -1,111 +1,18 @@
 local if_nil = vim.F.if_nil
+local dark = require("snazzy.palette").dark
+local light = require("snazzy.palette").light
+
+local git = {
+	add = "#6bc46d",
+	change = "#daaa3f",
+	delete = "#b34642",
+	conflict = "#daaa3f",
+	ignore = "#545d68",
+	-- renamed = '#73c991',
+	bg_visual_selection = "#264466",
+}
 
 local M = {}
-local dark = {
-	base0 = "#1B2229",
-	base1 = "#1c1f24",
-	base2 = "#202328",
-	base3 = "#23272e",
-	base4 = "#3f444a",
-	base5 = "#5B6268",
-	base6 = "#73797e",
-	base7 = "#9ca0a4",
-	base8 = "#b1b1b1",
-
-	red = "#ff5c57",
-	orange = "#FF9F43",
-	yellow = "#f3f99d",
-	green = "#5af78e",
-	blue = "#57c7ff",
-	purple = "#A39DF9",
-	magenta = "#ff6ac1",
-	cyan = "#9aedfe",
-	white = "#f1f1f0",
-	grey = "#686868",
-	black = "#282a36",
-
-	-- Grayscale
-	ui_0 = "#F9F9F9",
-	ui_1 = "#f9f9ff",
-	ui_2 = "#eff0eb",
-	ui_3 = "#e2e4e5",
-	ui_4 = "#a1a6a8",
-	ui_5 = "#848688",
-	ui_6 = "#5e6c70",
-	ui_7 = "#536991",
-	ui_8 = "#606580",
-	ui_9 = "#3a3d4d",
-	ui_11 = "#282a36",
-	ui_12 = "#192224",
-
-	fg = "#eff0eb",
-	bg = "#282a36",
-
-	selection_background = "#273d57",
-
-	cursor = "#3a3d4d",
-	cursorline = "#3a3d4d",
-	none = nil,
-}
-
-local light = {
-	base0 = "#1B2229",
-	base1 = "#1c1f24",
-	base2 = "#202328",
-	base3 = "#23272e",
-	base4 = "#3f444a",
-	base5 = "#5B6268",
-	base6 = "#73797e",
-	base7 = "#9ca0a4",
-	base8 = "#b1b1b1",
-
-	black = "#565869",
-	brightBlack = "#75798F",
-
-	red = "#FF5C57",
-	brightRed = "#FFAEAC",
-
-	green = "#2DAE58",
-	brightGreen = "#35CF68",
-
-	yellow = "#CF9C00",
-	brightYellow = "#F5B900",
-
-	blue = "#09A1ED",
-	brightBlue = "#14B1FF",
-
-	magenta = "#F767BB",
-	brightMagenta = "#FF94D2",
-
-	cyan = "#13BBB7",
-	brightCyan = "#13BBB7",
-
-	white = "#FAFBF9",
-	brightWhite = "#FFFFFF",
-
-	bg = "#FAFBFC",
-	fg = "#565869",
-
-	-- Grayscale
-	ui_0 = "#F9F9F9",
-	ui_1 = "#f9f9ff",
-	ui_2 = "#eff0eb",
-	ui_3 = "#e2e4e5",
-	ui_4 = "#a1a6a8",
-	ui_5 = "#848688",
-	ui_6 = "#5e6c70",
-	ui_7 = "#536991",
-	ui_8 = "#606580",
-	ui_9 = "#3a3d4d",
-	ui_11 = "#282a36",
-	ui_12 = "#192224",
-
-	selection_background = "#ebf5f0",
-
-	cursor = "#3a3d4d",
-	cursorline = "#e2e4e5",
-	none = "NONE",
-}
 
 local snazzy_fn = function(theme)
 	if theme == "dark" then
@@ -164,11 +71,9 @@ function M.load_syntax(theme, transparent)
 		Normal = { fg = snazzy.fg, bg = use_transparent(snazzy.bg) },
 		Terminal = { fg = snazzy.fg, bg = snazzy.bg },
 		SignColumn = { bg = use_transparent(snazzy.ui_11) },
-		FoldColumn = { fg = snazzy.ui_12, bg = snazzy.ui_4, style = "italic" },
 		VertSplit = { fg = snazzy.ui_8, bg = snazzy.ui_11, style = "bold" },
-		Folded = { fg = snazzy.ui_12, bg = snazzy.ui_4 },
 		EndOfBuffer = { fg = snazzy.bg, bg = snazzy.none },
-		IncSearch = { fg = snazzy.ui_11, bg = snazzy.yellow, style = snazzy.none },
+		IncSearch = { bg = "#434805", style = snazzy.none },
 		Search = { fg = snazzy.ui_11, bg = snazzy.yellow, sp = snazzy.yellow },
 		ColorColumn = { fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9 },
 		Conceal = { fg = snazzy.grey, bg = snazzy.none },
@@ -185,7 +90,9 @@ function M.load_syntax(theme, transparent)
 			sp = snazzy.cursorline,
 		},
 		LineNr = { fg = snazzy.ui_8 },
-		CursorLineNr = { fg = snazzy.yellow },
+		CursorLineNr = { fg = snazzy.yellow, bg = snazzy.cursorline },
+		CursorLineSign = { bg = snazzy.cursorline },
+		CursorLineFold = { bg = snazzy.cursorline },
 		DiffAdd = { bg = "#00331a" },
 		DiffText = { fg = snazzy.yellow, bg = "#434805", style = "bold" },
 		DiffDelete = { bg = "#4d0300" },
@@ -248,16 +155,19 @@ function M.load_syntax(theme, transparent)
 		SpellLocal = { fg = snazzy.cyan, bg = snazzy.none, style = "underline" },
 		SpellRare = { fg = snazzy.magenta, bg = snazzy.none, style = "underline" },
 		Visual = {
-			fg = snazzy.fg,
 			bg = snazzy.selection_background,
 			sp = snazzy.selection_background,
 		},
 		VisualNOS = {
-			fg = snazzy.ui_12,
-			bg = snazzy.ui_1,
-			sp = snazzy.ui_1,
-			style = "underline",
+			bg = snazzy.selection_background,
+			sp = snazzy.selection_background,
 		},
+		-- VisualNOS = {
+		-- 	fg = snazzy.ui_12,
+		-- 	bg = snazzy.ui_1,
+		-- 	sp = snazzy.ui_1,
+		-- 	style = "underline",
+		-- },
 		QuickFixLine = { fg = snazzy.magenta, style = "bold" },
 		Debug = { fg = snazzy.yellow },
 		MoreMsg = { fg = snazzy.yellow, style = "bold" },
@@ -312,7 +222,17 @@ function M.load_syntax(theme, transparent)
 	return syntax
 end
 
-function M.load_plugin_syntax(theme)
+function M.load_plugin_syntax(theme, transparent)
+	transparent = if_nil(transparent, false)
+
+	local use_transparent = function(color)
+		if transparent then
+			return nil
+		else
+			return color
+		end
+	end
+
 	local snazzy
 	if theme == "dark" then
 		snazzy = dark
@@ -321,49 +241,53 @@ function M.load_plugin_syntax(theme)
 	end
 
 	local plugin_syntax = {
-		-- TODO: TSAttribute
-		TSBoolean = { fg = snazzy.magenta },
-		-- TODO: TSCharacter
+		TSAnnotation = { fg = snazzy.blue, style = "italic" },
+		TSAttribute = { fg = snazzy.blue, style = "italic" },
+		TSBoolean = { fg = snazzy.purple, style = "italic" },
+		TSCharacter = { fg = snazzy.yellow },
 		-- TODO: TSCharacterSpecial
-		-- TODO: TSComment
+		TSComment = { fg = snazzy.ui_8, style = "italic" },
 		TSConditional = { fg = snazzy.yellow, style = "bold" },
-		-- TODO: TSConstant
-		-- TODO: TSConstBuiltin
-		TSConstMacro = { fg = snazzy.green },
-		TSConstructor = { fg = snazzy.white },
+		TSConstBuiltin = { fg = snazzy.magenta, style = "italic" },
+		TSConstMacro = { fg = snazzy.orange, style = "italic" },
+		TSConstant = { fg = snazzy.green, style = "italic" },
+		TSConstructor = { fg = snazzy.blue },
 		-- TODO: TSDebug
 		-- TODO: TSDefine
 		TSDefinition = { fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9 },
-		TSDefinitionUsage = { fg = snazzy.none, bg = snazzy.ui_9, sp = snazzy.ui_9 },
+		TSDefinitionUsage = { fg = snazzy.none, bg = snazzy.usage, sp = snazzy.usage },
 		TSError = { fg = snazzy.red, style = "bold" },
-		-- TODO: TSException
+		TSException = { fg = snazzy.red },
 		TSField = { fg = snazzy.cyan },
 		TSFloat = { fg = snazzy.ui_4 },
-		TSFunction = { fg = snazzy.purple, style = "bold" },
-		TSFuncBuiltin = { fg = snazzy.purple, style = "bold" },
-		TSFuncMacro = { fg = snazzy.green },
+		TSFunction = { fg = snazzy.blue, style = "bold" },
+		TSFunctionCall = { fg = snazzy.blue, style = "bold" },
+		TSFuncBuiltin = { fg = snazzy.blue, style = "bold" },
+		TSFuncMacro = { fg = snazzy.blue, style = "bold" },
 		TSInclude = { fg = snazzy.magenta },
 		TSKeyword = { fg = snazzy.magenta, style = "bold" },
 		TSKeywordFunction = { fg = snazzy.magenta, style = "bold" },
-		-- TODO: TSKeywordOperator
-		-- TODO: TSKeywordReturn
-		TSLabel = { fg = snazzy.yellow },
+		TSKeywordOperator = { fg = snazzy.magenta, style = "bold" },
+		TSKeywordReturn = { fg = snazzy.magenta, style = "bold" },
+		TSLabel = { fg = snazzy.green },
 		TSMethod = { fg = snazzy.blue, style = "bold" },
-		-- TODO: TSNamespace
-		-- TODO: TSNone
-		TSNumber = { fg = snazzy.ui_4 },
-		-- TODO: TSOperator
-		TSParameter = { fg = snazzy.white },
-		-- TODO: TSParameterReference
+		TSMethodCall = { fg = snazzy.blue, style = "bold" },
+		TSNamespace = { fg = snazzy.purple, style = "italic" },
+		TSNumber = { fg = snazzy.purple },
+		TSOperator = { fg = snazzy.magenta },
+		TSParameter = { fg = snazzy.yellow },
+		TSParameterReference = { fg = snazzy.yellow },
 		TSPunctBracket = { fg = snazzy.white },
 		TSPunctDelimiter = { fg = snazzy.white },
+		TSPunctSpecial = { fg = snazzy.yellow },
 		TSQueryLinterError = { fg = snazzy.red, style = "bold" },
 		TSRepeat = { fg = snazzy.yellow, style = "bold" },
-		-- TODO: TSStorageClass
+		TSStorageClass = { fg = snazzy.magenta },
 		TSString = { fg = snazzy.green },
 		-- TODO: TSStringRegex
-		TSStringEscape = { fg = snazzy.ui_8, style = "bold" },
+		TSStringEscape = { fg = snazzy.yellow, style = "bold" },
 		-- TODO: TSStringSpecial
+		TSStructure = { fg = snazzy.orange, style = "italic" },
 		TSSymbol = { fg = snazzy.green },
 		TSTag = { fg = snazzy.cyan },
 		-- TODO: TSTagAttribute
@@ -384,12 +308,47 @@ function M.load_plugin_syntax(theme)
 		TSWarning = { fg = snazzy.orange },
 		TSDanger = { fg = snazzy.orange, style = "bold" },
 		TSTodo = { fg = snazzy.cyan },
-		TSType = { fg = snazzy.blue, style = "bold" },
-		TSTypeBuiltin = { fg = snazzy.purple, style = "bold" },
+		TSType = { fg = snazzy.purple },
+		TSTypeBuiltin = { fg = snazzy.purple },
 		-- TODO: TSTypeQualifier
 		-- TODO: TSTypeDefinition
-		-- TODO: TSVariable
-		TSVariableBuiltin = { fg = snazzy.purple, style = "italic" },
+		TSVariable = { fg = snazzy.fg },
+		TSVariableBuiltin = { fg = snazzy.orange, style = "italic" },
+		TSCurrentScope = { bg = snazzy.usage },
+
+		-- LspAbstract, -- TODO:
+		-- LspAsync, -- TODO:
+		-- LspClass, -- TODO:
+		LspComment = { fg = snazzy.ui_8, style = "italic" },
+		-- LspDeclaration, -- TODO:
+		LspDefaultLibrary = { fg = snazzy.yellow, style = "bold" },
+		LspDefinition = { fg = snazzy.blue, bg = snazzy.ui_9, sp = snazzy.ui_9 },
+		-- LspDeprecated, -- TODO:
+		-- LspDocumentation, -- TODO:
+		-- LspEnum, -- TODO:
+		-- LspEnumMember, -- TODO:
+		-- LspEvent, -- TODO:
+		LspFunction = { fg = snazzy.blue, style = "bold" },
+		-- LspInterface, -- TODO:
+		LspKeyword = { fg = snazzy.magenta, style = "bold" }, -- TODO:
+		-- LspMacro, -- TODO:
+		LspMethod = { fg = snazzy.blue, style = "bold" },
+		-- LspModification, -- TODO:
+		-- LspModifier, -- TODO:
+		LspNamespace = { fg = snazzy.blue, style = "italic" }, -- TODO:
+		LspNumber = { fg = snazzy.purple },
+		-- LspOperator, -- TODO:
+		LspParameter = { fg = snazzy.yellow },
+		-- LspProperty, -- TODO:
+		-- LspReadonly, -- TODO:
+		-- LspRegexp, -- TODO:
+		-- LspStatic, -- TODO:
+		-- LspString, -- TODO:
+		-- LspStruct, -- TODO:
+		-- LspType, -- TODO:
+		-- LspTypeParameter, -- TODO:
+		LspVariable = { fg = snazzy.white },
+		LspInlayHints = { fg = snazzy.ui_7 },
 
 		vimCommentTitle = { fg = snazzy.grey, style = "bold" },
 		vimLet = { fg = snazzy.yellow },
@@ -428,7 +387,7 @@ function M.load_plugin_syntax(theme)
 		GitSignsDelete = { fg = snazzy.red },
 		GitSignsCurrentLineBlame = {
 			fg = snazzy.ui_8,
-			bg = snazzy.cursorline,
+			bg = snazzy.usage,
 			style = "italic",
 		},
 
@@ -476,7 +435,7 @@ function M.load_plugin_syntax(theme)
 			fg = snazzy.red,
 		},
 		DiagnosticUnderlineWarn = {
-			style = "underline",
+			style = "underdouble",
 			sp = snazzy.orange,
 			fg = snazzy.orange,
 		},
@@ -505,14 +464,18 @@ function M.load_plugin_syntax(theme)
 		NvimTreeRootFolder = { fg = snazzy.yellow },
 		NvimTreeSpecialFile = { fg = snazzy.fg, bg = snazzy.none },
 
-		TelescopeBorder = { fg = snazzy.cyan, bg = snazzy.bg },
+		TelescopeBorder = { fg = snazzy.blue, bg = snazzy.bg },
+		TelescopePreviewBorder = { fg = snazzy.blue, bg = snazzy.bg },
+		TelescopePromptBorder = { fg = snazzy.blue, bg = snazzy.bg },
+		TelescopeResultsBorder = { fg = snazzy.blue, bg = snazzy.bg },
+		-- TelescopeBorder = { fg = snazzy.blue, bg = snazzy.bg },
+		-- TelescopePreviewBorder = { fg = snazzy.bg, bg = snazzy.bg },
+		-- TelescopePromptBorder = { fg = snazzy.bg, bg = snazzy.bg },
+		-- TelescopeResultsBorder = { fg = snazzy.bg, bg = snazzy.bg },
 		TelescopeMatching = { fg = snazzy.green, style = "bold" },
 		TelescopeMultiSelection = { fg = snazzy.red, style = "bold" },
 		TelescopeNormal = { fg = snazzy.fg, bg = snazzy.bg },
-		TelescopePreviewBorder = { fg = snazzy.blue, bg = snazzy.bg },
-		TelescopePromptBorder = { fg = snazzy.cyan, bg = snazzy.bg },
 		TelescopePromptPrefix = { fg = snazzy.magenta, style = "bold" },
-		TelescopeResultsBorder = { fg = snazzy.blue, bg = snazzy.bg },
 		TelescopeSelection = { bg = snazzy.none, style = "bold" },
 		TelescopeSelectionCaret = { fg = snazzy.magenta, style = "bold" },
 
@@ -540,6 +503,25 @@ function M.load_plugin_syntax(theme)
 
 		CmpCompletionWindowBorder = { fg = snazzy.blue },
 		CmpDocumentationWindowBorder = { fg = snazzy.blue },
+
+		luaTSPunctBracket = { fg = snazzy.white, style = "bold" },
+		luaTSConstructor = { fg = snazzy.white, style = "bold" },
+		Folded = { bg = snazzy.foldline },
+		FoldColumn = { fg = snazzy.ui_8, bg = use_transparent(snazzy.bg), style = "italic" },
+		CursorLineFold = { fg = snazzy.blue, bg = use_transparent(snazzy.cursorline), style = "italic" },
+		UfoFoldedBg = { bg = snazzy.bg },
+		UfoFoldedFg = { fg = snazzy.blue },
+		UfoPreviewSbar = { bg = snazzy.blue },
+		UfoPreviewThumb = { fg = snazzy.blue },
+
+		KeyMenuFloatBorder = { fg = snazzy.blue },
+		TreesitterContextLineNumber = { fg = snazzy.blue },
+
+		HopNextKey = { fg = snazzy.hop.next_key, style = "bold" },
+		HopNextKey1 = { fg = snazzy.hop.next_key1, style = "bold" },
+		HopNextKey2 = { fg = snazzy.hop.next_key2 },
+		HopUnmatched = { fg = "#666666", bg = snazzy.bg, sp = "#666666" },
+		HopPreview = { guifg = "#b8bb26", style = "bold" },
 	}
 
 	return plugin_syntax
