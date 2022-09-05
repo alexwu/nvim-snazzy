@@ -1,3 +1,6 @@
+local lush = require("lush")
+local hsl = lush.hsl
+
 local M = {}
 
 M.dark = {
@@ -11,17 +14,17 @@ M.dark = {
 	base7 = "#9ca0a4",
 	base8 = "#b1b1b1",
 
-	red = "#ff5c57",
-	orange = "#FF9F43",
-	yellow = "#f3f99d",
-	green = "#5af78e",
-	blue = "#57c7ff",
-	purple = "#A39DF9",
-	magenta = "#ff6ac1",
-	cyan = "#9aedfe",
-	white = "#f1f1f0",
-	grey = "#686868",
-	black = "#282a36",
+	red = hsl("#ff5c57"),
+	orange = hsl("#FF9F43"),
+	yellow = hsl("#f3f99d"),
+	green = hsl("#5af78e"),
+	blue = hsl("#57c7ff"),
+	purple = hsl("#A39DF9"),
+	magenta = hsl("#ff6ac1"),
+	cyan = hsl("#9aedfe"),
+	white = hsl("#f1f1f0"),
+	grey = hsl("#686868"),
+	black = hsl("#282a36"),
 
 	search = "#f3f99d",
 	incsearch = "#636427",

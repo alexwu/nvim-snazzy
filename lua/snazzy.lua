@@ -250,7 +250,7 @@ function M.load_plugin_syntax(theme, transparent)
 		TSConditional = { fg = snazzy.yellow, style = "bold" },
 		TSConstBuiltin = { fg = snazzy.magenta, style = "italic" },
 		TSConstMacro = { fg = snazzy.orange, style = "italic" },
-		TSConstant = { fg = snazzy.green, style = "italic" },
+		TSConstant = { fg = snazzy.yellow, style = "italic" },
 		TSConstructor = { fg = snazzy.blue },
 		-- TODO: TSDebug
 		-- TODO: TSDefine
@@ -273,7 +273,7 @@ function M.load_plugin_syntax(theme, transparent)
 		TSMethod = { fg = snazzy.blue, style = "bold" },
 		TSMethodCall = { fg = snazzy.blue, style = "bold" },
 		TSNamespace = { fg = snazzy.purple, style = "italic" },
-		TSNumber = { fg = snazzy.purple },
+		TSNumber = { fg = snazzy.green },
 		TSOperator = { fg = snazzy.magenta },
 		TSParameter = { fg = snazzy.yellow },
 		TSParameterReference = { fg = snazzy.yellow },
@@ -290,7 +290,7 @@ function M.load_plugin_syntax(theme, transparent)
 		TSStructure = { fg = snazzy.orange, style = "italic" },
 		TSSymbol = { fg = snazzy.green },
 		TSTag = { fg = snazzy.cyan },
-		-- TODO: TSTagAttribute
+		TSTagAttribute = { fg = snazzy.yellow },
 		TSTagDelimiter = { fg = snazzy.magenta },
 		-- TODO: TSText
 		-- TODO: TSStrong
@@ -314,6 +314,7 @@ function M.load_plugin_syntax(theme, transparent)
 		-- TODO: TSTypeDefinition
 		TSVariable = { fg = snazzy.fg },
 		TSVariableBuiltin = { fg = snazzy.orange, style = "italic" },
+		TSCurrentNode = { bg = snazzy.current_node },
 		TSCurrentScope = { bg = snazzy.usage },
 
 		-- LspAbstract, -- TODO:
@@ -349,6 +350,7 @@ function M.load_plugin_syntax(theme, transparent)
 		-- LspTypeParameter, -- TODO:
 		LspVariable = { fg = snazzy.white },
 		LspInlayHints = { fg = snazzy.ui_7 },
+		LspSignatureActiveParameter = { bg = "#636427" },
 
 		vimCommentTitle = { fg = snazzy.grey, style = "bold" },
 		vimLet = { fg = snazzy.yellow },
@@ -430,24 +432,24 @@ function M.load_plugin_syntax(theme, transparent)
 		DiagnosticVirtualTextHint = { fg = snazzy.cyan },
 
 		DiagnosticUnderlineError = {
-			style = "underline",
+			style = "underdouble",
 			sp = snazzy.red,
 			fg = snazzy.red,
 		},
 		DiagnosticUnderlineWarn = {
 			style = "underdouble",
 			sp = snazzy.orange,
-			fg = snazzy.orange,
+			-- fg = snazzy.orange,
 		},
 		DiagnosticUnderlineInfo = {
-			style = "underline",
+			style = "underdouble",
 			sp = snazzy.blue,
-			fg = snazzy.blue,
+			-- fg = snazzy.blue,
 		},
 		DiagnosticUnderlineHint = {
-			style = "underline",
+			style = "underdouble",
 			sp = snazzy.cyan,
-			fg = snazzy.cyan,
+			-- fg = snazzy.cyan,
 		},
 
 		LspFloatWinBorder = { fg = snazzy.blue },
@@ -521,7 +523,29 @@ function M.load_plugin_syntax(theme, transparent)
 		HopNextKey1 = { fg = snazzy.hop.next_key1, style = "bold" },
 		HopNextKey2 = { fg = snazzy.hop.next_key2 },
 		HopUnmatched = { fg = "#666666", bg = snazzy.bg, sp = "#666666" },
-		HopPreview = { guifg = "#b8bb26", style = "bold" },
+		LeapLabelPrimary = { fg = snazzy.hop.next_key, style = "bold" },
+		LeapLabelSecondary = { fg = snazzy.hop.next_key1, style = "bold" },
+		LeapBackdrop = { fg = "#666666", bg = snazzy.bg, sp = "#666666" },
+		HopPreview = { fg = "#b8bb26", style = "bold" },
+		IlluminatedWordRead = { bg = snazzy.usage },
+		IlluminatedWordWrite = { bg = snazzy.usage },
+		IlluminatedWordText = { bg = snazzy.usage },
+
+		NotifyERRORBorder = { fg = snazzy.red },
+		NotifyWARNBorder = { fg = snazzy.orange },
+		NotifyINFOBorder = { fg = snazzy.green },
+		NotifyDEBUGBorder = { fg = snazzy.cyan },
+		NotifyTRACEBorder = { fg = snazzy.purple },
+		NotifyERRORIcon = { fg = snazzy.magenta },
+		NotifyWARNIcon = { fg = snazzy.orange },
+		NotifyINFOIcon = { fg = snazzy.green },
+		NotifyDEBUGIcon = { fg = snazzy.cyan },
+		NotifyTRACEIcon = { fg = snazzy.purple },
+		NotifyERRORTitle = { fg = snazzy.red },
+		NotifyWARNTitle = { fg = snazzy.orange },
+		NotifyINFOTitle = { fg = snazzy.fg },
+		NotifyDEBUGTitle = { fg = snazzy.cyan },
+		NotifyTRACETitle = { fg = snazzy.purple },
 	}
 
 	return plugin_syntax
