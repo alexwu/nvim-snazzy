@@ -21,69 +21,160 @@ local theme = lush(function()
 
     Boolean                                                              { fg="#ff6ac1", }, -- Boolean        xxx guifg=#ff6ac1
     Character                                                            { fg="#e2e4e5", }, -- Character      xxx guifg=#e2e4e5
+    ColorColumn                                                          { sp="#3a3d4d", bg="#3a3d4d", }, -- ColorColumn    xxx guibg=#3a3d4d guisp=#3a3d4d
+    Comment                                                              { gui="italic", fg="#606580", }, -- Comment        xxx cterm=italic gui=italic guifg=#606580
+    Conceal                                                              { fg="#686868", }, -- Conceal        xxx guifg=#686868
+    Conditional                                                          { gui="bold", fg=snazzy.yellow, }, -- Conditional    xxx cterm=bold gui=bold guifg=#f3f99d
+    Constant                                                             { fg=snazzy.green, }, -- Constant       xxx guifg=#5af78e
+    Debug                                                                { fg=snazzy.yellow, }, -- Debug          xxx guifg=#f3f99d
+    Define                                                               { fg=snazzy.yellow, }, -- Define         xxx guifg=#f3f99d
+    Identifier                                                           { fg="#9aedfe", }, -- Identifier     xxx guifg=#9aedfe
+    -- IncSearch                                                            { bg=snazzy.blue.mix(snazzy.bg, 25), fg=snazzy.bg }, -- IncSearch      xxx guibg=#434805
+    IncSearch                                                            { bg=snazzy.search, fg=snazzy.fg }, -- IncSearch      xxx guibg=#434805
+    Macro                                                                { fg=snazzy.yellow, }, -- Macro          xxx guifg=#f3f99d
     NonText                                                              { gui="italic", fg="#606580", }, -- NonText        xxx cterm=italic gui=italic guifg=#606580
     Normal                                                               { bg="#282a36", fg="#eff0eb", }, -- Normal         xxx guifg=#eff0eb guibg=#282a36
     NormalFloat                                                          { bg="#282a36", fg="#eff0eb", }, -- NormalFloat    xxx guifg=#eff0eb guibg=#282a36
     Operator                                                             { gui="bold", fg="#ff6ac1", }, -- Operator       xxx cterm=bold gui=bold guifg=#ff6ac1
     Pmenu                                                                { sp="#3a3d4d", bg="#3a3d4d", fg="#eff0eb", }, -- Pmenu          xxx guifg=#eff0eb guibg=#3a3d4d guisp=#3a3d4d
     PmenuSbar                                                            { sp="#848688", bg="#848688", fg="#f9f9f9", }, -- PmenuSbar      xxx guifg=#f9f9f9 guibg=#848688 guisp=#848688
-    PmenuSel                                                             { sp="#3a3d4d", bg="#3a3d4d", fg="#5af78e", }, -- PmenuSel       xxx guifg=#5af78e guibg=#3a3d4d guisp=#3a3d4d
-    PmenuSelBold                                                         { sp="#3a3d4d", fg="#5af78e", bg="#3a3d4d", gui="bold", }, -- PmenuSelBold   xxx cterm=bold gui=bold guifg=#5af78e guibg=#3a3d4d guisp=#3a3d4d
+    PmenuSel                                                             { sp="#3a3d4d", bg="#3a3d4d", fg=snazzy.green, }, -- PmenuSel       xxx guifg=#5af78e guibg=#3a3d4d guisp=#3a3d4d
+    PmenuSelBold                                                         { sp="#3a3d4d", fg=snazzy.green, bg="#3a3d4d", gui="bold", }, -- PmenuSelBold   xxx cterm=bold gui=bold guifg=#5af78e guibg=#3a3d4d guisp=#3a3d4d
     PmenuThumb                                                           { sp="#a1a6a8", bg="#a1a6a8", }, -- PmenuThumb     xxx guibg=#a1a6a8 guisp=#a1a6a8
-    PreCondit                                                            { fg="#f3f99d", }, -- PreCondit      xxx guifg=#f3f99d
+    PreCondit                                                            { fg=snazzy.yellow, }, -- PreCondit      xxx guifg=#f3f99d
     PreProc                                                              { fg=snazzy.red, }, -- PreProc        xxx guifg=#ff5c57
-    Search                                                               { sp="#f3f99d", bg="#f3f99d", fg="#282a36", }, -- Search         xxx guifg=#282a36 guibg=#f3f99d guisp=#f3f99d
-    Special                                                              { fg="#f3f99d", }, -- Special        xxx guifg=#f3f99d
-    SpecialChar                                                          { fg="#f3f99d", }, -- SpecialChar    xxx guifg=#f3f99d
-    SpecialComment                                                       { fg="#f3f99d", }, -- SpecialComment xxx guifg=#f3f99d
+    Search                                                               { bg=snazzy.search, fg=snazzy.fg }, -- IncSearch      xxx guibg=#434805
+    Special                                                              { fg=snazzy.yellow, }, -- Special        xxx guifg=#f3f99d
+    SpecialChar                                                          { fg=snazzy.yellow, }, -- SpecialChar    xxx guifg=#f3f99d
+    SpecialComment                                                       { fg=snazzy.yellow, }, -- SpecialComment xxx guifg=#f3f99d
     SpecialKey                                                           { gui="italic", fg="#5e6c70", }, -- SpecialKey     xxx cterm=italic gui=italic guifg=#5e6c70
     Statement                                                            { fg="#ff6ac1", }, -- Statement      xxx guifg=#ff6ac1
     StatusLine                                                           { sp="#3a3d4d", bg="#3a3d4d", fg="#eff0eb", }, -- StatusLine     xxx guifg=#eff0eb guibg=#3a3d4d guisp=#3a3d4d
     StatusLineNC                                                         { sp="#3a3d4d", bg="#3a3d4d", fg="#a1a6a8", }, -- StatusLineNC   xxx guifg=#a1a6a8 guibg=#3a3d4d guisp=#3a3d4d
     StorageClass                                                         { gui="bold", fg="#57c7ff", }, -- StorageClass   xxx cterm=bold gui=bold guifg=#57c7ff
-    String                                                               { fg="#f3f99d", }, -- String         xxx guifg=#f3f99d
+    String                                                               { fg=snazzy.green, }, -- String         xxx guifg=#f3f99d
     Structure                                                            { gui="bold", fg="#536991", }, -- Structure      xxx cterm=bold gui=bold guifg=#536991
-    Substitute                                                           { Search }, -- Substitute     xxx links to Search
+    Substitute                                                           { bg=snazzy.yellow.mix(snazzy.bg, 50), fg=snazzy.bg }, -- Substitute     xxx links to Search
     TermCursor                                                           { fg="#192224", }, -- TermCursor     xxx guifg=#192224
     Terminal                                                             { bg="#282a36", fg="#eff0eb", }, -- Terminal       xxx guifg=#eff0eb guibg=#282a36
-    Title                                                                { gui="bold", fg="#f3f99d", }, -- Title          xxx cterm=bold gui=bold guifg=#f3f99d
-    Todo                                                                 { gui="italic", fg="#f3f99d", }, -- Todo           xxx cterm=italic gui=italic guifg=#f3f99d
+    Title                                                                { gui="bold", fg=snazzy.yellow, }, -- Title          xxx cterm=bold gui=bold guifg=#f3f99d
+    Todo                                                                 { gui="italic", fg=snazzy.yellow, }, -- Todo           xxx cterm=italic gui=italic guifg=#f3f99d
     Type                                                                 { fg="#9aedfe", }, -- Type           xxx guifg=#9aedfe
     Typedef                                                              { gui="bold", fg="#536991", }, -- Typedef        xxx cterm=bold gui=bold guifg=#536991
     Underlined                                                           { sp="#f1f1f0", gui="underline", fg="#f9f9ff", }, -- Underlined     xxx cterm=underline gui=underline guifg=#f9f9ff guisp=#f1f1f0
     VertSplit                                                            { bg="#282a36", gui="bold", fg="#606580", }, -- VertSplit      xxx cterm=bold gui=bold guifg=#606580 guibg=#282a36
     Visual                                                               { sp="#273d57", bg="#273d57", }, -- Visual         xxx guibg=#273d57 guisp=#273d57
     VisualNOS                                                            { sp="#273d57", bg="#273d57", }, -- VisualNOS      xxx guibg=#273d57 guisp=#273d57
-    WarningMsg                                                           { gui="bold", fg="#ff9f43", }, -- WarningMsg     xxx cterm=bold gui=bold guifg=#ff9f43
+    WarningMsg                                                           { gui="bold", fg=snazzy.orange, }, -- WarningMsg     xxx cterm=bold gui=bold guifg=#ff9f43
     Whitespace                                                           { fg="#3f444a", }, -- Whitespace     xxx guifg=#3f444a
     WildMenu                                                             { sp="#a1a6a8", bg="#a1a6a8", }, -- WildMenu       xxx guibg=#a1a6a8 guisp=#a1a6a8
     WinBar                                                               { gui="bold", }, -- WinBar         xxx cterm=bold gui=bold
     WinBarNC                                                             { WinBar }, -- WinBarNC       xxx links to WinBar
     WinSeparator                                                         { VertSplit }, -- WinSeparator   xxx links to VertSplit
 
+    -- Treesitter highlights
+    TSAnnotation                                                         { gui="italic", fg="#57c7ff", }, -- TSAnnotation   xxx cterm=italic gui=italic guifg=#57c7ff
+    TSAttribute                                                          { gui="italic", fg="#57c7ff", }, -- TSAttribute    xxx cterm=italic gui=italic guifg=#57c7ff
+    TSBoolean                                                            { gui="italic", fg=snazzy.purple, }, -- TSBoolean      xxx cterm=italic gui=italic guifg=#a39df9
+    TSCharacter                                                          { fg=snazzy.yellow, }, -- TSCharacter    xxx guifg=#f3f99d
+    TSCharacterSpecial                                                   { SpecialChar }, -- TSCharacterSpecial xxx links to SpecialChar
+    TSComment                                                            { gui="italic", fg="#606580", }, -- TSComment      xxx cterm=italic gui=italic guifg=#606580
+    TSConditional                                                        { gui="bold", fg=snazzy.yellow, }, -- TSConditional  xxx cterm=bold gui=bold guifg=#f3f99d
+    TSConstBuiltin                                                       { gui="italic", fg="#ff6ac1", }, -- TSConstBuiltin xxx cterm=italic gui=italic guifg=#ff6ac1
+    TSConstMacro                                                         { gui="italic", fg=snazzy.orange, }, -- TSConstMacro   xxx cterm=italic gui=italic guifg=#ff9f43
+    TSConstant                                                           { gui="italic", fg=snazzy.yellow, }, -- TSConstant     xxx cterm=italic gui=italic guifg=#f3f99d
+    TSConstructor                                                        { fg="#57c7ff", }, -- TSConstructor  xxx guifg=#57c7ff
+    TSCurrentNode                                                        { bg="#303340", }, -- TSCurrentNode  xxx guibg=#303340
+    TSCurrentScope                                                       { bg="#3a3d4d", }, -- TSCurrentScope xxx guibg=#3a3d4d
+    TSDanger                                                             { gui="bold", fg=snazzy.orange, }, -- TSDanger       xxx cterm=bold gui=bold guifg=#ff9f43
+    TSDebug                                                              { Debug }, -- TSDebug        xxx links to Debug
+    TSDefine                                                             { Define }, -- TSDefine       xxx links to Define
+    TSDefinition                                                         { sp="#3a3d4d", bg="#3a3d4d", }, -- TSDefinition   xxx guibg=#3a3d4d guisp=#3a3d4d
+    TSDefinitionUsage                                                    { sp="#3a3d4d", bg="#3a3d4d", }, -- TSDefinitionUsage xxx guibg=#3a3d4d guisp=#3a3d4d
+    TSEmphasis                                                           { gui="italic", }, -- TSEmphasis     xxx cterm=italic gui=italic
+    TSEnvironment                                                        { Macro }, -- TSEnvironment  xxx links to Macro
+    TSEnvironmentName                                                    { Type }, -- TSEnvironmentName xxx links to Type
+    TSError                                                              { gui="bold", fg=snazzy.red, }, -- TSError        xxx cterm=bold gui=bold guifg=#ff5c57
+    TSException                                                          { fg=snazzy.red, }, -- TSException    xxx guifg=#ff5c57
+    TSField                                                              { fg="#9aedfe", }, -- TSField        xxx guifg=#9aedfe
+    TSFloat                                                              { fg="#a1a6a8", }, -- TSFloat        xxx guifg=#a1a6a8
+    TSFuncBuiltin                                                        { gui="bold", fg=snazzy.yellow, }, -- TSFuncBuiltin  xxx cterm=bold gui=bold guifg=#57c7ff
+    TSFuncMacro                                                          { gui="bold", fg="#57c7ff", }, -- TSFuncMacro    xxx cterm=bold gui=bold guifg=#57c7ff
+    TSFunction                                                           { gui="bold", fg="#57c7ff", }, -- TSFunction     xxx cterm=bold gui=bold guifg=#57c7ff
+    TSFunctionCall                                                       { gui="bold", fg="#57c7ff", }, -- TSFunctionCall xxx cterm=bold gui=bold guifg=#57c7ff
+    TSInclude                                                            { fg="#ff6ac1", }, -- TSInclude      xxx guifg=#ff6ac1
+    TSKeyword                                                            { gui="bold", fg="#ff6ac1", }, -- TSKeyword      xxx cterm=bold gui=bold guifg=#ff6ac1
+    TSKeywordFunction                                                    { gui="bold", fg="#ff6ac1", }, -- TSKeywordFunction xxx cterm=bold gui=bold guifg=#ff6ac1
+    TSKeywordOperator                                                    { gui="bold", fg="#ff6ac1", }, -- TSKeywordOperator xxx cterm=bold gui=bold guifg=#ff6ac1
+    TSKeywordReturn                                                      { gui="bold", fg="#ff6ac1", }, -- TSKeywordReturn xxx cterm=bold gui=bold guifg=#ff6ac1
+    TSLabel                                                              { fg=snazzy.green, }, -- TSLabel        xxx guifg=#5af78e
+    TSLiteral                                                            { String }, -- TSLiteral      xxx links to String
+    TSMath                                                               { Special }, -- TSMath         xxx links to Special
+    TSMethod                                                             { gui="bold", fg="#57c7ff", }, -- TSMethod       xxx cterm=bold gui=bold guifg=#57c7ff
+    TSMethodCall                                                         { gui="bold", fg="#57c7ff", }, -- TSMethodCall   xxx cterm=bold gui=bold guifg=#57c7ff
+    TSNamespace                                                          { gui="italic", fg=snazzy.purple, }, -- TSNamespace    xxx cterm=italic gui=italic guifg=#a39df9
+    TSNone                                                               { }, -- TSNone         xxx cterm= gui=
+    TSNote                                                               { SpecialComment }, -- TSNote         xxx links to SpecialComment
+    TSNumber                                                             { fg=snazzy.green, }, -- TSNumber       xxx guifg=#5af78e
+    TSOperator                                                           { fg="#ff6ac1", }, -- TSOperator     xxx guifg=#ff6ac1
+    TSParameter                                                          { fg=snazzy.yellow, }, -- TSParameter    xxx guifg=#f3f99d
+    TSParameterReference                                                 { fg=snazzy.yellow, }, -- TSParameterReference xxx guifg=#f3f99d
+    TSPreProc                                                            { PreProc }, -- TSPreProc      xxx links to PreProc
+    TSProperty                                                           { Identifier }, -- TSProperty     xxx links to Identifier
+    TSPunctBracket                                                       { fg="#f1f1f0", }, -- TSPunctBracket xxx guifg=#f1f1f0
+    TSPunctDelimiter                                                     { fg="#f1f1f0", }, -- TSPunctDelimiter xxx guifg=#f1f1f0
+    TSPunctSpecial                                                       { fg=snazzy.yellow, }, -- TSPunctSpecial xxx guifg=#f3f99d
+    TSQueryLinterError                                                   { gui="bold", fg=snazzy.red, }, -- TSQueryLinterError xxx cterm=bold gui=bold guifg=#ff5c57
+    TSRepeat                                                             { gui="bold", fg=snazzy.yellow, }, -- TSRepeat       xxx cterm=bold gui=bold guifg=#f3f99d
+    TSStorageClass                                                       { fg="#ff6ac1", }, -- TSStorageClass xxx guifg=#ff6ac1
+    TSStrike                                                             { gui="strikethrough", }, -- TSStrike       xxx cterm=strikethrough gui=strikethrough
+    TSString                                                             { fg=snazzy.green, }, -- TSString       xxx guifg=#5af78e
+    TSStringEscape                                                       { gui="bold", fg=snazzy.yellow, }, -- TSStringEscape xxx cterm=bold gui=bold guifg=#f3f99d
+    TSStringRegex                                                        { String }, -- TSStringRegex  xxx links to String
+    TSStringSpecial                                                      { SpecialChar }, -- TSStringSpecial xxx links to SpecialChar
+    TSStrong                                                             { gui="bold", }, -- TSStrong       xxx cterm=bold gui=bold
+    TSStructure                                                          { gui="italic", fg=snazzy.orange, }, -- TSStructure    xxx cterm=italic gui=italic guifg=#ff9f43
+    TSSymbol                                                             { fg=snazzy.green, }, -- TSSymbol       xxx guifg=#5af78e
+    TSTag                                                                { fg="#9aedfe", }, -- TSTag          xxx guifg=#9aedfe
+    TSTagAttribute                                                       { fg=snazzy.yellow, }, -- TSTagAttribute xxx guifg=#f3f99d
+    TSTagDelimiter                                                       { fg="#ff6ac1", }, -- TSTagDelimiter xxx guifg=#ff6ac1
+    TSText                                                               { TSNone }, -- TSText         xxx links to TSNone
+    TSTextReference                                                      { Constant }, -- TSTextReference xxx links to Constant
+    TSTitle                                                              { Title }, -- TSTitle        xxx links to Title
+    TSTodo                                                               { fg="#9aedfe", }, -- TSTodo         xxx guifg=#9aedfe
+    TSType                                                               { fg=snazzy.purple, }, -- TSType         xxx guifg=#a39df9
+    TSTypeBuiltin                                                        { fg=snazzy.purple, }, -- TSTypeBuiltin  xxx guifg=#a39df9
+    TSTypeDefinition                                                     { Typedef }, -- TSTypeDefinition xxx links to Typedef
+    TSTypeQualifier                                                      { Type }, -- TSTypeQualifier xxx links to Type
+    TSURI                                                                { gui="underline", fg="#57c7ff", }, -- TSURI          xxx cterm=underline gui=underline guifg=#57c7ff
+    TSUnderline                                                          { gui="underline", }, -- TSUnderline    xxx cterm=underline gui=underline
+    TSVariable                                                           { fg="#eff0eb", }, -- TSVariable     xxx guifg=#eff0eb
+    TSVariableBuiltin                                                    { gui="italic", fg=snazzy.orange, }, -- TSVariableBuiltin xxx cterm=italic gui=italic guifg=#ff9f43
+    TSWarning                                                            { fg=snazzy.orange, }, -- TSWarning      xxx guifg=#ff9f43
+
     DiagnosticDefaultError                                               { fg=snazzy.red, }, -- DiagnosticDefaultError xxx guifg=#ff5c57
-    DiagnosticDefaultHint                                                { fg="#5af78e", }, -- DiagnosticDefaultHint xxx guifg=#5af78e
+    DiagnosticDefaultHint                                                { fg=snazzy.green, }, -- DiagnosticDefaultHint xxx guifg=#5af78e
     DiagnosticDefaultInfo                                                { fg="#9aedfe", }, -- DiagnosticDefaultInfo xxx guifg=#9aedfe
-    DiagnosticDefaultWarn                                                { fg="#ff9f43", }, -- DiagnosticDefaultWarn xxx guifg=#ff9f43
+    DiagnosticDefaultWarn                                                { fg=snazzy.orange, }, -- DiagnosticDefaultWarn xxx guifg=#ff9f43
     DiagnosticError                                                      { fg=snazzy.red, }, -- DiagnosticError xxx ctermfg=1 guifg=Red
     DiagnosticFloatingError                                              { fg=snazzy.red, }, -- DiagnosticFloatingError xxx guifg=#ff5c57
-    DiagnosticFloatingHint                                               { fg="#5af78e", }, -- DiagnosticFloatingHint xxx guifg=#5af78e
+    DiagnosticFloatingHint                                               { fg=snazzy.green, }, -- DiagnosticFloatingHint xxx guifg=#5af78e
     DiagnosticFloatingInfo                                               { fg="#9aedfe", }, -- DiagnosticFloatingInfo xxx guifg=#9aedfe
-    DiagnosticFloatingWarn                                               { fg="#ff9f43", }, -- DiagnosticFloatingWarn xxx guifg=#ff9f43
+    DiagnosticFloatingWarn                                               { fg=snazzy.orange, }, -- DiagnosticFloatingWarn xxx guifg=#ff9f43
     DiagnosticHint                                                       { fg="lightgrey", }, -- DiagnosticHint xxx ctermfg=7 guifg=LightGrey
     DiagnosticInfo                                                       { fg="lightblue", }, -- DiagnosticInfo xxx ctermfg=4 guifg=LightBlue
     DiagnosticSignError                                                  { fg=snazzy.red, }, -- DiagnosticSignError xxx guifg=#ff5c57
     DiagnosticSignHint                                                   { fg="#9aedfe", }, -- DiagnosticSignHint xxx guifg=#9aedfe
     DiagnosticSignInfo                                                   { fg="#57c7ff", }, -- DiagnosticSignInfo xxx guifg=#57c7ff
-    DiagnosticSignWarn                                                   { fg="#ff9f43", }, -- DiagnosticSignWarn xxx guifg=#ff9f43
+    DiagnosticSignWarn                                                   { fg=snazzy.orange, }, -- DiagnosticSignWarn xxx guifg=#ff9f43
     DiagnosticUnderlineError                                             { sp=snazzy.red, gui="underdouble", fg="#ff5c57", }, -- DiagnosticUnderlineError xxx cterm=underdouble gui=underdouble guifg=#ff5c57 guisp=#ff5c57
     DiagnosticUnderlineHint                                              { sp="#9aedfe", gui="underdouble", }, -- DiagnosticUnderlineHint xxx cterm=underdouble gui=underdouble guisp=#9aedfe
     DiagnosticUnderlineInfo                                              { sp="#57c7ff", gui="underdouble", }, -- DiagnosticUnderlineInfo xxx cterm=underdouble gui=underdouble guisp=#57c7ff
-    DiagnosticUnderlineWarn                                              { sp="#ff9f43", gui="underdouble", }, -- DiagnosticUnderlineWarn xxx cterm=underdouble gui=underdouble guisp=#ff9f43
+    DiagnosticUnderlineWarn                                              { sp=snazzy.orange, gui="underdouble", }, -- DiagnosticUnderlineWarn xxx cterm=underdouble gui=underdouble guisp=#ff9f43
     DiagnosticVirtualTextError                                           { fg=snazzy.red, }, -- DiagnosticVirtualTextError xxx guifg=#ff5c57
     DiagnosticVirtualTextHint                                            { fg="#9aedfe", }, -- DiagnosticVirtualTextHint xxx guifg=#9aedfe
     DiagnosticVirtualTextInfo                                            { fg="#57c7ff", }, -- DiagnosticVirtualTextInfo xxx guifg=#57c7ff
-    DiagnosticVirtualTextWarn                                            { fg="#ff9f43", }, -- DiagnosticVirtualTextWarn xxx guifg=#ff9f43
+    DiagnosticVirtualTextWarn                                            { fg=snazzy.orange, }, -- DiagnosticVirtualTextWarn xxx guifg=#ff9f43
     DiagnosticWarn                                                       { fg=snazzy.orange, }, -- DiagnosticWarn xxx ctermfg=3 guifg=Orange
 
     NvimInternalError                                                    { bg=snazzy.red, fg="#ff5c57", }, -- NvimInternalError xxx guifg=#ff5c57 guibg=#ff5c57
@@ -98,42 +189,35 @@ local theme = lush(function()
     CmpItemAbbrMatch                                                     { CmpItemAbbrMatchDefault }, -- CmpItemAbbrMatch xxx links to CmpItemAbbrMatchDefault
     CmpItemAbbrMatchFuzzyDefault                                         { fg="#eff0eb", }, -- CmpItemAbbrMatchFuzzyDefault xxx guifg=#eff0eb
     CmpItemAbbrMatchFuzzy                                                { CmpItemAbbrMatchFuzzyDefault }, -- CmpItemAbbrMatchFuzzy xxx links to CmpItemAbbrMatchFuzzyDefault
-    CmpItemKindDefault                                                   { fg="#f3f99d", }, -- CmpItemKindDefault xxx guifg=#f3f99d
+    CmpItemKindDefault                                                   { fg=snazzy.yellow, }, -- CmpItemKindDefault xxx guifg=#f3f99d
     CmpItemKind                                                          { CmpItemKindDefault }, -- CmpItemKind    xxx links to CmpItemKindDefault
     CmpItemMenuDefault                                                   { fg="#eff0eb", }, -- CmpItemMenuDefault xxx guifg=#eff0eb
     CmpItemMenu                                                          { CmpItemMenuDefault }, -- CmpItemMenu    xxx links to CmpItemMenuDefault
-    ColorColumn                                                          { sp="#3a3d4d", bg="#3a3d4d", }, -- ColorColumn    xxx guibg=#3a3d4d guisp=#3a3d4d
-    Comment                                                              { gui="italic", fg="#606580", }, -- Comment        xxx cterm=italic gui=italic guifg=#606580
-    Conceal                                                              { fg="#686868", }, -- Conceal        xxx guifg=#686868
-    Conditional                                                          { gui="bold", fg="#f3f99d", }, -- Conditional    xxx cterm=bold gui=bold guifg=#f3f99d
-    Constant                                                             { fg="#5af78e", }, -- Constant       xxx guifg=#5af78e
     CopilotSuggestion                                                    { bg="#303340", fg="#57c7ff", }, -- CopilotSuggestion xxx guifg=#57c7ff guibg=#303340
     Cursor                                                               { gui="reverse", }, -- Cursor         xxx cterm=reverse gui=reverse
     CursorColumn                                                         { sp="#3a3d4d", bg="#3a3d4d", fg="#e2e4e5", }, -- CursorColumn   xxx guifg=#e2e4e5 guibg=#3a3d4d guisp=#3a3d4d
     CursorLine                                                           { sp="#303340", bg="#303340", }, -- CursorLine     xxx guibg=#303340 guisp=#303340
     CursorLineFold                                                       { bg="#303340", gui="italic", fg="#57c7ff", }, -- CursorLineFold xxx cterm=italic gui=italic guifg=#57c7ff guibg=#303340
-    CursorLineNr                                                         { bg="#303340", fg="#f3f99d", }, -- CursorLineNr   xxx guifg=#f3f99d guibg=#303340
+    CursorLineNr                                                         { bg="#303340", fg=snazzy.yellow, }, -- CursorLineNr   xxx guifg=#f3f99d guibg=#303340
     CursorLineSign                                                       { bg="#303340", }, -- CursorLineSign xxx guibg=#303340
     CursorWord0                                                          { bg="#686868", }, -- CursorWord0    xxx guibg=#686868
-    CursorWord1                                                          { bg="#5af78e", }, -- CursorWord1    xxx guibg=#5af78e
+    CursorWord1                                                          { bg=snazzy.green, }, -- CursorWord1    xxx guibg=#5af78e
     DashboardCenter                                                      { fg="#57c7ff", }, -- DashboardCenter xxx guifg=#57c7ff
     DashboardFooter                                                      { fg="#686868", }, -- DashboardFooter xxx guifg=#686868
-    DashboardHeader                                                      { fg="#f3f99d", }, -- DashboardHeader xxx guifg=#f3f99d
+    DashboardHeader                                                      { fg=snazzy.yellow, }, -- DashboardHeader xxx guifg=#f3f99d
     DashboardShortCut                                                    { fg="#ff6ac1", }, -- DashboardShortCut xxx guifg=#ff6ac1
-    Debug                                                                { fg="#f3f99d", }, -- Debug          xxx guifg=#f3f99d
-    Define                                                               { fg="#f3f99d", }, -- Define         xxx guifg=#f3f99d
     diffRemoved                                                          { fg=snazzy.red, }, -- diffRemoved    xxx guifg=#ff5c57
-    diffAdded                                                            { fg="#5af78e", }, -- diffAdded      xxx guifg=#5af78e
+    diffAdded                                                            { fg=snazzy.green, }, -- diffAdded      xxx guifg=#5af78e
     diffChanged                                                          { fg="#57c7ff", }, -- diffChanged    xxx guifg=#57c7ff
     diffFile                                                             { fg="#9aedfe", }, -- diffFile       xxx guifg=#9aedfe
     diffIndexLine                                                        { fg="#ff6ac1", }, -- diffIndexLine  xxx guifg=#ff6ac1
     diffLine                                                             { fg="#686868", }, -- diffLine       xxx guifg=#686868
-    diffNewFile                                                          { fg="#f3f99d", }, -- diffNewFile    xxx guifg=#f3f99d
-    diffOldFile                                                          { fg="#f3f99d", }, -- diffOldFile    xxx guifg=#f3f99d
-    DefxIconsParentDirectory                                             { fg="#f3f99d", }, -- DefxIconsParentDirectory xxx guifg=#f3f99d
+    diffNewFile                                                          { fg=snazzy.yellow, }, -- diffNewFile    xxx guifg=#f3f99d
+    diffOldFile                                                          { fg=snazzy.yellow, }, -- diffOldFile    xxx guifg=#f3f99d
+    DefxIconsParentDirectory                                             { fg=snazzy.yellow, }, -- DefxIconsParentDirectory xxx guifg=#f3f99d
     Defx_filename_directory                                              { fg="#57c7ff", }, -- Defx_filename_directory xxx guifg=#57c7ff
     Defx_filename_root                                                   { fg=snazzy.red, }, -- Defx_filename_root xxx guifg=#ff5c57
-    Delimiter                                                            { fg="#f3f99d", }, -- Delimiter      xxx guifg=#f3f99d
+    Delimiter                                                            { fg=snazzy.yellow, }, -- Delimiter      xxx guifg=#f3f99d
     DevIconAi                                                            { fg="#cbcb41", }, -- DevIconAi      xxx ctermfg=185 guifg=#cbcb41
     DevIconAwk                                                           { fg="#4d5a5e", }, -- DevIconAwk     xxx ctermfg=59 guifg=#4d5a5e
     DevIconBabelrc                                                       { fg="#cbcb41", }, -- DevIconBabelrc xxx ctermfg=185 guifg=#cbcb41
@@ -211,7 +295,7 @@ local theme = lush(function()
     DevIconGodotProject                                                  { fg="#6d8086", }, -- DevIconGodotProject xxx ctermfg=66 guifg=#6d8086
     DevIconGruntfile                                                     { fg="#e37933", }, -- DevIconGruntfile xxx ctermfg=173 guifg=#e37933
     DevIconGulpfile                                                      { fg="#cc3e44", }, -- DevIconGulpfile xxx ctermfg=167 guifg=#cc3e44
-    DevIconGvimrc                                                        { fg="#5af78e", }, -- DevIconGvimrc  xxx guifg=#5af78e
+    DevIconGvimrc                                                        { fg=snazzy.green, }, -- DevIconGvimrc  xxx guifg=#5af78e
     DevIconH                                                             { fg="#a074c4", }, -- DevIconH       xxx ctermfg=140 guifg=#a074c4
     DevIconHaml                                                          { fg="#eaeae1", }, -- DevIconHaml    xxx ctermfg=188 guifg=#eaeae1
     DevIconHbs                                                           { fg="#f0772b", }, -- DevIconHbs     xxx ctermfg=208 guifg=#f0772b
@@ -230,8 +314,8 @@ local theme = lush(function()
     DevIconJl                                                            { fg="#a270ba", }, -- DevIconJl      xxx ctermfg=133 guifg=#a270ba
     DevIconJpeg                                                          { fg="#a074c4", }, -- DevIconJpeg    xxx ctermfg=140 guifg=#a074c4
     DevIconJpg                                                           { fg="#a074c4", }, -- DevIconJpg     xxx ctermfg=140 guifg=#a074c4
-    DevIconJs                                                            { fg="#f3f99d", }, -- DevIconJs      xxx guifg=#f3f99d
-    DevIconJson                                                          { fg="#f3f99d", }, -- DevIconJson    xxx guifg=#f3f99d
+    DevIconJs                                                            { fg=snazzy.yellow, }, -- DevIconJs      xxx guifg=#f3f99d
+    DevIconJson                                                          { fg=snazzy.yellow, }, -- DevIconJson    xxx guifg=#f3f99d
     DevIconJsx                                                           { fg="#9aedfe", }, -- DevIconJsx     xxx guifg=#9aedfe
     DevIconKotlin                                                        { fg="#f88a02", }, -- DevIconKotlin  xxx ctermfg=208 guifg=#f88a02
     DevIconKotlinScript                                                  { fg="#f88a02", }, -- DevIconKotlinScript xxx ctermfg=208 guifg=#f88a02
@@ -309,7 +393,7 @@ local theme = lush(function()
     DevIconSwift                                                         { fg="#e37933", }, -- DevIconSwift   xxx ctermfg=173 guifg=#e37933
     DevIconSystemVerilog                                                 { fg="#019833", }, -- DevIconSystemVerilog xxx ctermfg=29 guifg=#019833
     DevIconTcl                                                           { fg="#1e5cb3", }, -- DevIconTcl     xxx ctermfg=67 guifg=#1e5cb3
-    DevIconTerminal                                                      { fg="#5af78e", }, -- DevIconTerminal xxx guifg=#5af78e
+    DevIconTerminal                                                      { fg=snazzy.green, }, -- DevIconTerminal xxx guifg=#5af78e
     DevIconTex                                                           { fg="#3d6117", }, -- DevIconTex     xxx ctermfg=58 guifg=#3d6117
     DevIconTextResource                                                  { fg="#cbcb41", }, -- DevIconTextResource xxx ctermfg=185 guifg=#cbcb41
     DevIconTextScene                                                     { fg="#a074c4", }, -- DevIconTextScene xxx ctermfg=140 guifg=#a074c4
@@ -322,8 +406,8 @@ local theme = lush(function()
     DevIconVHDL                                                          { fg="#019833", }, -- DevIconVHDL    xxx ctermfg=29 guifg=#019833
     DevIconVagrantfile                                                   { fg="#1563ff", }, -- DevIconVagrantfile xxx ctermfg=27 guifg=#1563ff
     DevIconVerilog                                                       { fg="#019833", }, -- DevIconVerilog xxx ctermfg=29 guifg=#019833
-    DevIconVim                                                           { fg="#5af78e", }, -- DevIconVim     xxx guifg=#5af78e
-    DevIconVimrc                                                         { fg="#5af78e", }, -- DevIconVimrc   xxx guifg=#5af78e
+    DevIconVim                                                           { fg=snazzy.green, }, -- DevIconVim     xxx guifg=#5af78e
+    DevIconVimrc                                                         { fg=snazzy.green, }, -- DevIconVimrc   xxx guifg=#5af78e
     DevIconVue                                                           { fg="#8dc149", }, -- DevIconVue     xxx ctermfg=107 guifg=#8dc149
     DevIconWebmanifest                                                   { fg="#f1e05a", }, -- DevIconWebmanifest xxx ctermfg=221 guifg=#f1e05a
     DevIconWebp                                                          { fg="#a074c4", }, -- DevIconWebp    xxx ctermfg=140 guifg=#a074c4
@@ -335,16 +419,16 @@ local theme = lush(function()
     DevIconYaml                                                          { fg="#6d8086", }, -- DevIconYaml    xxx ctermfg=66 guifg=#6d8086
     DevIconYml                                                           { fg="#6d8086", }, -- DevIconYml     xxx ctermfg=66 guifg=#6d8086
     DevIconZig                                                           { fg="#f69a1b", }, -- DevIconZig     xxx ctermfg=208 guifg=#f69a1b
-    DevIconZsh                                                           { fg="#5af78e", }, -- DevIconZsh     xxx guifg=#5af78e
+    DevIconZsh                                                           { fg=snazzy.green, }, -- DevIconZsh     xxx guifg=#5af78e
     DevIconZshenv                                                        { fg="#89e051", }, -- DevIconZshenv  xxx ctermfg=113 guifg=#89e051
     DevIconZshprofile                                                    { fg="#89e051", }, -- DevIconZshprofile xxx ctermfg=113 guifg=#89e051
-    DevIconZshrc                                                         { fg="#5af78e", }, -- DevIconZshrc   xxx guifg=#5af78e
+    DevIconZshrc                                                         { fg=snazzy.green, }, -- DevIconZshrc   xxx guifg=#5af78e
     DiffAdd                                                              { bg="#00331a", }, -- DiffAdd        xxx guibg=#00331a
     DiffChange                                                           { bg="#434805", }, -- DiffChange     xxx guibg=#434805
-    DiffDelete                                                           { bg="#4d0300", }, -- DiffDelete     xxx guibg=#4d0300
-    DiffText                                                             { bg="#434805", gui="bold", fg="#f3f99d", }, -- DiffText       xxx cterm=bold gui=bold guifg=#f3f99d guibg=#434805
+    DiffDelete                                                           { bg=snazzy.diff.delete, fg = snazzy.red }, -- DiffDelete     xxx guibg=#4d0300
+    DiffText                                                             { bg="#434805", gui="bold", fg=snazzy.yellow, }, -- DiffText       xxx cterm=bold gui=bold guifg=#f3f99d guibg=#434805
     DiffviewCursorLine                                                   { CursorLine }, -- DiffviewCursorLine xxx links to CursorLine
-    DiffviewDiffAddAsDelete                                              { bg="#4d0300", }, -- DiffviewDiffAddAsDelete xxx guibg=#4d0300
+    DiffviewDiffAddAsDelete                                              {  bg=snazzy.diff.delete, fg = snazzy.red }, -- DiffviewDiffAddAsDelete xxx guibg=#4d0300
     DiffviewDiffDelete                                                   { Comment }, -- DiffviewDiffDelete xxx links to Comment
     DiffviewDim1                                                         { fg="#606580", }, -- DiffviewDim1   xxx cterm= gui= guifg=#606580
     EndOfBuffer                                                          { fg="#282a36", }, -- EndOfBuffer    xxx guifg=#282a36
@@ -354,12 +438,12 @@ local theme = lush(function()
     DiffviewFilePanelFileName                                            { fg="#eff0eb", }, -- DiffviewFilePanelFileName xxx cterm= gui= guifg=#eff0eb
     DiffviewFilePanelInsertions                                          { diffAdded }, -- DiffviewFilePanelInsertions xxx links to diffAdded
     DiffviewFilePanelPath                                                { Comment }, -- DiffviewFilePanelPath xxx links to Comment
-    DiffviewFilePanelTitle                                               { gui="bold", fg="#f3f99d", }, -- DiffviewFilePanelRootPath xxx links to DiffviewFilePanelTitle
+    DiffviewFilePanelTitle                                               { gui="bold", fg=snazzy.yellow, }, -- DiffviewFilePanelRootPath xxx links to DiffviewFilePanelTitle
     DiffviewFilePanelRootPath                                            { DiffviewFilePanelTitle }, -- DiffviewFilePanelTitle xxx cterm=bold gui=bold guifg=#f3f99d
     DiffviewNonText                                                      { NonText }, -- DiffviewNonText xxx links to NonText
     DiffviewNormal                                                       { Normal }, -- DiffviewNormal xxx links to Normal
-    DiffviewPrimary                                                      { fg="#a39df9", }, -- DiffviewPrimary xxx cterm= gui= guifg=#a39df9
-    DiffviewSecondary                                                    { fg="#f3f99d", }, -- DiffviewSecondary xxx cterm= gui= guifg=#f3f99d
+    DiffviewPrimary                                                      { fg=snazzy.purple, }, -- DiffviewPrimary xxx cterm= gui= guifg=#a39df9
+    DiffviewSecondary                                                    { fg=snazzy.yellow, }, -- DiffviewSecondary xxx cterm= gui= guifg=#f3f99d
     DiffviewSignColumn                                                   { Normal }, -- DiffviewSignColumn xxx links to Normal
     DiffviewStatusAdded                                                  { diffAdded }, -- DiffviewStatusAdded xxx links to diffAdded
     DiffviewStatusBroken                                                 { diffRemoved }, -- DiffviewStatusBroken xxx links to diffRemoved
@@ -388,23 +472,23 @@ local theme = lush(function()
     FloatTitle                                                           { FloatBorder }, -- FloatTitle     xxx links to FloatBorder
     FoldColumn                                                           { bg="#282a36", gui="italic", fg="#606580", }, -- FoldColumn     xxx cterm=italic gui=italic guifg=#606580 guibg=#282a36
     Folded                                                               { bg="#3a3d4d", }, -- Folded         xxx guibg=#3a3d4d
-    Function                                                             { gui="bold", fg="#a39df9", }, -- Function       xxx cterm=bold gui=bold guifg=#a39df9
+    Function                                                             { gui="bold", fg=snazzy.purple, }, -- Function       xxx cterm=bold gui=bold guifg=#a39df9
     GitConflictAncestor                                                  { bg="#68217a", gui="bold", }, -- GitConflictAncestor xxx cterm=bold gui=bold guibg=#68217a
     GitConflictAncestorLabel                                             { bg="#a634c3", }, -- GitConflictAncestorLabel xxx guibg=#a634c3
     GitConflictCurrent                                                   { bg="#434805", gui="bold", }, -- GitConflictCurrent xxx cterm=bold gui=bold guibg=#434805
     GitConflictCurrentLabel                                              { bg="#6b7308", }, -- GitConflictCurrentLabel xxx guibg=#6b7308
     GitConflictIncoming                                                  { bg="#00331a", gui="bold", }, -- GitConflictIncoming xxx cterm=bold gui=bold guibg=#00331a
     GitConflictIncomingLabel                                             { bg="#005129", }, -- GitConflictIncomingLabel xxx guibg=#005129
-    GitGutterAdd                                                         { fg="#5af78e", }, -- GitGutterAdd   xxx guifg=#5af78e
-    GitGutterChange                                                      { fg="#f3f99d", }, -- GitGutterChange xxx guifg=#f3f99d
+    GitGutterAdd                                                         { fg=snazzy.green, }, -- GitGutterAdd   xxx guifg=#5af78e
+    GitGutterChange                                                      { fg=snazzy.yellow, }, -- GitGutterChange xxx guifg=#f3f99d
     GitGutterChangeDelete                                                { fg=snazzy.red, }, -- GitGutterChangeDelete xxx guifg=#ff5c57
     GitGutterDelete                                                      { fg=snazzy.red, }, -- GitGutterDelete xxx guifg=#ff5c57
-    GitSignsAdd                                                          { fg="#5af78e", }, -- GitSignsAdd    xxx guifg=#5af78e
+    GitSignsAdd                                                          { fg=snazzy.green, }, -- GitSignsAdd    xxx guifg=#5af78e
     GitSignsAddInline                                                    { TermCursor }, -- GitSignsAddInline xxx links to TermCursor
     GitSignsAddLn                                                        { DiffAdd }, -- GitSignsAddLn  xxx links to DiffAdd
     GitSignsAddNr                                                        { GitSignsAdd }, -- GitSignsAddNr  xxx links to GitSignsAdd
     GitSignsAddPreview                                                   { DiffAdd }, -- GitSignsAddPreview xxx links to DiffAdd
-    GitSignsChange                                                       { fg="#f3f99d", }, -- GitSignsChange xxx guifg=#f3f99d
+    GitSignsChange                                                       { fg=snazzy.yellow, }, -- GitSignsChange xxx guifg=#f3f99d
     GitSignsChangeInline                                                 { TermCursor }, -- GitSignsChangeInline xxx links to TermCursor
     GitSignsChangeLn                                                     { DiffChange }, -- GitSignsChangeLn xxx links to DiffChange
     GitSignsChangeNr                                                     { GitSignsChange }, -- GitSignsChangeNr xxx links to GitSignsChange
@@ -420,23 +504,21 @@ local theme = lush(function()
     HopNextKey2                                                          { fg = snazzy.hop.next_key2, }, -- HopNextKey2    xxx guifg=#2b8db3
     HopPreview                                                           { gui="bold", fg="#b8bb26", }, -- HopPreview     xxx cterm=bold gui=bold guifg=#b8bb26
     HopUnmatched                                                         { sp="#666666", bg="#282a36", fg="#666666", }, -- HopUnmatched   xxx guifg=#666666 guibg=#282a36 guisp=#666666
-    Identifier                                                           { fg="#9aedfe", }, -- Identifier     xxx guifg=#9aedfe
     Ignore                                                               { fg="#686868", }, -- Ignore         xxx guifg=#686868
     IlluminatedWordRead                                                  { bg="#3a3d4d", }, -- IlluminatedWordRead xxx guibg=#3a3d4d
     IlluminatedWordText                                                  { bg="#3a3d4d", }, -- IlluminatedWordText xxx guibg=#3a3d4d
     IlluminatedWordWrite                                                 { bg="#3a3d4d", }, -- IlluminatedWordWrite xxx guibg=#3a3d4d
-    IncSearch                                                            { bg=snazzy.yellow, blend = 1 }, -- IncSearch      xxx guibg=#434805
     InclineNormal                                                        { NormalFloat }, -- InclineNormal  xxx links to NormalFloat
     InclineNormalNC                                                      { NormalFloat }, -- InclineNormalNC xxx links to NormalFloat
-    Include                                                              { fg="#f3f99d", }, -- Include        xxx guifg=#f3f99d
+    Include                                                              { fg=snazzy.yellow, }, -- Include        xxx guifg=#f3f99d
     IndentBlanklineChar                                                  { gui="nocombine", fg="#3f444a", }, -- IndentBlanklineChar xxx cterm=nocombine gui=nocombine guifg=#3f444a
-    IndentBlanklineContextChar                                           { gui="nocombine", fg="#f3f99d", }, -- IndentBlanklineContextChar xxx cterm=nocombine gui=nocombine guifg=#f3f99d
-    IndentBlanklineContextStart                                          { sp="#f3f99d", gui="underline", }, -- IndentBlanklineContextStart xxx cterm=underline gui=underline guisp=#f3f99d
+    IndentBlanklineContextChar                                           { gui="nocombine", fg=snazzy.yellow, }, -- IndentBlanklineContextChar xxx cterm=nocombine gui=nocombine guifg=#f3f99d
+    IndentBlanklineContextStart                                          { sp=snazzy.yellow, gui="underline", }, -- IndentBlanklineContextStart xxx cterm=underline gui=underline guisp=#f3f99d
     IndentBlanklineSpaceChar                                             { gui="nocombine", fg="#3f444a", }, -- IndentBlanklineSpaceChar xxx cterm=nocombine gui=nocombine guifg=#3f444a
     IndentBlanklineSpaceCharBlankline                                    { gui="nocombine", fg="#3f444a", }, -- IndentBlanklineSpaceCharBlankline xxx cterm=nocombine gui=nocombine guifg=#3f444a
     KeyMenuFloatBorder                                                   { fg="#57c7ff", }, -- KeyMenuFloatBorder xxx guifg=#57c7ff
     Keyword                                                              { fg="#ff6ac1", }, -- Keyword        xxx guifg=#ff6ac1
-    Label                                                                { fg="#f3f99d", }, -- Label          xxx guifg=#f3f99d
+    Label                                                                { fg=snazzy.yellow, }, -- Label          xxx guifg=#f3f99d
     LeapBackdrop                                                         { sp="#666666", bg="#282a36", fg="#666666", }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
     LeapLabelPrimary                                                     { gui="bold", fg="#ff007c", }, -- LeapLabelPrimary xxx cterm=bold gui=bold guifg=#ff007c
     LeapLabelSecondary                                                   { gui="bold", fg="#00dfff", }, -- LeapLabelSecondary xxx cterm=bold gui=bold guifg=#00dfff
@@ -444,7 +526,7 @@ local theme = lush(function()
     LineNrAbove                                                          { LineNr }, -- LineNrAbove    xxx links to LineNr
     LineNrBelow                                                          { LineNr }, -- LineNrBelow    xxx links to LineNr
     LspComment                                                           { gui="italic", fg="#606580", }, -- LspComment     xxx cterm=italic gui=italic guifg=#606580
-    LspDefaultLibrary                                                    { gui="bold", fg="#f3f99d", }, -- LspDefaultLibrary xxx cterm=bold gui=bold guifg=#f3f99d
+    LspDefaultLibrary                                                    { gui="bold", fg=snazzy.yellow, }, -- LspDefaultLibrary xxx cterm=bold gui=bold guifg=#f3f99d
     LspDefinition                                                        { sp="#3a3d4d", bg="#3a3d4d", fg="#57c7ff", }, -- LspDefinition  xxx guifg=#57c7ff guibg=#3a3d4d guisp=#3a3d4d
     LspFloatWinBorder                                                    { fg="#57c7ff", }, -- LspFloatWinBorder xxx guifg=#57c7ff
     LspFunction                                                          { gui="bold", fg="#57c7ff", }, -- LspFunction    xxx cterm=bold gui=bold guifg=#57c7ff
@@ -457,20 +539,19 @@ local theme = lush(function()
     LspKeyword                                                           { gui="bold", fg="#ff6ac1", }, -- LspKeyword     xxx cterm=bold gui=bold guifg=#ff6ac1
     LspMethod                                                            { gui="bold", fg="#57c7ff", }, -- LspMethod      xxx cterm=bold gui=bold guifg=#57c7ff
     LspNamespace                                                         { gui="italic", fg="#57c7ff", }, -- LspNamespace   xxx cterm=italic gui=italic guifg=#57c7ff
-    LspNumber                                                            { fg="#a39df9", }, -- LspNumber      xxx guifg=#a39df9
-    LspParameter                                                         { fg="#f3f99d", }, -- LspParameter   xxx guifg=#f3f99d
+    LspNumber                                                            { fg=snazzy.purple, }, -- LspNumber      xxx guifg=#a39df9
+    LspParameter                                                         { fg=snazzy.yellow, }, -- LspParameter   xxx guifg=#f3f99d
     LspReferenceRead                                                     { sp="#3a3d4d", bg="#3a3d4d", }, -- LspReferenceRead xxx guibg=#3a3d4d guisp=#3a3d4d
     LspReferenceText                                                     { sp="#3a3d4d", bg="#3a3d4d", }, -- LspReferenceText xxx guibg=#3a3d4d guisp=#3a3d4d
     LspReferenceWrite                                                    { sp="#3a3d4d", bg="#3a3d4d", }, -- LspReferenceWrite xxx guibg=#3a3d4d guisp=#3a3d4d
     LspSignatureActiveParameter                                          { bg="#636427", }, -- LspSignatureActiveParameter xxx guibg=#636427
     LspVariable                                                          { fg="#f1f1f0", }, -- LspVariable    xxx guifg=#f1f1f0
-    Macro                                                                { fg="#f3f99d", }, -- Macro          xxx guifg=#f3f99d
     MatchBackground                                                      { ColorColumn }, -- MatchBackground xxx links to ColorColumn
-    MatchParen                                                           { gui="bold", fg="#5af78e", }, -- MatchParen     xxx cterm=bold gui=bold guifg=#5af78e
+    MatchParen                                                           { gui="bold", fg=snazzy.green, }, -- MatchParen     xxx cterm=bold gui=bold guifg=#5af78e
     MatchParenCur                                                        { MatchParen }, -- MatchParenCur  xxx links to MatchParen
     MatchWord                                                            { MatchParen }, -- MatchWord      xxx links to MatchParen
     ModeMsg                                                              { sp="#192224", fg="#f9f9f9", bg="#192224", gui="bold", }, -- ModeMsg        xxx cterm=bold gui=bold guifg=#f9f9f9 guibg=#192224 guisp=#192224
-    MoreMsg                                                              { gui="bold", fg="#f3f99d", }, -- MoreMsg        xxx cterm=bold gui=bold guifg=#f3f99d
+    MoreMsg                                                              { gui="bold", fg=snazzy.yellow, }, -- MoreMsg        xxx cterm=bold gui=bold guifg=#f3f99d
     MsgSeparator                                                         { StatusLine }, -- MsgSeparator   xxx links to StatusLine
     NeotestAdapterName                                                   { fg="#f70067", }, -- NeotestAdapterName xxx ctermfg=9 guifg=#f70067
     NeotestDir                                                           { fg="#00f1f5", }, -- NeotestDir     xxx ctermfg=14 guifg=#00f1f5
@@ -479,9 +560,9 @@ local theme = lush(function()
     NeotestFile                                                          { fg="#00f1f5", }, -- NeotestFile    xxx ctermfg=14 guifg=#00f1f5
     NeotestFocused                                                       { gui="bold,underline", }, -- NeotestFocused xxx cterm=bold,underline gui=bold,underline
     NeotestIndent                                                        { fg="#8b8b8b", }, -- NeotestIndent  xxx ctermfg=248 guifg=#8b8b8b
-    NeotestMarked                                                        { gui="bold", fg="#f79000", }, -- NeotestMarked  xxx ctermfg=130 gui=bold guifg=#f79000
+    NeotestMarked                                                        { gui="bold", fg=snazzy.orange, }, -- NeotestMarked  xxx ctermfg=130 gui=bold guifg=#f79000
     NeotestNamespace                                                     { fg="#d484ff", }, -- NeotestNamespace xxx ctermfg=13 guifg=#d484ff
-    NeotestPassed                                                        { fg="#96f291", }, -- NeotestPassed  xxx ctermfg=10 guifg=#96f291
+    NeotestPassed                                                        { fg=snazzy.green, }, -- NeotestPassed  xxx ctermfg=10 guifg=#96f291
     NeotestRunning                                                       { fg="#ffec63", }, -- NeotestRunning xxx ctermfg=11 guifg=#ffec63
     NeotestSkipped                                                       { fg="#00f1f5", }, -- NeotestSkipped xxx ctermfg=14 guifg=#00f1f5
     NeotestTarget                                                        { fg="#f70067", }, -- NeotestTarget  xxx ctermfg=9 guifg=#f70067
@@ -492,29 +573,29 @@ local theme = lush(function()
     NotifierContentDim                                                   { Comment }, -- NotifierContentDim xxx links to Comment
     NotifierIcon                                                         { Title }, -- NotifierIcon   xxx links to Title
     NotifierTitle                                                        { Title }, -- NotifierTitle  xxx links to Title
-    NotifyDEBUGBody                                                      { Normal }, -- NotifyDEBUGBody xxx links to Normal
-    NotifyDEBUGBorder                                                    { fg="#9aedfe", }, -- NotifyDEBUGBorder xxx guifg=#9aedfe
-    NotifyDEBUGIcon                                                      { fg="#9aedfe", }, -- NotifyDEBUGIcon xxx guifg=#9aedfe
-    NotifyDEBUGTitle                                                     { fg="#9aedfe", }, -- NotifyDEBUGTitle xxx guifg=#9aedfe
-    NotifyERRORBody                                                      { Normal }, -- NotifyERRORBody xxx links to Normal
-    NotifyERRORBorder                                                    { fg=snazzy.red, }, -- NotifyERRORBorder xxx guifg=#ff5c57
-    NotifyERRORIcon                                                      { fg="#ff6ac1", }, -- NotifyERRORIcon xxx guifg=#ff6ac1
-    NotifyERRORTitle                                                     { fg=snazzy.red, }, -- NotifyERRORTitle xxx guifg=#ff5c57
-    NotifyINFOBody                                                       { Normal }, -- NotifyINFOBody xxx links to Normal
-    NotifyINFOBorder                                                     { fg="#5af78e", }, -- NotifyINFOBorder xxx guifg=#5af78e
-    NotifyINFOIcon                                                       { fg="#5af78e", }, -- NotifyINFOIcon xxx guifg=#5af78e
-    NotifyINFOTitle                                                      { fg="#eff0eb", }, -- NotifyINFOTitle xxx guifg=#eff0eb
-    NotifyLogTime                                                        { Comment }, -- NotifyLogTime  xxx links to Comment
-    NotifyLogTitle                                                       { Special }, -- NotifyLogTitle xxx links to Special
-    NotifyTRACEBody                                                      { Normal }, -- NotifyTRACEBody xxx links to Normal
-    NotifyTRACEBorder                                                    { fg="#a39df9", }, -- NotifyTRACEBorder xxx guifg=#a39df9
-    NotifyTRACEIcon                                                      { fg="#a39df9", }, -- NotifyTRACEIcon xxx guifg=#a39df9
-    NotifyTRACETitle                                                     { fg="#a39df9", }, -- NotifyTRACETitle xxx guifg=#a39df9
-    NotifyWARNBody                                                       { Normal }, -- NotifyWARNBody xxx links to Normal
-    NotifyWARNBorder                                                     { fg="#ff9f43", }, -- NotifyWARNBorder xxx guifg=#ff9f43
-    NotifyWARNIcon                                                       { fg="#ff9f43", }, -- NotifyWARNIcon xxx guifg=#ff9f43
-    NotifyWARNTitle                                                      { fg="#ff9f43", }, -- NotifyWARNTitle xxx guifg=#ff9f43
-    Number                                                               { fg="#f3f99d", }, -- Number         xxx guifg=#f3f99d
+    -- NotifyDEBUGBody                                                      { Normal }, -- NotifyDEBUGBody xxx links to Normal
+    -- NotifyDEBUGBorder                                                    { fg="#9aedfe", }, -- NotifyDEBUGBorder xxx guifg=#9aedfe
+    -- NotifyDEBUGIcon                                                      { fg="#9aedfe", }, -- NotifyDEBUGIcon xxx guifg=#9aedfe
+    -- NotifyDEBUGTitle                                                     { fg="#9aedfe", }, -- NotifyDEBUGTitle xxx guifg=#9aedfe
+    -- NotifyERRORBody                                                      { Normal }, -- NotifyERRORBody xxx links to Normal
+    -- NotifyERRORBorder                                                    { fg=snazzy.red, }, -- NotifyERRORBorder xxx guifg=#ff5c57
+    -- NotifyERRORIcon                                                      { fg="#ff6ac1", }, -- NotifyERRORIcon xxx guifg=#ff6ac1
+    -- NotifyERRORTitle                                                     { fg=snazzy.red, }, -- NotifyERRORTitle xxx guifg=#ff5c57
+    -- NotifyINFOBody                                                       { Normal }, -- NotifyINFOBody xxx links to Normal
+    -- NotifyINFOBorder                                                     { fg=snazzy.green, }, -- NotifyINFOBorder xxx guifg=#5af78e
+    -- NotifyINFOIcon                                                       { fg=snazzy.green, }, -- NotifyINFOIcon xxx guifg=#5af78e
+    -- NotifyINFOTitle                                                      { fg="#eff0eb", }, -- NotifyINFOTitle xxx guifg=#eff0eb
+    -- NotifyLogTime                                                        { Comment }, -- NotifyLogTime  xxx links to Comment
+    -- NotifyLogTitle                                                       { Special }, -- NotifyLogTitle xxx links to Special
+    -- NotifyTRACEBody                                                      { Normal }, -- NotifyTRACEBody xxx links to Normal
+    -- NotifyTRACEBorder                                                    { fg=snazzy.purple, }, -- NotifyTRACEBorder xxx guifg=#a39df9
+    -- NotifyTRACEIcon                                                      { fg=snazzy.purple, }, -- NotifyTRACEIcon xxx guifg=#a39df9
+    -- NotifyTRACETitle                                                     { fg=snazzy.purple, }, -- NotifyTRACETitle xxx guifg=#a39df9
+    -- NotifyWARNBody                                                       { Normal }, -- NotifyWARNBody xxx links to Normal
+    -- NotifyWARNBorder                                                     { fg=snazzy.orange, }, -- NotifyWARNBorder xxx guifg=#ff9f43
+    -- NotifyWARNIcon                                                       { fg=snazzy.orange, }, -- NotifyWARNIcon xxx guifg=#ff9f43
+    -- NotifyWARNTitle                                                      { fg=snazzy.orange, }, -- NotifyWARNTitle xxx guifg=#ff9f43
+    Number                                                               { fg=snazzy.yellow, }, -- Number         xxx guifg=#f3f99d
     NvimArrow                                                            { Delimiter }, -- NvimArrow      xxx links to Delimiter
     NvimAssignment                                                       { Operator }, -- NvimAssignment xxx links to Operator
     NvimColon                                                            { Delimiter }, -- NvimColon      xxx links to Delimiter
@@ -535,18 +616,18 @@ local theme = lush(function()
     NvimString                                                           { String }, -- NvimString     xxx links to String
     NvimStringSpecial                                                    { SpecialChar }, -- NvimStringSpecial xxx links to SpecialChar
     NvimSurroundHighlight                                                { Visual }, -- NvimSurroundHighlight xxx links to Visual
-    NvimTreeBookmark                                                     { fg="#5af78e", }, -- NvimTreeBookmark xxx guifg=#5af78e
+    NvimTreeBookmark                                                     { fg=snazzy.green, }, -- NvimTreeBookmark xxx guifg=#5af78e
     NvimTreeCursorColumn                                                 { CursorColumn }, -- NvimTreeCursorColumn xxx links to CursorColumn
     NvimTreeCursorLine                                                   { CursorLine }, -- NvimTreeCursorLine xxx links to CursorLine
     NvimTreeEmptyFolderName                                              { Directory }, -- NvimTreeEmptyFolderName xxx links to Directory
     NvimTreeEndOfBuffer                                                  { EndOfBuffer }, -- NvimTreeEndOfBuffer xxx links to EndOfBuffer
-    NvimTreeExecFile                                                     { gui="bold", fg="#5af78e", }, -- NvimTreeExecFile xxx gui=bold guifg=#5af78e
+    NvimTreeExecFile                                                     { gui="bold", fg=snazzy.green, }, -- NvimTreeExecFile xxx gui=bold guifg=#5af78e
     NvimTreeGitDeleted                                                   { fg=snazzy.red, }, -- NvimTreeGitDeleted xxx guifg=#ff5c57
-    NvimTreeGitDirty                                                     { fg="#f3f99d", }, -- NvimTreeGitDirty xxx guifg=#f3f99d
-    NvimTreeGitMerge                                                     { fg="#f3f99d", }, -- NvimTreeGitMerge xxx guifg=#f3f99d
-    NvimTreeGitNew                                                       { fg="#5af78e", }, -- NvimTreeGitNew xxx guifg=#5af78e
+    NvimTreeGitDirty                                                     { fg=snazzy.yellow, }, -- NvimTreeGitDirty xxx guifg=#f3f99d
+    NvimTreeGitMerge                                                     { fg=snazzy.yellow, }, -- NvimTreeGitMerge xxx guifg=#f3f99d
+    NvimTreeGitNew                                                       { fg=snazzy.green, }, -- NvimTreeGitNew xxx guifg=#5af78e
     NvimTreeGitRenamed                                                   { fg="#ff6ac1", }, -- NvimTreeGitRenamed xxx guifg=#ff6ac1
-    NvimTreeGitStaged                                                    { fg="#5af78e", }, -- NvimTreeGitStaged xxx guifg=#5af78e
+    NvimTreeGitStaged                                                    { fg=snazzy.green, }, -- NvimTreeGitStaged xxx guifg=#5af78e
     NvimTreeFileDeleted                                                  { NvimTreeGitDeleted }, -- NvimTreeFileDeleted xxx links to NvimTreeGitDeleted
     NvimTreeFileDirty                                                    { NvimTreeGitDirty }, -- NvimTreeFileDirty xxx links to NvimTreeGitDirty
     NvimTreeFileMerge                                                    { NvimTreeGitMerge }, -- NvimTreeFileMerge xxx links to NvimTreeGitMerge
@@ -565,10 +646,10 @@ local theme = lush(function()
     NvimTreeLspDiagnosticsInformation                                    { DiagnosticInfo }, -- NvimTreeLspDiagnosticsInformation xxx links to DiagnosticInfo
     NvimTreeLspDiagnosticsWarning                                        { DiagnosticWarn }, -- NvimTreeLspDiagnosticsWarning xxx links to DiagnosticWarn
     NvimTreeNormal                                                       { Normal }, -- NvimTreeNormal xxx links to Normal
-    NvimTreeOpenedFile                                                   { gui="bold", fg="#5af78e", }, -- NvimTreeOpenedFile xxx gui=bold guifg=#5af78e
+    NvimTreeOpenedFile                                                   { gui="bold", fg=snazzy.green, }, -- NvimTreeOpenedFile xxx gui=bold guifg=#5af78e
     NvimTreeOpenedFolderName                                             { Directory }, -- NvimTreeOpenedFolderName xxx links to Directory
     NvimTreePopup                                                        { Normal }, -- NvimTreePopup  xxx links to Normal
-    NvimTreeRootFolder                                                   { fg="#f3f99d", }, -- NvimTreeRootFolder xxx guifg=#f3f99d
+    NvimTreeRootFolder                                                   { fg=snazzy.yellow, }, -- NvimTreeRootFolder xxx guifg=#f3f99d
     NvimTreeSpecialFile                                                  { fg="#eff0eb", }, -- NvimTreeSpecialFile xxx guifg=#eff0eb
     NvimTreeStatusLine                                                   { StatusLine }, -- NvimTreeStatusLine xxx links to StatusLine
     NvimTreeStatusLineNC                                                 { StatusLineNC }, -- NvimTreeStatusLineNC xxx links to StatusLineNC
@@ -576,112 +657,34 @@ local theme = lush(function()
     NvimTreeVertSplit                                                    { VertSplit }, -- NvimTreeVertSplit xxx links to VertSplit
     NvimTreeWindowPicker                                                 { bg="#4493c8", gui="bold", fg="#ededed", }, -- NvimTreeWindowPicker xxx gui=bold guifg=#ededed guibg=#4493c8
     DiffviewFolderSign                                                   { PreProc }, -- DiffviewFolderSign xxx links to PreProc
-    Question                                                             { fg="#f3f99d", }, -- Question       xxx guifg=#f3f99d
+    Question                                                             { fg=snazzy.yellow, }, -- Question       xxx guifg=#f3f99d
     QuickFixLine                                                         { gui="bold", fg="#ff6ac1", }, -- QuickFixLine   xxx cterm=bold gui=bold guifg=#ff6ac1
     RedrawDebugClear                                                     { bg="yellow", }, -- RedrawDebugClear xxx ctermbg=11 guibg=Yellow
     RedrawDebugComposed                                                  { bg="green", }, -- RedrawDebugComposed xxx ctermbg=10 guibg=Green
     RedrawDebugNormal                                                    { gui="reverse", }, -- RedrawDebugNormal xxx cterm=reverse gui=reverse
     RedrawDebugRecompose                                                 { bg=snazzy.red, fg="#f1f1f0", }, -- RedrawDebugRecompose xxx guifg=#f1f1f0 guibg=#ff5c57
-    Repeat                                                               { fg="#5af78e", }, -- Repeat         xxx guifg=#5af78e
+    Repeat                                                               { fg=snazzy.green, }, -- Repeat         xxx guifg=#5af78e
     STS_highlight                                                        { fg="#00f1f5", }, -- STS_highlight  xxx guifg=#00f1f5
     ScrollView                                                           { Visual }, -- ScrollView     xxx links to Visual
-    SearchSV                                                             { fg="#f3f99d", }, -- SearchSV       xxx cterm= gui= guifg=#f3f99d
+    SearchSV                                                             { fg=snazzy.yellow, }, -- SearchSV       xxx cterm= gui= guifg=#f3f99d
     SignColumn                                                           { bg="#282a36", }, -- SignColumn     xxx guibg=#282a36
-    SignifySignAdd                                                       { fg="#5af78e", }, -- SignifySignAdd xxx guifg=#5af78e
+    SignifySignAdd                                                       { fg=snazzy.green, }, -- SignifySignAdd xxx guifg=#5af78e
     SignifySignChange                                                    { fg="#57c7ff", }, -- SignifySignChange xxx guifg=#57c7ff
     SignifySignDelete                                                    { fg=snazzy.red, }, -- SignifySignDelete xxx guifg=#ff5c57
     SnapBorder                                                           { fg="#57c7ff", }, -- SnapBorder     xxx guifg=#57c7ff
-    SnapPosition                                                         { gui="bold", fg="#f3f99d", }, -- SnapPosition   xxx cterm=bold gui=bold guifg=#f3f99d
+    SnapPosition                                                         { gui="bold", fg=snazzy.yellow, }, -- SnapPosition   xxx cterm=bold gui=bold guifg=#f3f99d
     SnapPrompt                                                           { fg="#ff6ac1", }, -- SnapPrompt     xxx guifg=#ff6ac1
     SnapSelect                                                           { sp="#3a3d4d", bg="#3a3d4d", }, -- SnapSelect     xxx guibg=#3a3d4d guisp=#3a3d4d
     SpellBad                                                             { sp=snazzy.red, gui="underline", }, -- SpellBad       xxx cterm=underline gui=underline guisp=#ff5c57
     SpellCap                                                             { gui="underline", fg="#57c7ff", }, -- SpellCap       xxx cterm=underline gui=underline guifg=#57c7ff
     SpellLocal                                                           { gui="underline", fg="#9aedfe", }, -- SpellLocal     xxx cterm=underline gui=underline guifg=#9aedfe
     SpellRare                                                            { gui="underline", fg="#ff6ac1", }, -- SpellRare      xxx cterm=underline gui=underline guifg=#ff6ac1
-    TSAnnotation                                                         { gui="italic", fg="#57c7ff", }, -- TSAnnotation   xxx cterm=italic gui=italic guifg=#57c7ff
-    TSAttribute                                                          { gui="italic", fg="#57c7ff", }, -- TSAttribute    xxx cterm=italic gui=italic guifg=#57c7ff
-    TSBoolean                                                            { gui="italic", fg="#a39df9", }, -- TSBoolean      xxx cterm=italic gui=italic guifg=#a39df9
-    TSCharacter                                                          { fg="#f3f99d", }, -- TSCharacter    xxx guifg=#f3f99d
-    TSCharacterSpecial                                                   { SpecialChar }, -- TSCharacterSpecial xxx links to SpecialChar
-    TSComment                                                            { gui="italic", fg="#606580", }, -- TSComment      xxx cterm=italic gui=italic guifg=#606580
-    TSConditional                                                        { gui="bold", fg="#f3f99d", }, -- TSConditional  xxx cterm=bold gui=bold guifg=#f3f99d
-    TSConstBuiltin                                                       { gui="italic", fg="#ff6ac1", }, -- TSConstBuiltin xxx cterm=italic gui=italic guifg=#ff6ac1
-    TSConstMacro                                                         { gui="italic", fg="#ff9f43", }, -- TSConstMacro   xxx cterm=italic gui=italic guifg=#ff9f43
-    TSConstant                                                           { gui="italic", fg="#f3f99d", }, -- TSConstant     xxx cterm=italic gui=italic guifg=#f3f99d
-    TSConstructor                                                        { fg="#57c7ff", }, -- TSConstructor  xxx guifg=#57c7ff
-    TSCurrentNode                                                        { bg="#303340", }, -- TSCurrentNode  xxx guibg=#303340
-    TSCurrentScope                                                       { bg="#3a3d4d", }, -- TSCurrentScope xxx guibg=#3a3d4d
-    TSDanger                                                             { gui="bold", fg="#ff9f43", }, -- TSDanger       xxx cterm=bold gui=bold guifg=#ff9f43
-    TSDebug                                                              { Debug }, -- TSDebug        xxx links to Debug
-    TSDefine                                                             { Define }, -- TSDefine       xxx links to Define
-    TSDefinition                                                         { sp="#3a3d4d", bg="#3a3d4d", }, -- TSDefinition   xxx guibg=#3a3d4d guisp=#3a3d4d
-    TSDefinitionUsage                                                    { sp="#3a3d4d", bg="#3a3d4d", }, -- TSDefinitionUsage xxx guibg=#3a3d4d guisp=#3a3d4d
-    TSEmphasis                                                           { gui="italic", }, -- TSEmphasis     xxx cterm=italic gui=italic
-    TSEnvironment                                                        { Macro }, -- TSEnvironment  xxx links to Macro
-    TSEnvironmentName                                                    { Type }, -- TSEnvironmentName xxx links to Type
-    TSError                                                              { gui="bold", fg=snazzy.red, }, -- TSError        xxx cterm=bold gui=bold guifg=#ff5c57
-    TSException                                                          { fg=snazzy.red, }, -- TSException    xxx guifg=#ff5c57
-    TSField                                                              { fg="#9aedfe", }, -- TSField        xxx guifg=#9aedfe
-    TSFloat                                                              { fg="#a1a6a8", }, -- TSFloat        xxx guifg=#a1a6a8
-    TSFuncBuiltin                                                        { gui="bold", fg="#57c7ff", }, -- TSFuncBuiltin  xxx cterm=bold gui=bold guifg=#57c7ff
-    TSFuncMacro                                                          { gui="bold", fg="#57c7ff", }, -- TSFuncMacro    xxx cterm=bold gui=bold guifg=#57c7ff
-    TSFunction                                                           { gui="bold", fg="#57c7ff", }, -- TSFunction     xxx cterm=bold gui=bold guifg=#57c7ff
-    TSFunctionCall                                                       { gui="bold", fg="#57c7ff", }, -- TSFunctionCall xxx cterm=bold gui=bold guifg=#57c7ff
-    TSInclude                                                            { fg="#ff6ac1", }, -- TSInclude      xxx guifg=#ff6ac1
-    TSKeyword                                                            { gui="bold", fg="#ff6ac1", }, -- TSKeyword      xxx cterm=bold gui=bold guifg=#ff6ac1
-    TSKeywordFunction                                                    { gui="bold", fg="#ff6ac1", }, -- TSKeywordFunction xxx cterm=bold gui=bold guifg=#ff6ac1
-    TSKeywordOperator                                                    { gui="bold", fg="#ff6ac1", }, -- TSKeywordOperator xxx cterm=bold gui=bold guifg=#ff6ac1
-    TSKeywordReturn                                                      { gui="bold", fg="#ff6ac1", }, -- TSKeywordReturn xxx cterm=bold gui=bold guifg=#ff6ac1
-    TSLabel                                                              { fg="#5af78e", }, -- TSLabel        xxx guifg=#5af78e
-    TSLiteral                                                            { String }, -- TSLiteral      xxx links to String
-    TSMath                                                               { Special }, -- TSMath         xxx links to Special
-    TSMethod                                                             { gui="bold", fg="#57c7ff", }, -- TSMethod       xxx cterm=bold gui=bold guifg=#57c7ff
-    TSMethodCall                                                         { gui="bold", fg="#57c7ff", }, -- TSMethodCall   xxx cterm=bold gui=bold guifg=#57c7ff
-    TSNamespace                                                          { gui="italic", fg="#a39df9", }, -- TSNamespace    xxx cterm=italic gui=italic guifg=#a39df9
-    TSNone                                                               { }, -- TSNone         xxx cterm= gui=
-    TSNote                                                               { SpecialComment }, -- TSNote         xxx links to SpecialComment
-    TSNumber                                                             { fg="#5af78e", }, -- TSNumber       xxx guifg=#5af78e
-    TSOperator                                                           { fg="#ff6ac1", }, -- TSOperator     xxx guifg=#ff6ac1
-    TSParameter                                                          { fg="#f3f99d", }, -- TSParameter    xxx guifg=#f3f99d
-    TSParameterReference                                                 { fg="#f3f99d", }, -- TSParameterReference xxx guifg=#f3f99d
-    TSPreProc                                                            { PreProc }, -- TSPreProc      xxx links to PreProc
-    TSProperty                                                           { Identifier }, -- TSProperty     xxx links to Identifier
-    TSPunctBracket                                                       { fg="#f1f1f0", }, -- TSPunctBracket xxx guifg=#f1f1f0
-    TSPunctDelimiter                                                     { fg="#f1f1f0", }, -- TSPunctDelimiter xxx guifg=#f1f1f0
-    TSPunctSpecial                                                       { fg="#f3f99d", }, -- TSPunctSpecial xxx guifg=#f3f99d
-    TSQueryLinterError                                                   { gui="bold", fg=snazzy.red, }, -- TSQueryLinterError xxx cterm=bold gui=bold guifg=#ff5c57
-    TSRepeat                                                             { gui="bold", fg="#f3f99d", }, -- TSRepeat       xxx cterm=bold gui=bold guifg=#f3f99d
-    TSStorageClass                                                       { fg="#ff6ac1", }, -- TSStorageClass xxx guifg=#ff6ac1
-    TSStrike                                                             { gui="strikethrough", }, -- TSStrike       xxx cterm=strikethrough gui=strikethrough
-    TSString                                                             { fg="#5af78e", }, -- TSString       xxx guifg=#5af78e
-    TSStringEscape                                                       { gui="bold", fg="#f3f99d", }, -- TSStringEscape xxx cterm=bold gui=bold guifg=#f3f99d
-    TSStringRegex                                                        { String }, -- TSStringRegex  xxx links to String
-    TSStringSpecial                                                      { SpecialChar }, -- TSStringSpecial xxx links to SpecialChar
-    TSStrong                                                             { gui="bold", }, -- TSStrong       xxx cterm=bold gui=bold
-    TSStructure                                                          { gui="italic", fg="#ff9f43", }, -- TSStructure    xxx cterm=italic gui=italic guifg=#ff9f43
-    TSSymbol                                                             { fg="#5af78e", }, -- TSSymbol       xxx guifg=#5af78e
-    TSTag                                                                { fg="#9aedfe", }, -- TSTag          xxx guifg=#9aedfe
-    TSTagAttribute                                                       { fg="#f3f99d", }, -- TSTagAttribute xxx guifg=#f3f99d
-    TSTagDelimiter                                                       { fg="#ff6ac1", }, -- TSTagDelimiter xxx guifg=#ff6ac1
-    TSText                                                               { TSNone }, -- TSText         xxx links to TSNone
-    TSTextReference                                                      { Constant }, -- TSTextReference xxx links to Constant
-    TSTitle                                                              { Title }, -- TSTitle        xxx links to Title
-    TSTodo                                                               { fg="#9aedfe", }, -- TSTodo         xxx guifg=#9aedfe
-    TSType                                                               { fg="#a39df9", }, -- TSType         xxx guifg=#a39df9
-    TSTypeBuiltin                                                        { fg="#a39df9", }, -- TSTypeBuiltin  xxx guifg=#a39df9
-    TSTypeDefinition                                                     { Typedef }, -- TSTypeDefinition xxx links to Typedef
-    TSTypeQualifier                                                      { Type }, -- TSTypeQualifier xxx links to Type
-    TSURI                                                                { gui="underline", fg="#57c7ff", }, -- TSURI          xxx cterm=underline gui=underline guifg=#57c7ff
-    TSUnderline                                                          { gui="underline", }, -- TSUnderline    xxx cterm=underline gui=underline
-    TSVariable                                                           { fg="#eff0eb", }, -- TSVariable     xxx guifg=#eff0eb
-    TSVariableBuiltin                                                    { gui="italic", fg="#ff9f43", }, -- TSVariableBuiltin xxx cterm=italic gui=italic guifg=#ff9f43
-    TSWarning                                                            { fg="#ff9f43", }, -- TSWarning      xxx guifg=#ff9f43
     TabLine                                                              { bg="darkgrey", gui="underline", }, -- TabLine        xxx cterm=underline ctermfg=15 ctermbg=242 gui=underline guibg=DarkGrey
     TabLineFill                                                          { sp="#3a3d4d", fg="#192224", bg="#3a3d4d", gui="bold", }, -- TabLineFill    xxx cterm=bold gui=bold guifg=#192224 guibg=#3a3d4d guisp=#3a3d4d
     TabLineSel                                                           { sp="#282a36", fg="#eff0eb", bg="#282a36", gui="bold", }, -- TabLineSel     xxx cterm=bold gui=bold guifg=#eff0eb guibg=#282a36 guisp=#282a36
-    Tag                                                                  { fg="#f3f99d", }, -- Tag            xxx guifg=#f3f99d
+    Tag                                                                  { fg=snazzy.yellow, }, -- Tag            xxx guifg=#f3f99d
     TelescopeBorder                                                      { bg="#282a36", fg="#57c7ff", }, -- TelescopeBorder xxx guifg=#57c7ff guibg=#282a36
-    TelescopeMatching                                                    { gui="bold", fg="#5af78e", }, -- TelescopeMatching xxx cterm=bold gui=bold guifg=#5af78e
+    TelescopeMatching                                                    { gui="bold", fg=snazzy.green, }, -- TelescopeMatching xxx cterm=bold gui=bold guifg=#5af78e
     TelescopeMultiIcon                                                   { Identifier }, -- TelescopeMultiIcon xxx links to Identifier
     TelescopeMultiSelection                                              { gui="bold", fg=snazzy.red, }, -- TelescopeMultiSelection xxx cterm=bold gui=bold guifg=#ff5c57
     TelescopeNormal                                                      { bg="#282a36", fg="#eff0eb", }, -- TelescopeNormal xxx guifg=#eff0eb guibg=#282a36
@@ -730,23 +733,23 @@ local theme = lush(function()
     TelescopeSelectionCaret                                              { gui="bold", fg="#ff6ac1", }, -- TelescopeSelectionCaret xxx cterm=bold gui=bold guifg=#ff6ac1
     TelescopeTitle                                                       { TelescopeBorder }, -- TelescopeTitle xxx links to TelescopeBorder
     TodoBgFIX                                                            { bg=snazzy.red, gui="bold", fg="#282a36", }, -- TodoBgFIX      xxx gui=bold guifg=#282a36 guibg=#ff5c57
-    TodoBgHACK                                                           { bg="#f3f99d", gui="bold", fg="#282a36", }, -- TodoBgHACK     xxx gui=bold guifg=#282a36 guibg=#f3f99d
-    TodoBgNOTE                                                           { bg="#5af78e", gui="bold", fg="#282a36", }, -- TodoBgNOTE     xxx gui=bold guifg=#282a36 guibg=#5af78e
+    TodoBgHACK                                                           { bg=snazzy.yellow, gui="bold", fg="#282a36", }, -- TodoBgHACK     xxx gui=bold guifg=#282a36 guibg=#f3f99d
+    TodoBgNOTE                                                           { bg=snazzy.green, gui="bold", fg="#282a36", }, -- TodoBgNOTE     xxx gui=bold guifg=#282a36 guibg=#5af78e
     TodoBgPERF                                                           { bg="#9aedfe", gui="bold", fg="#282a36", }, -- TodoBgPERF     xxx gui=bold guifg=#282a36 guibg=#9aedfe
     TodoBgTODO                                                           { bg="#9aedfe", gui="bold", fg="#282a36", }, -- TodoBgTODO     xxx gui=bold guifg=#282a36 guibg=#9aedfe
-    TodoBgWARN                                                           { bg="#f3f99d", gui="bold", fg="#282a36", }, -- TodoBgWARN     xxx gui=bold guifg=#282a36 guibg=#f3f99d
+    TodoBgWARN                                                           { bg=snazzy.yellow, gui="bold", fg="#282a36", }, -- TodoBgWARN     xxx gui=bold guifg=#282a36 guibg=#f3f99d
     TodoFgFIX                                                            { fg=snazzy.red, }, -- TodoFgFIX      xxx guifg=#ff5c57
-    TodoFgHACK                                                           { fg="#f3f99d", }, -- TodoFgHACK     xxx guifg=#f3f99d
-    TodoFgNOTE                                                           { fg="#5af78e", }, -- TodoFgNOTE     xxx guifg=#5af78e
+    TodoFgHACK                                                           { fg=snazzy.yellow, }, -- TodoFgHACK     xxx guifg=#f3f99d
+    TodoFgNOTE                                                           { fg=snazzy.green, }, -- TodoFgNOTE     xxx guifg=#5af78e
     TodoFgPERF                                                           { fg="#9aedfe", }, -- TodoFgPERF     xxx guifg=#9aedfe
     TodoFgTODO                                                           { fg="#9aedfe", }, -- TodoFgTODO     xxx guifg=#9aedfe
-    TodoFgWARN                                                           { fg="#f3f99d", }, -- TodoFgWARN     xxx guifg=#f3f99d
+    TodoFgWARN                                                           { fg=snazzy.yellow, }, -- TodoFgWARN     xxx guifg=#f3f99d
     TodoSignFIX                                                          { bg="#282a36", fg=snazzy.red, }, -- TodoSignFIX    xxx guifg=#ff5c57 guibg=#282a36
-    TodoSignHACK                                                         { bg="#282a36", fg="#f3f99d", }, -- TodoSignHACK   xxx guifg=#f3f99d guibg=#282a36
-    TodoSignNOTE                                                         { bg="#282a36", fg="#5af78e", }, -- TodoSignNOTE   xxx guifg=#5af78e guibg=#282a36
+    TodoSignHACK                                                         { bg="#282a36", fg=snazzy.yellow, }, -- TodoSignHACK   xxx guifg=#f3f99d guibg=#282a36
+    TodoSignNOTE                                                         { bg="#282a36", fg=snazzy.green, }, -- TodoSignNOTE   xxx guifg=#5af78e guibg=#282a36
     TodoSignPERF                                                         { bg="#282a36", fg="#9aedfe", }, -- TodoSignPERF   xxx guifg=#9aedfe guibg=#282a36
     TodoSignTODO                                                         { bg="#282a36", fg="#9aedfe", }, -- TodoSignTODO   xxx guifg=#9aedfe guibg=#282a36
-    TodoSignWARN                                                         { bg="#282a36", fg="#f3f99d", }, -- TodoSignWARN   xxx guifg=#f3f99d guibg=#282a36
+    TodoSignWARN                                                         { bg="#282a36", fg=snazzy.yellow, }, -- TodoSignWARN   xxx guifg=#f3f99d guibg=#282a36
     TreesitterContext                                                    { NormalFloat }, -- TreesitterContext xxx links to NormalFloat
     TreesitterContextLineNumber                                          { fg="#57c7ff", }, -- TreesitterContextLineNumber xxx guifg=#57c7ff
     UfoFoldedBg                                                          { bg="#282a36", }, -- UfoFoldedBg    xxx guibg=#282a36
@@ -782,7 +785,7 @@ local theme = lush(function()
     -- float                                                                { TSFloat }, -- @float         xxx links to TSFloat
     gitcommitArrow                                                       { fg="#686868", }, -- gitcommitArrow xxx guifg=#686868
     gitcommitDiscarded                                                   { fg="#686868", }, -- gitcommitDiscarded xxx guifg=#686868
-    gitcommitFile                                                        { fg="#5af78e", }, -- gitcommitFile  xxx guifg=#5af78e
+    gitcommitFile                                                        { fg=snazzy.green, }, -- gitcommitFile  xxx guifg=#5af78e
     gitcommitOnBranch                                                    { fg="#686868", }, -- gitcommitOnBranch xxx guifg=#686868
     gitcommitSelected                                                    { fg="#686868", }, -- gitcommitSelected xxx guifg=#686868
     gitcommitSummary                                                     { fg=snazzy.red, }, -- gitcommitSummary xxx guifg=#ff5c57
@@ -814,9 +817,9 @@ local theme = lush(function()
     luaTSPunctBracket                                                    { gui="bold", fg="#f1f1f0", }, -- luaTSPunctBracket xxx cterm=bold gui=bold guifg=#f1f1f0
     luaTable                                                             { Structure }, -- luaTable       xxx links to Structure
     luaTodo                                                              { Todo }, -- luaTodo        xxx links to Todo
-    lualine_a_command                                                    { bg="#f3f99d", gui="bold", fg="#282a36", }, -- lualine_a_command xxx gui=bold guifg=#282a36 guibg=#f3f99d
+    lualine_a_command                                                    { bg=snazzy.yellow, gui="bold", fg="#282a36", }, -- lualine_a_command xxx gui=bold guifg=#282a36 guibg=#f3f99d
     lualine_a_inactive                                                   { bg="#3a3d4d", gui="bold", }, -- lualine_a_inactive xxx gui=bold guibg=#3a3d4d
-    lualine_a_insert                                                     { bg="#5af78e", gui="bold", fg="#282a36", }, -- lualine_a_insert xxx gui=bold guifg=#282a36 guibg=#5af78e
+    lualine_a_insert                                                     { bg=snazzy.green, gui="bold", fg="#282a36", }, -- lualine_a_insert xxx gui=bold guifg=#282a36 guibg=#5af78e
     lualine_a_normal                                                     { bg="#57c7ff", gui="bold", fg="#282a36", }, -- lualine_a_normal xxx gui=bold guifg=#282a36 guibg=#57c7ff
     lualine_a_replace                                                    { bg=snazzy.red, gui="bold", fg="#282a36", }, -- lualine_a_replace xxx gui=bold guifg=#282a36 guibg=#ff5c57
     lualine_a_visual                                                     { bg="#ff6ac1", gui="bold", fg="#282a36", }, -- lualine_a_visual xxx gui=bold guifg=#282a36 guibg=#ff6ac1
@@ -837,8 +840,8 @@ local theme = lush(function()
     lualine_c_normal                                                     { bg="#3a3d4d", fg="#b1b1b1", }, -- lualine_c_normal xxx guifg=#b1b1b1 guibg=#3a3d4d
     lualine_c_replace                                                    { bg="#3a3d4d", fg="#b1b1b1", }, -- lualine_c_replace xxx guifg=#b1b1b1 guibg=#3a3d4d
     lualine_c_visual                                                     { bg="#3a3d4d", fg="#b1b1b1", }, -- lualine_c_visual xxx guifg=#b1b1b1 guibg=#3a3d4d
-    lualine_transitional_lualine_a_command_to_StatusLine                 { bg="#3a3d4d", fg="#f3f99d", }, -- lualine_transitional_lualine_a_command_to_StatusLine xxx guifg=#f3f99d guibg=#3a3d4d
-    lualine_transitional_lualine_a_insert_to_StatusLine                  { bg="#3a3d4d", fg="#5af78e", }, -- lualine_transitional_lualine_a_insert_to_StatusLine xxx guifg=#5af78e guibg=#3a3d4d
+    lualine_transitional_lualine_a_command_to_StatusLine                 { bg="#3a3d4d", fg=snazzy.yellow, }, -- lualine_transitional_lualine_a_command_to_StatusLine xxx guifg=#f3f99d guibg=#3a3d4d
+    lualine_transitional_lualine_a_insert_to_StatusLine                  { bg="#3a3d4d", fg=snazzy.green, }, -- lualine_transitional_lualine_a_insert_to_StatusLine xxx guifg=#5af78e guibg=#3a3d4d
     lualine_transitional_lualine_a_normal_to_StatusLine                  { bg="#3a3d4d", fg="#57c7ff", }, -- lualine_transitional_lualine_a_normal_to_StatusLine xxx guifg=#57c7ff guibg=#3a3d4d
     lualine_transitional_lualine_a_normal_to_lualine_c_normal            { bg="#3a3d4d", fg="#57c7ff", }, -- lualine_transitional_lualine_a_normal_to_lualine_c_normal xxx guifg=#57c7ff guibg=#3a3d4d
     lualine_transitional_lualine_a_visual_to_StatusLine                  { bg="#3a3d4d", fg="#ff6ac1", }, -- lualine_transitional_lualine_a_visual_to_StatusLine xxx guifg=#ff6ac1 guibg=#3a3d4d
@@ -885,12 +888,12 @@ local theme = lush(function()
     -- variable                                                             { TSVariable }, -- @variable      xxx links to TSVariable
     vimCommand                                                           { fg="#57c7ff", }, -- vimCommand     xxx guifg=#57c7ff
     vimCommentTitle                                                      { gui="bold", fg="#686868", }, -- vimCommentTitle xxx cterm=bold gui=bold guifg=#686868
-    vimFuncName                                                          { gui="bold", fg="#f3f99d", }, -- vimFuncName    xxx cterm=bold gui=bold guifg=#f3f99d
+    vimFuncName                                                          { gui="bold", fg=snazzy.yellow, }, -- vimFuncName    xxx cterm=bold gui=bold guifg=#f3f99d
     vimFunction                                                          { gui="bold", fg="#ff6ac1", }, -- vimFunction    xxx cterm=bold gui=bold guifg=#ff6ac1
     vimIsCommand                                                         { fg="#eff0eb", }, -- vimIsCommand   xxx guifg=#eff0eb
-    vimLet                                                               { fg="#f3f99d", }, -- vimLet         xxx guifg=#f3f99d
+    vimLet                                                               { fg=snazzy.yellow, }, -- vimLet         xxx guifg=#f3f99d
     vimNotFunc                                                           { gui="bold", fg="#686868", }, -- vimNotFunc     xxx cterm=bold gui=bold guifg=#686868
-    vimUserFunc                                                          { gui="bold", fg="#f3f99d", }, -- vimUserFunc    xxx cterm=bold gui=bold guifg=#f3f99d
+    vimUserFunc                                                          { gui="bold", fg=snazzy.yellow, }, -- vimUserFunc    xxx cterm=bold gui=bold guifg=#f3f99d
     vimVar                                                               { fg="#9aedfe", }, -- vimVar         xxx guifg=#9aedfe
     -- warning                                                              { TSWarning }, -- @text.warning  xxx links to TSWarning
   }

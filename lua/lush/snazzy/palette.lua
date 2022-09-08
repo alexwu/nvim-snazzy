@@ -26,8 +26,8 @@ M.dark = {
 	grey = hsl("#686868"),
 	black = hsl("#282a36"),
 
-	search = "#f3f99d",
-	incsearch = "#636427",
+	search = hsl("#434805"),
+	incsearch = hsl("#434805"),
 
 	-- Grayscale
 	ui_0 = "#F9F9F9",
@@ -43,12 +43,12 @@ M.dark = {
 	ui_11 = "#282a36",
 	ui_12 = "#192224",
 
-	fg = "#eff0eb",
-	bg = "#282a36",
+	fg = hsl("#eff0eb"),
+	bg = hsl("#282a36"),
 
-	cursorline = "#303340",
-	foldline = "#3a3d4d",
-	selection_background = "#273d57",
+	cursorline = hsl("#303340"),
+	foldline = hsl("#3a3d4d"),
+	selection_background = hsl("#273d57"),
 	-- selection_background = "#3a3d4d",
 
 	-- cursorline = "#3a3d4d",
@@ -59,13 +59,18 @@ M.dark = {
 	-- cursorline = "#303340",
 	current_node = "#303340",
 
+	diff = {
+		delete = hsl("#3a0603"),
+		change = hsl("#434805"),
+		add = hsl("#00331a"),
+	},
 	none = nil,
 
 	hop = {
-		next_key = "#ff007c",
-		next_key1 = "#00dfff",
-		next_key2 = "#2b8db3",
-		unmatched = "#666666",
+		next_key = hsl("#ff007c"),
+		next_key1 = hsl("#00dfff"),
+		next_key2 = hsl("#2b8db3"),
+		unmatched = hsl("#666666"),
 	},
 }
 
