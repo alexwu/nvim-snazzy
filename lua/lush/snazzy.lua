@@ -535,7 +535,7 @@ local theme = lush(function()
     LspInfoList                                                          { Function }, -- LspInfoList    xxx links to Function
     LspInfoTip                                                           { Comment }, -- LspInfoTip     xxx links to Comment
     LspInfoTitle                                                         { Title }, -- LspInfoTitle   xxx links to Title
-    LspInlayHints                                                        { fg="#536991", }, -- LspInlayHints  xxx guifg=#536991
+    LspInlayHints                                                        { fg=snazzy.ui_4, bg = snazzy.ui_9 }, -- LspInlayHints  xxx guifg=#536991
     LspKeyword                                                           { gui="bold", fg="#ff6ac1", }, -- LspKeyword     xxx cterm=bold gui=bold guifg=#ff6ac1
     LspMethod                                                            { gui="bold", fg="#57c7ff", }, -- LspMethod      xxx cterm=bold gui=bold guifg=#57c7ff
     LspNamespace                                                         { gui="italic", fg="#57c7ff", }, -- LspNamespace   xxx cterm=italic gui=italic guifg=#57c7ff
