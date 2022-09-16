@@ -49,6 +49,9 @@ M.dark = {
 	cursorline = hsl("#303340"),
 	foldline = hsl("#3a3d4d"),
 	selection_background = hsl("#273d57"),
+	statusline = {
+		bg = hsl("#3a3d4d"),
+	},
 	-- selection_background = "#3a3d4d",
 
 	-- cursorline = "#3a3d4d",
