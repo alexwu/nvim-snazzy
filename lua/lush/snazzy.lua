@@ -100,6 +100,7 @@ local theme = lush(function()
 		TSFloat { fg = "#a1a6a8" }, -- TSFloat        xxx guifg=#a1a6a8
 		TSFuncBuiltin { gui = "bold", fg = snazzy.yellow }, -- TSFuncBuiltin  xxx cterm=bold gui=bold guifg=#57c7ff
 		TSFuncMacro { gui = "bold", fg = "#57c7ff" }, -- TSFuncMacro    xxx cterm=bold gui=bold guifg=#57c7ff
+		TSFunctionMacro { TSFuncMacro }, -- TSFuncMacro    xxx cterm=bold gui=bold guifg=#57c7ff
 		TSFunction { gui = "bold", fg = "#57c7ff" }, -- TSFunction     xxx cterm=bold gui=bold guifg=#57c7ff
 		TSFunctionCall { gui = "bold", fg = "#57c7ff" }, -- TSFunctionCall xxx cterm=bold gui=bold guifg=#57c7ff
 		TSInclude { fg = "#ff6ac1" }, -- TSInclude      xxx guifg=#ff6ac1
@@ -124,6 +125,9 @@ local theme = lush(function()
 		TSPunctBracket { fg = "#f1f1f0" }, -- TSPunctBracket xxx guifg=#f1f1f0
 		TSPunctDelimiter { fg = "#f1f1f0" }, -- TSPunctDelimiter xxx guifg=#f1f1f0
 		TSPunctSpecial { fg = snazzy.yellow }, -- TSPunctSpecial xxx guifg=#f3f99d
+		TSPunctuationBracket { TSPunctBracket }, -- TSPunctBracket xxx guifg=#f1f1f0
+		TSPunctuationDelimiter { TSPunctDelimiter }, -- TSPunctDelimiter xxx guguifg=#f1f1f0
+		TSPunctuationSpecial { TSPunctSpecial }, -- TSPunctTSPunctSpecial xxx guifg=#f3f99d
 		TSQueryLinterError { gui = "bold", fg = snazzy.red }, -- TSQueryLinterError xxx cterm=bold gui=bold guifg=#ff5c57
 		TSRepeat { gui = "bold", fg = snazzy.yellow }, -- TSRepeat       xxx cterm=bold gui=bold guifg=#f3f99d
 		TSStorageClass { fg = "#ff6ac1" }, -- TSStorageClass xxx guifg=#ff6ac1
