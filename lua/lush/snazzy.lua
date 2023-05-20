@@ -6,7 +6,8 @@ local lush = require("lush")
 local hsl = lush.hsl
 local hsluv = lush.hsluv
 local snazzy = require("lush.snazzy.palette").dark
-local theme = lush(function()
+local theme = lush(function(injected_functions)
+	local sym = injected_functions.sym
 	return {
 		-- "function"                                                             { TSKeywordFunction }, -- @keyword.function xxx links to TSKeywordFunction
 		-- ["return"]                                                              { TSKeywordReturn }, -- @keyword.return xxx links to TSKeywordReturn
@@ -29,12 +30,14 @@ local theme = lush(function()
 		Debug { fg = snazzy.yellow }, -- Debug          xxx guifg=#f3f99d
 		Define { fg = snazzy.yellow }, -- Define         xxx guifg=#f3f99d
 		Identifier { fg = "#9aedfe" }, -- Identifier     xxx guifg=#9aedfe
-		-- IncSearch                                                            { bg=snazzy.blue.mix(snazzy.bg, 25), fg=snazzy.bg }, -- IncSearch      xxx guibg=#434805
 		IncSearch { bg = snazzy.search, fg = snazzy.fg }, -- IncSearch      xxx guibg=#434805
 		Macro { fg = snazzy.yellow }, -- Macro          xxx guifg=#f3f99d
 		NonText { gui = "italic", fg = "#606580" }, -- NonText        xxx cterm=italic gui=italic guifg=#606580
-		Normal { bg = "#282a36", fg = "#eff0eb" }, -- Normal         xxx guifg=#eff0eb guibg=#282a36
-		NormalFloat { bg = "#282a36", fg = "#eff0eb" }, -- NormalFloat    xxx guifg=#eff0eb guibg=#282a36
+		-- Normal { bg = "#282a36", fg = "#eff0eb" }, -- Normal         xxx guifg=#eff0eb guibg=#282a36
+		Normal { fg = "#eff0eb" }, -- Normal         xxx guifg=#eff0eb guibg=#282a36
+		-- Normal { bg = "#282a36" }, -- Normal         xxx guifg=#eff0eb guibg=#282a36
+		-- NormalFloat { bg = "#282a36", fg = "#eff0eb" }, -- NormalFloat    xxx guifg=#eff0eb guibg=#282a36
+		NormalFloat { fg = "#eff0eb" }, -- NormalFloat    xxx guifg=#eff0eb guibg=#282a36
 		Operator { gui = "bold", fg = "#ff6ac1" }, -- Operator       xxx cterm=bold gui=bold guifg=#ff6ac1
 		Pmenu { sp = snazzy.statusline.bg, bg = "#3a3d4d", fg = "#eff0eb" }, -- Pmenu          xxx guifg=#eff0eb guibg=#3a3d4d guisp=#3a3d4d
 		PmenuSbar { sp = "#848688", bg = "#848688", fg = "#f9f9f9" }, -- PmenuSbar      xxx guifg=#f9f9f9 guibg=#848688 guisp=#848688
@@ -56,7 +59,7 @@ local theme = lush(function()
 		Structure { gui = "bold", fg = "#536991" }, -- Structure      xxx cterm=bold gui=bold guifg=#536991
 		Substitute { bg = snazzy.yellow.mix(snazzy.bg, 50), fg = snazzy.bg }, -- Substitute     xxx links to Search
 		TermCursor { fg = "#192224" }, -- TermCursor     xxx guifg=#192224
-		Terminal { bg = "#282a36", fg = "#eff0eb" }, -- Terminal       xxx guifg=#eff0eb guibg=#282a36
+		Terminal { fg = "#eff0eb" }, -- Terminal       xxx guifg=#eff0eb guibg=#282a36
 		Title { gui = "bold", fg = snazzy.yellow }, -- Title          xxx cterm=bold gui=bold guifg=#f3f99d
 		Todo { gui = "italic", fg = snazzy.yellow }, -- Todo           xxx cterm=italic gui=italic guifg=#f3f99d
 		Type { fg = "#9aedfe" }, -- Type           xxx guifg=#9aedfe
@@ -73,38 +76,39 @@ local theme = lush(function()
 		WinSeparator { VertSplit }, -- WinSeparator   xxx links to VertSplit
 
 		-- Treesitter highlights
-		TSAnnotation { gui = "italic", fg = "#57c7ff" }, -- TSAnnotation   xxx cterm=italic gui=italic guifg=#57c7ff
-		TSAttribute { gui = "italic", fg = "#57c7ff" }, -- TSAttribute    xxx cterm=italic gui=italic guifg=#57c7ff
-		TSBoolean { gui = "italic", fg = snazzy.purple }, -- TSBoolean      xxx cterm=italic gui=italic guifg=#a39df9
-		TSCharacter { fg = snazzy.yellow }, -- TSCharacter    xxx guifg=#f3f99d
-		TSCharacterSpecial { SpecialChar }, -- TSCharacterSpecial xxx links to SpecialChar
-		TSComment { gui = "italic", fg = "#606580" }, -- TSComment      xxx cterm=italic gui=italic guifg=#606580
-		TSConditional { gui = "bold", fg = snazzy.yellow }, -- TSConditional  xxx cterm=bold gui=bold guifg=#f3f99d
-		TSConstBuiltin { gui = "italic", fg = "#ff6ac1" }, -- TSConstBuiltin xxx cterm=italic gui=italic guifg=#ff6ac1
-		TSConstMacro { gui = "italic", fg = snazzy.orange }, -- TSConstMacro   xxx cterm=italic gui=italic guifg=#ff9f43
-		TSConstant { gui = "italic", fg = snazzy.yellow }, -- TSConstant     xxx cterm=italic gui=italic guifg=#f3f99d
-		TSConstructor { fg = "#57c7ff" }, -- TSConstructor  xxx guifg=#57c7ff
+		sym("@annotation") { gui = "italic", fg = "#57c7ff" }, -- TSAnnotation   xxx cterm=italic gui=italic guifg=#57c7ff
+		sym("@attribute") { gui = "italic", fg = "#57c7ff" }, -- TSAttribute    xxx cterm=italic gui=italic guifg=#57c7ff
+		sym("@boolean") { gui = "italic", fg = snazzy.purple }, -- TSBoolean      xxx cterm=italic gui=italic guifg=#a39df9
+		sym("@character") { fg = snazzy.yellow }, -- TSCharacter    xxx guifg=#f3f99d
+		sym("@character.special") { SpecialChar }, -- TSCharacterSpecial xxx links to SpecialChar
+		sym("@comment") { gui = "italic", fg = "#606580" }, -- TSComment      xxx cterm=italic gui=italic guifg=#606580
+		sym("@conditional") { gui = "bold", fg = snazzy.yellow }, -- TSConditional  xxx cterm=bold gui=bold guifg=#f3f99d
+		sym("@const.builtin") { gui = "italic", fg = "#ff6ac1" }, -- TSConstBuiltin xxx cterm=italic gui=italic guifg=#ff6ac1
+		sym("@const.macro") { gui = "italic", fg = snazzy.orange }, -- TSConstMacro   xxx cterm=italic gui=italic guifg=#ff9f43
+		sym("@constant") { gui = "italic", fg = snazzy.yellow }, -- TSConstant     xxx cterm=italic gui=italic guifg=#f3f99d
+		sym("@constructor") { fg = "#57c7ff" }, -- TSConstructor  xxx guifg=#57c7ff
 		TSCurrentNode { bg = "#303340" }, -- TSCurrentNode  xxx guibg=#303340
 		TSCurrentScope { bg = snazzy.statusline.bg }, -- TSCurrentScope xxx guibg=#3a3d4d
-		TSDanger { gui = "bold", fg = snazzy.orange }, -- TSDanger       xxx cterm=bold gui=bold guifg=#ff9f43
-		TSDebug { Debug }, -- TSDebug        xxx links to Debug
-		TSDefine { Define }, -- TSDefine       xxx links to Define
-		TSDefinition { sp = snazzy.statusline.bg, bg = "#3a3d4d" }, -- TSDefinition   xxx guibg=#3a3d4d guisp=#3a3d4d
-		TSDefinitionUsage { sp = snazzy.statusline.bg, bg = "#3a3d4d" }, -- TSDefinitionUsage xxx guibg=#3a3d4d guisp=#3a3d4d
+		sym("@danger") { gui = "bold", fg = snazzy.orange }, -- TSDanger       xxx cterm=bold gui=bold guifg=#ff9f43
+		sym("@debug") { Debug }, -- TSDebug        xxx links to Debug
+		sym("@define") { Define }, -- TSDefine       xxx links to Define
+		sym("@definition") { sp = snazzy.statusline.bg, bg = "#3a3d4d" }, -- TSDefinition   xxx guibg=#3a3d4d guisp=#3a3d4d
+		sym("@definition.usage") { sp = snazzy.statusline.bg, bg = "#3a3d4d" }, -- TSDefinitionUsage xxx guibg=#3a3d4d guisp=#3a3d4d
 		TSEmphasis { gui = "italic" }, -- TSEmphasis     xxx cterm=italic gui=italic
 		TSEnvironment { Macro }, -- TSEnvironment  xxx links to Macro
 		TSEnvironmentName { Type }, -- TSEnvironmentName xxx links to Type
-		TSError { gui = "bold", fg = snazzy.red }, -- TSError        xxx cterm=bold gui=bold guifg=#ff5c57
+		sym("@error") { gui = "bold", fg = snazzy.red }, -- TSError        xxx cterm=bold gui=bold guifg=#ff5c57
 		TSException { fg = snazzy.red }, -- TSException    xxx guifg=#ff5c57
-		TSField { fg = "#9aedfe" }, -- TSField        xxx guifg=#9aedfe
-		TSFloat { fg = "#a1a6a8" }, -- TSFloat        xxx guifg=#a1a6a8
-		TSFuncBuiltin { gui = "bold", fg = snazzy.yellow }, -- TSFuncBuiltin  xxx cterm=bold gui=bold guifg=#57c7ff
-		TSFuncMacro { gui = "bold", fg = "#57c7ff" }, -- TSFuncMacro    xxx cterm=bold gui=bold guifg=#57c7ff
-		TSFunctionMacro { TSFuncMacro }, -- TSFuncMacro    xxx cterm=bold gui=bold guifg=#57c7ff
+		sym("@field") { fg = "#9aedfe" }, -- TSField        xxx guifg=#9aedfe
+		sym("@float") { fg = "#a1a6a8" }, -- TSFloat        xxx guifg=#a1a6a8
+		sym("@func.builtin") { gui = "bold", fg = snazzy.yellow }, -- TSFuncBuiltin  xxx cterm=bold gui=bold guifg=#57c7ff
+		sym("@func.macro") { gui = "bold", fg = "#57c7ff" }, -- TSFuncMacro    xxx cterm=bold gui=bold guifg=#57c7ff
+		TSFunctionMacro { gui = "bold", fg = "#57c7ff" }, -- TSFuncMacro    xxx cterm=bold gui=bold guifg=#57c7ff
+		sym("@function") { gui = "bold", fg = "#57c7ff" }, -- TSFunction     xxx cterm=bold gui=bold guifg=#57c7ff
 		TSFunction { gui = "bold", fg = "#57c7ff" }, -- TSFunction     xxx cterm=bold gui=bold guifg=#57c7ff
 		TSFunctionCall { gui = "bold", fg = "#57c7ff" }, -- TSFunctionCall xxx cterm=bold gui=bold guifg=#57c7ff
-		TSInclude { fg = "#ff6ac1" }, -- TSInclude      xxx guifg=#ff6ac1
-		TSKeyword { gui = "bold", fg = "#ff6ac1" }, -- TSKeyword      xxx cterm=bold gui=bold guifg=#ff6ac1
+		sym("@include") { fg = "#ff6ac1" }, -- TSInclude      xxx guifg=#ff6ac1
+		sym("@keyword") { gui = "bold", fg = "#ff6ac1" }, -- TSKeyword      xxx cterm=bold gui=bold guifg=#ff6ac1
 		TSKeywordFunction { gui = "bold", fg = "#ff6ac1" }, -- TSKeywordFunction xxx cterm=bold gui=bold guifg=#ff6ac1
 		TSKeywordOperator { gui = "bold", fg = "#ff6ac1" }, -- TSKeywordOperator xxx cterm=bold gui=bold guifg=#ff6ac1
 		TSKeywordReturn { gui = "bold", fg = "#ff6ac1" }, -- TSKeywordReturn xxx cterm=bold gui=bold guifg=#ff6ac1
@@ -138,10 +142,10 @@ local theme = lush(function()
 		TSStringSpecial { SpecialChar }, -- TSStringSpecial xxx links to SpecialChar
 		TSStrong { gui = "bold" }, -- TSStrong       xxx cterm=bold gui=bold
 		TSStructure { gui = "italic", fg = snazzy.orange }, -- TSStructure    xxx cterm=italic gui=italic guifg=#ff9f43
-		TSSymbol { fg = snazzy.green }, -- TSSymbol       xxx guifg=#5af78e
-		TSTag { fg = "#9aedfe" }, -- TSTag          xxx guifg=#9aedfe
+		sym("@symbol") { fg = snazzy.green }, -- TSSymbol       xxx guifg=#5af78e
+		sym("@tag") { fg = "#9aedfe" }, -- TSTag          xxx guifg=#9aedfe
 		TSTagAttribute { fg = snazzy.yellow }, -- TSTagAttribute xxx guifg=#f3f99d
-		TSTagDelimiter { fg = "#ff6ac1" }, -- TSTagDelimiter xxx guifg=#ff6ac1
+		sym("@tag.delimiter") { fg = "#ff6ac1" }, -- TSTagDelimiter xxx guifg=#ff6ac1
 		TSText { TSNone }, -- TSText         xxx links to TSNone
 		TSTextReference { Constant }, -- TSTextReference xxx links to Constant
 		TSTitle { Title }, -- TSTitle        xxx links to Title
@@ -152,8 +156,8 @@ local theme = lush(function()
 		TSTypeQualifier { Type }, -- TSTypeQualifier xxx links to Type
 		TSURI { gui = "underline", fg = "#57c7ff" }, -- TSURI          xxx cterm=underline gui=underline guifg=#57c7ff
 		TSUnderline { gui = "underline" }, -- TSUnderline    xxx cterm=underline gui=underline
-		TSVariable { fg = "#eff0eb" }, -- TSVariable     xxx guifg=#eff0eb
-		TSVariableBuiltin { gui = "italic", fg = snazzy.orange }, -- TSVariableBuiltin xxx cterm=italic gui=italic guifg=#ff9f43
+		sym("@variable") { fg = "#eff0eb" }, -- TSVariable     xxx guifg=#eff0eb
+		sym("@variable.builtin") { gui = "italic", fg = snazzy.orange }, -- TSVariableBuiltin xxx cterm=italic gui=italic guifg=#ff9f43
 		TSWarning { fg = snazzy.orange }, -- TSWarning      xxx guifg=#ff9f43
 
 		DiagnosticDefaultError { fg = snazzy.red }, -- DiagnosticDefaultError xxx guifg=#ff5c57
@@ -474,7 +478,8 @@ local theme = lush(function()
 		FloatShadow { blend = 80, bg = "black" }, -- FloatShadow    xxx guibg=Black blend=80
 		FloatShadowThrough { blend = 100, bg = "black" }, -- FloatShadowThrough xxx guibg=Black blend=100
 		FloatTitle { FloatBorder }, -- FloatTitle     xxx links to FloatBorder
-		FoldColumn { bg = "#282a36", gui = "italic", fg = "#606580" }, -- FoldColumn     xxx cterm=italic gui=italic guifg=#606580 guibg=#282a36
+		FoldColumn { gui = "italic", fg = "#606580" }, -- FoldColumn     xxx cterm=italic gui=italic guifg=#606580 guibg=#282a36
+		-- FoldColumn { bg = "#282a36", gui = "italic", fg = "#606580" }, -- FoldColumn     xxx cterm=italic gui=italic guifg=#606580 guibg=#282a36
 		Folded { bg = snazzy.statusline.bg }, -- Folded         xxx guibg=#3a3d4d
 		Function { gui = "bold", fg = snazzy.purple }, -- Function       xxx cterm=bold gui=bold guifg=#a39df9
 		GitConflictAncestor { bg = "#68217a", gui = "bold" }, -- GitConflictAncestor xxx cterm=bold gui=bold guibg=#68217a
@@ -523,7 +528,8 @@ local theme = lush(function()
 		KeyMenuFloatBorder { fg = "#57c7ff" }, -- KeyMenuFloatBorder xxx guifg=#57c7ff
 		Keyword { fg = "#ff6ac1" }, -- Keyword        xxx guifg=#ff6ac1
 		Label { fg = snazzy.yellow }, -- Label          xxx guifg=#f3f99d
-		LeapBackdrop { sp = "#666666", bg = "#282a36", fg = "#666666" }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
+		-- LeapBackdrop { sp = "#666666", bg = "#282a36", fg = "#666666" }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
+		LeapBackdrop { sp = "#666666", fg = "#666666" }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
 		LeapLabelPrimary { gui = "bold", fg = "#ff007c" }, -- LeapLabelPrimary xxx cterm=bold gui=bold guifg=#ff007c
 		LeapLabelSecondary { gui = "bold", fg = "#00dfff" }, -- LeapLabelSecondary xxx cterm=bold gui=bold guifg=#00dfff
 		LineNr { fg = "#606580" }, -- LineNr         xxx guifg=#606580
@@ -672,7 +678,8 @@ local theme = lush(function()
 		STS_highlight { fg = "#00f1f5" }, -- STS_highlight  xxx guifg=#00f1f5
 		ScrollView { Visual }, -- ScrollView     xxx links to Visual
 		SearchSV { fg = snazzy.yellow }, -- SearchSV       xxx cterm= gui= guifg=#f3f99d
-		SignColumn { bg = "#282a36" }, -- SignColumn     xxx guibg=#282a36
+		-- SignColumn { bg = "#282a36" }, -- SignColumn     xxx guibg=#282a36
+		SignColumn { bg = nil }, -- SignColumn     xxx guibg=#282a36
 		SignifySignAdd { fg = snazzy.green }, -- SignifySignAdd xxx guifg=#5af78e
 		SignifySignChange { fg = "#57c7ff" }, -- SignifySignChange xxx guifg=#57c7ff
 		SignifySignDelete { fg = snazzy.red }, -- SignifySignDelete xxx guifg=#ff5c57
@@ -762,32 +769,8 @@ local theme = lush(function()
 		UfoFoldedFg { fg = "#57c7ff" }, -- UfoFoldedFg    xxx guifg=#57c7ff
 		UfoPreviewSbar { bg = "#57c7ff" }, -- UfoPreviewSbar xxx guibg=#57c7ff
 		UfoPreviewThumb { fg = "#57c7ff" }, -- UfoPreviewThumb xxx guifg=#57c7ff
-		-- annotation                                                           { TSAnnotation }, -- @annotation    xxx links to TSAnnotation
-		-- attribute                                                            { TSAttribute }, -- @attribute     xxx links to TSAttribute
-		-- attribute                                                            { TSTagAttribute }, -- @tag.attribute xxx links to TSTagAttribute
-		-- boolean                                                              { TSBoolean }, -- @boolean       xxx links to TSBoolean
-		-- bracket                                                              { TSPunctBracket }, -- @punctuation.bracket xxx links to TSPunctBracket
-		-- builtin                                                              { TSConstBuiltin }, -- @constant.builtin xxx links to TSConstBuiltin
-		-- builtin                                                              { TSFuncBuiltin }, -- @function.builtin xxx links to TSFuncBuiltin
-		-- builtin                                                              { TSTypeBuiltin }, -- @type.builtin  xxx links to TSTypeBuiltin
-		-- builtin                                                              { TSVariableBuiltin }, -- @variable.builtin xxx links to TSVariableBuiltin
-		-- call                                                                 { TSFunctionCall }, -- @function.call xxx links to TSFunctionCall
-		-- call                                                                 { TSMethodCall }, -- @method.call   xxx links to TSMethodCall
-		-- character                                                            { TSCharacter }, -- @character     xxx links to TSCharacter
-		-- comment                                                              { TSComment }, -- @comment       xxx links to TSComment
-		-- conditional                                                          { TSConditional }, -- @conditional   xxx links to TSConditional
-		-- constant                                                             { TSConstant }, -- @constant      xxx links to TSConstant
-		-- constructor                                                          { TSConstructor }, -- @constructor   xxx links to TSConstructor
-		-- danger                                                               { TSDanger }, -- @text.danger   xxx links to TSDanger
-		dbui_tables { fg = "#57c7ff" }, -- dbui_tables    xxx guifg=#57c7ff
-		debugBreakpoint { bg = snazzy.red, fg = "#282a36" }, -- debugBreakpoint xxx guifg=#282a36 guibg=#ff5c57
-		-- delimiter                                                            { TSPunctDelimiter }, -- @punctuation.delimiter xxx links to TSPunctDelimiter
-		-- delimiter                                                            { TSTagDelimiter }, -- @tag.delimiter xxx links to TSTagDelimiter
-		-- emphasis                                                             { TSEmphasis }, -- @text.emphasis xxx links to TSEmphasis
-		-- escape                                                               { TSStringEscape }, -- @string.escape xxx links to TSStringEscape
-		-- exception                                                            { TSException }, -- @exception     xxx links to TSException
-		-- field                                                                { TSField }, -- @field         xxx links to TSField
-		-- float                                                                { TSFloat }, -- @float         xxx links to TSFloat
+		dbui_tables { fg = "#57c7ff" }, 
+		debugBreakpoint { bg = snazzy.red, fg = "#282a36" },
 		gitcommitArrow { fg = "#686868" }, -- gitcommitArrow xxx guifg=#686868
 		gitcommitDiscarded { fg = "#686868" }, -- gitcommitDiscarded xxx guifg=#686868
 		gitcommitFile { fg = snazzy.green }, -- gitcommitFile  xxx guifg=#5af78e
@@ -797,7 +780,6 @@ local theme = lush(function()
 		gitcommitUnmerged { fg = "#686868" }, -- gitcommitUnmerged xxx guifg=#686868
 		gitcommitUntracked { fg = "#686868" }, -- gitcommitUntracked xxx guifg=#686868
 		iCursor { gui = "reverse" }, -- iCursor        xxx cterm=reverse gui=reverse
-		-- include                                                              { TSInclude }, -- @include       xxx links to TSInclude
 		lCursor { gui = "reverse" }, -- lCursor        xxx cterm=reverse gui=reverse
 		luaBraceError { Error }, -- luaBraceError  xxx links to Error
 		luaComment { Comment }, -- luaComment     xxx links to Comment
@@ -868,29 +850,7 @@ local theme = lush(function()
 		lualine_x_filetype_DevIconLua_replace { bg = snazzy.statusline.bg, fg = "#57c7ff" }, -- lualine_x_filetype_DevIconLua_replace xxx guifg=#57c7ff guibg=#3a3d4d
 		lualine_x_filetype_DevIconLua_terminal { bg = snazzy.statusline.bg, fg = "#57c7ff" }, -- lualine_x_filetype_DevIconLua_terminal xxx guifg=#57c7ff guibg=#3a3d4d
 		lualine_x_filetype_DevIconLua_visual { bg = snazzy.statusline.bg, fg = "#57c7ff" }, -- lualine_x_filetype_DevIconLua_visual xxx guifg=#57c7ff guibg=#3a3d4d
-		-- macro                                                                { Macro }, -- @macro         xxx links to Macro
-		-- macro                                                                { TSConstMacro }, -- @constant.macro xxx links to TSConstMacro
-		-- macro                                                                { TSFuncMacro }, -- @function.macro xxx links to TSFuncMacro
-		-- method                                                               { TSMethod }, -- @method        xxx links to TSMethod
-		-- namespace                                                            { TSNamespace }, -- @namespace     xxx links to TSNamespace
-		-- none                                                                 { TSNone }, -- @none          xxx links to TSNone
-		-- number                                                               { TSNumber }, -- @number        xxx links to TSNumber
-		-- operator                                                             { TSOperator }, -- @operator      xxx links to TSOperator
-		-- parameter                                                            { TSParameter }, -- @parameter     xxx links to TSParameter
-		-- punctuation                                                          { Delimiter }, -- @punctuation   xxx links to Delimiter
-		-- reference                                                            { TSParameterReference }, -- @parameter.reference xxx links to TSParameterReference
-		-- special                                                              { TSPunctSpecial }, -- @punctuation.special xxx links to TSPunctSpecial
-		-- storageclass                                                         { TSStorageClass }, -- @storageclass  xxx links to TSStorageClass
-		-- strike                                                               { TSStrike }, -- @text.strike   xxx links to TSStrike
-		-- strong                                                               { TSStrong }, -- @text.strong   xxx links to TSStrong
-		-- structure                                                            { Structure }, -- @structure     xxx links to Structure
-		-- symbol                                                               { TSSymbol }, -- @symbol        xxx links to TSSymbol
-		-- todo                                                                 { TSTodo }, -- @todo          xxx links to TSTodo
-		-- type                                                                 { TSType }, -- @type          xxx links to TSType
-		-- underline                                                            { TSUnderline }, -- @text.underline xxx links to TSUnderline
-		-- uri                                                                  { TSURI }, -- @text.uri      xxx links to TSURI
 		vCursor { sp = "#f9f9ff", bg = "#f9f9ff", fg = "#192224" }, -- vCursor        xxx guifg=#192224 guibg=#f9f9ff guisp=#f9f9ff
-		-- variable                                                             { TSVariable }, -- @variable      xxx links to TSVariable
 		vimCommand { fg = "#57c7ff" }, -- vimCommand     xxx guifg=#57c7ff
 		vimCommentTitle { gui = "bold", fg = "#686868" }, -- vimCommentTitle xxx cterm=bold gui=bold guifg=#686868
 		vimFuncName { gui = "bold", fg = snazzy.yellow }, -- vimFuncName    xxx cterm=bold gui=bold guifg=#f3f99d
@@ -929,6 +889,7 @@ local theme = lush(function()
 		NavicIconsEvent { NavicIconsDefault },
 		NavicIconsOperator { NavicIconsDefault },
 		NavicIconsTypeParameter { NavicIconsDefault },
+		NoiceMini { fg = snazzy.fg, bg = "none", ctermbg = "none" },
 	}
 end)
 return theme
