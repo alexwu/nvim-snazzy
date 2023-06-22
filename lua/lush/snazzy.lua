@@ -9,17 +9,6 @@ local snazzy = require("lush.snazzy.palette").dark
 local theme = lush(function(injected_functions)
 	local sym = injected_functions.sym
 	return {
-		-- "function"                                                             { TSKeywordFunction }, -- @keyword.function xxx links to TSKeywordFunction
-		-- ["return"]                                                              { TSKeywordReturn }, -- @keyword.return xxx links to TSKeywordReturn
-		-- error                                                                { TSError }, -- @error         xxx links to TSError
-		-- function                                                             { TSFunction }, -- @function      xxx links to TSFunction
-		-- keyword                                                              { TSKeyword }, -- @keyword       xxx links to TSKeyword
-		-- label                                                                { TSLabel }, -- @label         xxx links to TSLabel
-		-- operator                                                             { TSKeywordOperator }, -- @keyword.operator xxx links to TSKeywordOperator
-		-- repeat                                                               { TSRepeat }, -- @repeat        xxx links to TSRepeat
-		-- string                                                               { TSString }, -- @string        xxx links to TSString
-		-- tag                                                                  { TSTag }, -- @tag           xxx links to TSTag
-
 		Boolean { fg = "#ff6ac1" }, -- Boolean        xxx guifg=#ff6ac1
 		Character { fg = "#e2e4e5" }, -- Character      xxx guifg=#e2e4e5
 		ColorColumn { sp = snazzy.statusline.bg, bg = "#3a3d4d" }, -- ColorColumn    xxx guibg=#3a3d4d guisp=#3a3d4d
@@ -29,14 +18,11 @@ local theme = lush(function(injected_functions)
 		Constant { fg = snazzy.green }, -- Constant       xxx guifg=#5af78e
 		Debug { fg = snazzy.yellow }, -- Debug          xxx guifg=#f3f99d
 		Define { fg = snazzy.yellow }, -- Define         xxx guifg=#f3f99d
-		Identifier { fg = "#9aedfe" }, -- Identifier     xxx guifg=#9aedfe
+		Identifier { fg = snazzy.cyan }, -- Identifier     xxx guifg=#9aedfe
 		IncSearch { bg = snazzy.search, fg = snazzy.fg }, -- IncSearch      xxx guibg=#434805
 		Macro { fg = snazzy.yellow }, -- Macro          xxx guifg=#f3f99d
 		NonText { gui = "italic", fg = "#606580" }, -- NonText        xxx cterm=italic gui=italic guifg=#606580
-		-- Normal { bg = "#282a36", fg = "#eff0eb" }, -- Normal         xxx guifg=#eff0eb guibg=#282a36
-		Normal { fg = "#eff0eb" }, -- Normal         xxx guifg=#eff0eb guibg=#282a36
-		-- Normal { bg = "#282a36" }, -- Normal         xxx guifg=#eff0eb guibg=#282a36
-		-- NormalFloat { bg = "#282a36", fg = "#eff0eb" }, -- NormalFloat    xxx guifg=#eff0eb guibg=#282a36
+		Normal { fg = snazzy.fg }, -- Normal         xxx guifg=#eff0eb guibg=#282a36
 		NormalFloat { fg = "#eff0eb" }, -- NormalFloat    xxx guifg=#eff0eb guibg=#282a36
 		Operator { gui = "bold", fg = "#ff6ac1" }, -- Operator       xxx cterm=bold gui=bold guifg=#ff6ac1
 		Pmenu { sp = snazzy.statusline.bg, bg = "#3a3d4d", fg = "#eff0eb" }, -- Pmenu          xxx guifg=#eff0eb guibg=#3a3d4d guisp=#3a3d4d
@@ -103,9 +89,7 @@ local theme = lush(function(injected_functions)
 		sym("@float") { fg = "#a1a6a8" }, -- TSFloat        xxx guifg=#a1a6a8
 		sym("@func.builtin") { gui = "bold", fg = snazzy.yellow }, -- TSFuncBuiltin  xxx cterm=bold gui=bold guifg=#57c7ff
 		sym("@func.macro") { gui = "bold", fg = "#57c7ff" }, -- TSFuncMacro    xxx cterm=bold gui=bold guifg=#57c7ff
-		TSFunctionMacro { gui = "bold", fg = "#57c7ff" }, -- TSFuncMacro    xxx cterm=bold gui=bold guifg=#57c7ff
 		sym("@function") { gui = "bold", fg = "#57c7ff" }, -- TSFunction     xxx cterm=bold gui=bold guifg=#57c7ff
-		TSFunction { gui = "bold", fg = "#57c7ff" }, -- TSFunction     xxx cterm=bold gui=bold guifg=#57c7ff
 		TSFunctionCall { gui = "bold", fg = "#57c7ff" }, -- TSFunctionCall xxx cterm=bold gui=bold guifg=#57c7ff
 		sym("@include") { fg = "#ff6ac1" }, -- TSInclude      xxx guifg=#ff6ac1
 		sym("@keyword") { gui = "bold", fg = "#ff6ac1" }, -- TSKeyword      xxx cterm=bold gui=bold guifg=#ff6ac1
@@ -530,8 +514,13 @@ local theme = lush(function(injected_functions)
 		Label { fg = snazzy.yellow }, -- Label          xxx guifg=#f3f99d
 		-- LeapBackdrop { sp = "#666666", bg = "#282a36", fg = "#666666" }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
 		LeapBackdrop { sp = "#666666", fg = "#666666" }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
-		LeapLabelPrimary { gui = "bold", fg = "#ff007c" }, -- LeapLabelPrimary xxx cterm=bold gui=bold guifg=#ff007c
-		LeapLabelSecondary { gui = "bold", fg = "#00dfff" }, -- LeapLabelSecondary xxx cterm=bold gui=bold guifg=#00dfff
+		LeapLabelPrimary { gui = "bold", fg = "#ff007c" }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
+		LeapLabelSecondary { gui = "bold", fg = "#00dfff" }, -- LeapLabelPrimary xxx cterm=bold gui=bold guifg=#ff007c
+		FlashBackdrop { sp = "#666666", fg = "#666666" }, -- LeapLabelPrimary xxx cterm=bold gui=bold guifg=#ff007c
+		FlashLabel { gui = "bold", fg = "#ff007c" }, -- LeapLabelSecondary xxx cterm=bold gui=bold guifg=#00dfff
+		-- FlashMatch { gui = "bold", fg = "#00dfff" },
+		FlashMatch { fg = snazzy.fg },
+		FlashCurrent { gui = "bold", fg = "#ccff88" },
 		LineNr { fg = "#606580" }, -- LineNr         xxx guifg=#606580
 		LineNrAbove { LineNr }, -- LineNrAbove    xxx links to LineNr
 		LineNrBelow { LineNr }, -- LineNrBelow    xxx links to LineNr
@@ -769,7 +758,7 @@ local theme = lush(function(injected_functions)
 		UfoFoldedFg { fg = "#57c7ff" }, -- UfoFoldedFg    xxx guifg=#57c7ff
 		UfoPreviewSbar { bg = "#57c7ff" }, -- UfoPreviewSbar xxx guibg=#57c7ff
 		UfoPreviewThumb { fg = "#57c7ff" }, -- UfoPreviewThumb xxx guifg=#57c7ff
-		dbui_tables { fg = "#57c7ff" }, 
+		dbui_tables { fg = "#57c7ff" },
 		debugBreakpoint { bg = snazzy.red, fg = "#282a36" },
 		gitcommitArrow { fg = "#686868" }, -- gitcommitArrow xxx guifg=#686868
 		gitcommitDiscarded { fg = "#686868" }, -- gitcommitDiscarded xxx guifg=#686868
@@ -890,6 +879,8 @@ local theme = lush(function(injected_functions)
 		NavicIconsOperator { NavicIconsDefault },
 		NavicIconsTypeParameter { NavicIconsDefault },
 		NoiceMini { fg = snazzy.fg, bg = "none", ctermbg = "none" },
+		NoiceLspProgressClient = { Title },
+		sym("@lsp.mod.global.lua") { fg = snazzy.yellow, gui = "bold" }, -- TSInclude      xxx guifg=#ff6ac1
 	}
 end)
 return theme
