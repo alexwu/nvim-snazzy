@@ -573,6 +573,7 @@ local theme = lush(function(injected_functions)
 		NotifierContentDim { Comment }, -- NotifierContentDim xxx links to Comment
 		NotifierIcon { Title }, -- NotifierIcon   xxx links to Title
 		NotifierTitle { Title }, -- NotifierTitle  xxx links to Title
+		NotifyBackground { bg = snazzy.bg }, -- NotifierTitle  xxx links to Title
 		-- NotifyDEBUGBody                                                      { Normal }, -- NotifyDEBUGBody xxx links to Normal
 		-- NotifyDEBUGBorder                                                    { fg="#9aedfe", }, -- NotifyDEBUGBorder xxx guifg=#9aedfe
 		-- NotifyDEBUGIcon                                                      { fg="#9aedfe", }, -- NotifyDEBUGIcon xxx guifg=#9aedfe
