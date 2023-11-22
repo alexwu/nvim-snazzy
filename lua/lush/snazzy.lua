@@ -149,18 +149,18 @@ local theme = lush(function(injected_functions)
 		-- LSP highlights
 		sym("@lsp.type.class")                                                                { Structure }, -- @lsp.type.class xxx links to Structure
 		sym("@lsp.type.comment")                                                              { Comment }, -- @lsp.type.comment xxx links to Comment
-		sym("@lsp.type.decorator")                                                            { Function }, -- @lsp.type.decorator xxx links to Function
+		sym("@lsp.type.decorator")                                                            { sym("@function") }, -- @lsp.type.decorator xxx links to Function
 		sym("@lsp.type.enum")                                                                 { Structure }, -- @lsp.type.enum xxx links to Structure
 		sym("@lsp.type.enumMember")                                                           { Constant }, -- @lsp.type.enumMember xxx links to Constant
-		sym("@lsp.type.function")                                                             { Function }, -- @lsp.type.function xxx links to Function
+		sym("@lsp.type.function")                                                             { sym("@function") }, -- @lsp.type.function xxx links to Function
 		sym("@lsp.type.interface")                                                            { Structure }, -- @lsp.type.interface xxx links to Structure
 		sym("@lsp.type.macro")                                                                { Macro }, -- @lsp.type.macro xxx links to Macro
-		sym("@lsp.type.method")                                                               { Function }, -- @lsp.type.method xxx links to Function
-		sym("@lsp.type.namespace")                                                            { Structure }, -- @lsp.type.namespace xxx links to Structure
-		sym("@lsp.type.parameter")                                                            { Identifier }, -- @lsp.type.parameter xxx links to Identifier
+		sym("@lsp.type.method")                                                               { sym("@method") }, -- @lsp.type.method xxx links to Function
+		sym("@lsp.type.namespace")                                                            { sym("@namespace") }, -- @lsp.type.namespace xxx links to Structure
+		sym("@lsp.type.parameter")                                                            { sym("@parameter") }, -- @lsp.type.parameter xxx links to Identifier
 		sym("@lsp.type.property")                                                             { Identifier }, -- @lsp.type.property xxx links to Identifier
 		sym("@lsp.type.struct")                                                               { Structure }, -- @lsp.type.struct xxx links to Structure
-		sym("@lsp.type.type")                                                                 { Type }, -- @lsp.type.type xxx links to Type
+		sym("@lsp.type.type")                                                                 { sym("@type") }, -- @lsp.type.type xxx links to Type
 		sym("@lsp.type.typeParameter")                                                        { Typedef }, -- @lsp.type.typeParameter xxx links to Typedef
 		sym("@lsp.type.variable")                                                             { Identifier }, -- @lsp.type.variable xxx links to Identifier
 
