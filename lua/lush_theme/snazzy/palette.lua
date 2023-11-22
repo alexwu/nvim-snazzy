@@ -1,4 +1,5 @@
 local lush = require("lush")
+---@type function
 local hsl = lush.hsl
 
 local M = {}
