@@ -900,7 +900,7 @@ local theme = lush(function(injected_functions)
 		NavicIconsEvent                                                                       { NavicIconsDefault },
 		NavicIconsOperator                                                                    { NavicIconsDefault },
 		NavicIconsTypeParameter                                                               { NavicIconsDefault },
-		NoiceMini                                                                             { fg = snazzy.fg, bg = "none", ctermbg = "none" },
+		NoiceMini                                                                             { fg = snazzy.fg, bg = snazzy.bg },
 		NoiceLspProgressClient                                                                { Title },
 	}
 end)
