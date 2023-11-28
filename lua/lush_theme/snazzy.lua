@@ -76,7 +76,7 @@ local theme = lush(function(injected_functions)
 		sym("@character.special")                                                             { SpecialChar }, -- TSCharacterSpecial xxx links to SpecialChar
 		sym("@comment")                                                                       { gui = "italic", fg = "#606580" }, -- TSComment      xxx cterm=italic gui=italic guifg=#606580
 		sym("@conditional")                                                                   { gui = "bold", fg = snazzy.yellow }, -- TSConditional  xxx cterm=bold gui=bold guifg=#f3f99d
-		sym("@constant")                                                                      { gui = "italic", fg = snazzy.yellow }, -- TSConstant     xxx cterm=italic gui=italic guifg=#f3f99d
+		sym("@constant")                                                                      { gui = "bold", fg = snazzy.yellow }, -- TSConstant     xxx cterm=italic gui=italic guifg=#f3f99d
 		sym("@constant.builtin")                                                              { gui = "italic", fg = snazzy.magenta }, -- TSConstBuiltin xxx cterm=italic gui=italic guifg=#ff6ac1
 		sym("@constant.macro")                                                                { gui = "italic", fg = snazzy.orange }, -- TSConstMacro   xxx cterm=italic gui=italic guifg=#ff9f43
 		sym("@constructor")                                                                   { fg = snazzy.blue }, -- TSConstructor  xxx guifg=#57c7ff
@@ -101,7 +101,7 @@ local theme = lush(function(injected_functions)
 		sym("@label")                                                                         { fg = snazzy.green }, -- TSLabel        xxx guifg=#5af78e
 		sym("@method")                                                                        { gui = "bold", fg = snazzy.blue }, -- TSMethod       xxx cterm=bold gui=bold guifg=#57c7ff
 		sym("@method.call")                                                                   { gui = "bold", fg = snazzy.blue }, -- TSMethodCall   xxx cterm=bold gui=bold guifg=#57c7ff
-		sym("@namespace")                                                                     { gui = "italic", fg = snazzy.purple }, -- TSNamespace    xxx cterm=italic gui=italic guifg=#a39df9
+		sym("@namespace")                                                                     { gui = "bold", fg = snazzy.purple }, -- TSNamespace    xxx cterm=italic gui=italic guifg=#a39df9
 		sym("@none")                                                                          {}, -- TSNone         xxx cterm= gui=
 		sym("@number")                                                                        { fg = snazzy.green }, -- TSNumber       xxx guifg=#5af78e
 		sym("@operator")                                                                      { fg = snazzy.magenta }, -- TSOperator     xxx guifg=#ff6ac1
@@ -120,7 +120,7 @@ local theme = lush(function(injected_functions)
 		sym("@structure")                                                                     { gui = "italic", fg = snazzy.orange }, -- TSStructure    xxx cterm=italic gui=italic guifg=#ff9f43
 		sym("@symbol")                                                                        { fg = snazzy.green }, -- TSSymbol       xxx guifg=#5af78e
 		sym("@tag")                                                                           { fg = snazzy.cyan }, -- TSTag          xxx guifg=#9aedfe
-		sym("@tag.attribute")                                                                 { fg = snazzy.yellow }, -- TSTagAttribute xxx guifg=#f3f99d
+		sym("@tag.attribute")                                                                 { fg = snazzy.orange }, -- TSTagAttribute xxx guifg=#f3f99d
 		sym("@tag.delimiter")                                                                 { fg = snazzy.magenta }, -- TSTagDelimiter xxx guifg=#ff6ac1
 		sym("@text.danger")                                                                   { gui = "bold", fg = snazzy.orange }, -- TSDanger       xxx cterm=bold gui=bold guifg=#ff9f43
 		sym("@text.emphasis")                                                                 { gui = "italic" }, -- TSEmphasis     xxx cterm=italic gui=italic
@@ -210,7 +210,7 @@ local theme = lush(function(injected_functions)
 		CopilotSuggestion                                                                     { bg = "#303340", fg = snazzy.blue }, -- CopilotSuggestion xxx guifg=#57c7ff guibg=#303340
 		Cursor                                                                                { gui = "reverse" }, -- Cursor         xxx cterm=reverse gui=reverse
 		CursorColumn                                                                          { sp = snazzy.statusline.bg, bg = "#3a3d4d", fg = "#e2e4e5" }, -- CursorColumn   xxx guifg=#e2e4e5 guibg=#3a3d4d guisp=#3a3d4d
-		CursorLine                                                                            { sp = "#303340", bg = "#303340" }, -- CursorLine     xxx guibg=#303340 guisp=#303340
+		CursorLine                                                                            { sp = snazzy.cursorline, bg = snazzy.cursorline }, -- CursorLine     xxx guibg=#303340 guisp=#303340
 		CursorLineFold                                                                        { bg = "#303340", gui = "italic", fg = snazzy.blue }, -- CursorLineFold xxx cterm=italic gui=italic guifg=#57c7ff guibg=#303340
 		CursorLineNr                                                                          { bg = "#303340", fg = snazzy.yellow }, -- CursorLineNr   xxx guifg=#f3f99d guibg=#303340
 		CursorLineSign                                                                        { bg = "#303340" }, -- CursorLineSign xxx guibg=#303340
@@ -752,8 +752,8 @@ local theme = lush(function(injected_functions)
 		TelescopeResultsOperator                                                              { Operator }, -- TelescopeResultsOperator xxx links to Operator
 		TelescopeResultsSpecialComment                                                        { SpecialComment }, -- TelescopeResultsSpecialComment xxx links to SpecialComment
 		TelescopeResultsVariable                                                              { SpecialChar }, -- TelescopeResultsVariable xxx links to SpecialChar
-		TelescopeSelection                                                                    { gui = "bold" }, -- TelescopeSelection xxx cterm=bold gui=bold
-		TelescopeSelectionCaret                                                               { gui = "bold", fg = snazzy.magenta }, -- TelescopeSelectionCaret xxx cterm=bold gui=bold guifg=#ff6ac1
+		TelescopeSelection                                                                    { gui = "bold", bg = snazzy.cursorline }, -- TelescopeSelection xxx cterm=bold gui=bold
+		TelescopeSelectionCaret                                                               { gui = "bold", fg = snazzy.magenta, bg = snazzy.cursorline }, -- TelescopeSelectionCaret xxx cterm=bold gui=bold guifg=#ff6ac1
 		TelescopeTitle                                                                        { TelescopeBorder }, -- TelescopeTitle xxx links to TelescopeBorder
 		TodoBgFIX                                                                             { bg = snazzy.red, gui = "bold", fg = "#282a36" }, -- TodoBgFIX      xxx gui=bold guifg=#282a36 guibg=#ff5c57
 		TodoBgHACK                                                                            { bg = snazzy.yellow, gui = "bold", fg = "#282a36" }, -- TodoBgHACK     xxx gui=bold guifg=#282a36 guibg=#f3f99d
