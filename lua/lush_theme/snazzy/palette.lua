@@ -1,7 +1,14 @@
 local lush = require("lush")
+---@type function
 local hsl = lush.hsl
 
 local M = {}
+
+local function normal_bg()
+	if vim.g.neovide then
+		return hsl("#282a36")
+	end
+end
 
 M.dark = {
 	base0 = "#1B2229",
@@ -45,6 +52,8 @@ M.dark = {
 
 	fg = hsl("#eff0eb"),
 	bg = hsl("#282a36"),
+
+	normal_bg = normal_bg(),
 
 	cursorline = hsl("#303340"),
 	foldline = hsl("#3a3d4d"),
