@@ -523,7 +523,7 @@ local theme = lush(function(injected_functions)
 		HopNextKey1                                                                                             { gui = "bold", fg = snazzy.hop.next_key1 }, -- HopNextKey1    xxx cterm=bold gui=bold guifg=#00dfff
 		HopNextKey2                                                                                             { fg = snazzy.hop.next_key2 }, -- HopNextKey2    xxx guifg=#2b8db3
 		HopPreview                                                                                              { gui = "bold", fg = "#b8bb26" }, -- HopPreview     xxx cterm=bold gui=bold guifg=#b8bb26
-		HopUnmatched                                                                                            { sp = "#666666", bg = "#282a36", fg = "#666666" }, -- HopUnmatched   xxx guifg=#666666 guibg=#282a36 guisp=#666666
+		HopUnmatched                                                                                            { sp = "#666666", fg = "#666666" }, -- HopUnmatched   xxx guifg=#666666 guibg=#282a36 guisp=#666666
 		Ignore                                                                                                  { fg = "#686868" }, -- Ignore         xxx guifg=#686868
 		IlluminatedWordRead                                                                                     { bg = snazzy.statusline.bg }, -- IlluminatedWordRead xxx guibg=#3a3d4d
 		IlluminatedWordText                                                                                     { bg = snazzy.statusline.bg }, -- IlluminatedWordText xxx guibg=#3a3d4d
@@ -539,7 +539,6 @@ local theme = lush(function(injected_functions)
 		KeyMenuFloatBorder                                                                                      { fg = snazzy.blue }, -- KeyMenuFloatBorder xxx guifg=#57c7ff
 		Keyword                                                                                                 { fg = snazzy.magenta }, -- Keyword        xxx guifg=#ff6ac1
 		Label                                                                                                   { fg = snazzy.yellow }, -- Label          xxx guifg=#f3f99d
-		-- LeapBackdrop                                                                                         { sp = "#666666", bg = "#282a36", fg = "#666666" }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
 		LeapBackdrop                                                                                            { sp = "#666666", fg = "#666666" }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
 		LeapLabelPrimary                                                                                        { gui = "bold", fg = "#ff007c" }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
 		LeapLabelSecondary                                                                                      { gui = "bold", fg = "#00dfff" }, -- LeapLabelPrimary xxx cterm=bold gui=bold guifg=#ff007c
