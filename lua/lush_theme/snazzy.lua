@@ -540,7 +540,6 @@ local theme = lush(function(injected_functions)
 		KeyMenuFloatBorder                                                                                      { fg = snazzy.blue }, -- KeyMenuFloatBorder xxx guifg=#57c7ff
 		Keyword                                                                                                 { fg = snazzy.magenta }, -- Keyword        xxx guifg=#ff6ac1
 		Label                                                                                                   { fg = snazzy.yellow }, -- Label          xxx guifg=#f3f99d
-		-- LeapBackdrop                                                                                         { sp = "#666666", bg = "#282a36", fg = "#666666" }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
 		LeapBackdrop                                                                                            { sp = "#666666", fg = "#666666" }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
 		LeapLabelPrimary                                                                                        { gui = "bold", fg = "#ff007c" }, -- LeapBackdrop   xxx guifg=#666666 guibg=#282a36 guisp=#666666
 		LeapLabelSecondary                                                                                      { gui = "bold", fg = "#00dfff" }, -- LeapLabelPrimary xxx cterm=bold gui=bold guifg=#ff007c
