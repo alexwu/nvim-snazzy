@@ -206,13 +206,14 @@ local theme = lush(function(injected_functions)
 		CmpItemAbbrDeprecatedDefault                                                                            { fg = "#606580" }, -- CmpItemAbbrDeprecatedDefault xxx guifg=#606580
 		CmpItemAbbrDeprecated                                                                                   { CmpItemAbbrDeprecatedDefault }, -- CmpItemAbbrDeprecated xxx links to CmpItemAbbrDeprecatedDefault
 		CmpItemAbbrMatchDefault                                                                                 { fg = "#eff0eb" }, -- CmpItemAbbrMatchDefault xxx guifg=#eff0eb
-		CmpItemAbbrMatch                                                                                        { CmpItemAbbrMatchDefault }, -- CmpItemAbbrMatch xxx links to CmpItemAbbrMatchDefault
+		CmpItemAbbrMatch                                                                                        { fg = snazzy.green }, -- CmpItemAbbrMatch xxx links to CmpItemAbbrMatchDefault
 		CmpItemAbbrMatchFuzzyDefault                                                                            { fg = "#eff0eb" }, -- CmpItemAbbrMatchFuzzyDefault xxx guifg=#eff0eb
-		CmpItemAbbrMatchFuzzy                                                                                   { CmpItemAbbrMatchFuzzyDefault }, -- CmpItemAbbrMatchFuzzy xxx links to CmpItemAbbrMatchFuzzyDefault
+		CmpItemAbbrMatchFuzzy                                                                                   { fg = snazzy.yellow }, -- CmpItemAbbrMatchFuzzy xxx links to CmpItemAbbrMatchFuzzyDefault
 		CmpItemKindDefault                                                                                      { fg = snazzy.yellow }, -- CmpItemKindDefault xxx guifg=#f3f99d
 		CmpItemKind                                                                                             { CmpItemKindDefault }, -- CmpItemKind    xxx links to CmpItemKindDefault
 		CmpItemMenuDefault                                                                                      { fg = "#eff0eb" }, -- CmpItemMenuDefault xxx guifg=#eff0eb
 		CmpItemMenu                                                                                             { CmpItemMenuDefault }, -- CmpItemMenu    xxx links to CmpItemMenuDefault
+		CmpItemKindCodeium                                                                                      { CmpItemKindDefault },
 		CopilotSuggestion                                                                                       { bg = "#303340", fg = snazzy.blue }, -- CopilotSuggestion xxx guifg=#57c7ff guibg=#303340
 		Cursor                                                                                                  { gui = "reverse" }, -- Cursor         xxx cterm=reverse gui=reverse
 		CursorColumn                                                                                            { sp = snazzy.statusline.bg, bg = "#3a3d4d", fg = "#e2e4e5" }, -- CursorColumn   xxx guifg=#e2e4e5 guibg=#3a3d4d guisp=#3a3d4d
@@ -523,7 +524,7 @@ local theme = lush(function(injected_functions)
 		HopNextKey1                                                                                             { gui = "bold", fg = snazzy.hop.next_key1 }, -- HopNextKey1    xxx cterm=bold gui=bold guifg=#00dfff
 		HopNextKey2                                                                                             { fg = snazzy.hop.next_key2 }, -- HopNextKey2    xxx guifg=#2b8db3
 		HopPreview                                                                                              { gui = "bold", fg = "#b8bb26" }, -- HopPreview     xxx cterm=bold gui=bold guifg=#b8bb26
-		HopUnmatched                                                                                            { sp = "#666666", bg = "#282a36", fg = "#666666" }, -- HopUnmatched   xxx guifg=#666666 guibg=#282a36 guisp=#666666
+		HopUnmatched                                                                                            { sp = "#666666", fg = "#666666" }, -- HopUnmatched   xxx guifg=#666666 guibg=#282a36 guisp=#666666
 		Ignore                                                                                                  { fg = "#686868" }, -- Ignore         xxx guifg=#686868
 		IlluminatedWordRead                                                                                     { bg = snazzy.statusline.bg }, -- IlluminatedWordRead xxx guibg=#3a3d4d
 		IlluminatedWordText                                                                                     { bg = snazzy.statusline.bg }, -- IlluminatedWordText xxx guibg=#3a3d4d
@@ -551,7 +552,8 @@ local theme = lush(function(injected_functions)
 		LineNr                                                                                                  { fg = "#606580" }, -- LineNr         xxx guifg=#606580
 		LineNrAbove                                                                                             { LineNr }, -- LineNrAbove    xxx links to LineNr
 		LineNrBelow                                                                                             { LineNr }, -- LineNrBelow    xxx links to LineNr
-		LspComment                                                                                              { gui = "italic", fg = "#606580" }, -- LspComment     xxx cterm=italic gui=italic guifg=#606580
+		LspComment                                                                                              { gui = "italic", fg = snazzy.ui_8 }, -- LspComment     xxx cterm=italic gui=italic guifg=#606580
+		LspCodeLens                                                                                              { fg = snazzy.ui_8 }, -- LspComment     xxx cterm=italic gui=italic guifg=#606580
 		LspDefaultLibrary                                                                                       { gui = "bold", fg = snazzy.yellow }, -- LspDefaultLibrary xxx cterm=bold gui=bold guifg=#f3f99d
 		LspDefinition                                                                                           { sp = snazzy.statusline.bg, bg = "#3a3d4d", fg = snazzy.blue }, -- LspDefinition  xxx guifg=#57c7ff guibg=#3a3d4d guisp=#3a3d4d
 		LspFloatWinBorder                                                                                       { fg = snazzy.blue }, -- LspFloatWinBorder xxx guifg=#57c7ff
@@ -773,11 +775,11 @@ local theme = lush(function(injected_functions)
 		TodoFgPERF                                                                                              { fg = snazzy.cyan }, -- TodoFgPERF     xxx guifg=#9aedfe
 		TodoFgTODO                                                                                              { fg = snazzy.cyan }, -- TodoFgTODO     xxx guifg=#9aedfe
 		TodoFgWARN                                                                                              { fg = snazzy.yellow }, -- TodoFgWARN     xxx guifg=#f3f99d
-		TodoSignFIX                                                                                             { bg = "#282a36", fg = snazzy.red }, -- TodoSignFIX    xxx guifg=#ff5c57 guibg=#282a36
-		TodoSignHACK                                                                                            { bg = "#282a36", fg = snazzy.yellow }, -- TodoSignHACK   xxx guifg=#f3f99d guibg=#282a36
-		TodoSignNOTE                                                                                            { bg = "#282a36", fg = snazzy.green }, -- TodoSignNOTE   xxx guifg=#5af78e guibg=#282a36
-		TodoSignPERF                                                                                            { bg = "#282a36", fg = snazzy.cyan }, -- TodoSignPERF   xxx guifg=#9aedfe guibg=#282a36
-		TodoSignTODO                                                                                            { bg = "#282a36", fg = snazzy.cyan }, -- TodoSignTODO   xxx guifg=#9aedfe guibg=#282a36
+		TodoSignFIX                                                                                             { fg = snazzy.red }, -- TodoSignFIX    xxx guifg=#ff5c57 guibg=#282a36
+		TodoSignHACK                                                                                            { fg = snazzy.yellow }, -- TodoSignHACK   xxx guifg=#f3f99d guibg=#282a36
+		TodoSignNOTE                                                                                            { fg = snazzy.green }, -- TodoSignNOTE   xxx guifg=#5af78e guibg=#282a36
+		TodoSignPERF                                                                                            {  fg = snazzy.cyan }, -- TodoSignPERF   xxx guifg=#9aedfe guibg=#282a36
+		TodoSignTODO                                                                                            {  fg = snazzy.cyan }, -- TodoSignTODO   xxx guifg=#9aedfe guibg=#282a36
 		TodoSignWARN                                                                                            { bg = "#282a36", fg = snazzy.yellow }, -- TodoSignWARN   xxx guifg=#f3f99d guibg=#282a36
 		TreesitterContext                                                                                       { fg = snazzy.fg, bg = snazzy.statusline.bg }, -- TreesitterContext xxx links to NormalFloat
 		TreesitterContextLineNumber                                                                             { fg = snazzy.blue }, -- TreesitterContextLineNumber xxx guifg=#57c7ff
