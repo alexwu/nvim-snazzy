@@ -1,5 +1,37 @@
 local lush = require("lush")
----@type function
+
+---@class lush.HSL
+---@field h number The hue component (0-360)
+---@field s number The saturation component (0-100)
+---@field l number The lightness component (0-100)
+---@field hsl table Raw HSL values as a table {h, s, l}
+---@field hex string The color as a hex string (#RRGGBB)
+---@field rgb table The color as an RGB table {r, g, b}
+---@field rotate fun(degrees: number): lush.HSL Rotate the hue by given degrees
+---@field ro fun(degrees: number): lush.HSL Alias for rotate
+---@field saturate fun(percent: number): lush.HSL Relatively increase saturation by percentage
+---@field sa fun(percent: number): lush.HSL Alias for saturate
+---@field abs_saturate fun(amount: number): lush.HSL Absolutely increase saturation by amount
+---@field abs_sa fun(amount: number): lush.HSL Alias for abs_saturate
+---@field desaturate fun(percent: number): lush.HSL Relatively decrease saturation by percentage
+---@field de fun(percent: number): lush.HSL Alias for desaturate
+---@field abs_desaturate fun(amount: number): lush.HSL Absolutely decrease saturation by amount
+---@field abs_de fun(amount: number): lush.HSL Alias for abs_desaturate
+---@field lighten fun(percent: number): lush.HSL Relatively increase lightness by percentage
+---@field li fun(percent: number): lush.HSL Alias for lighten
+---@field abs_lighten fun(amount: number): lush.HSL Absolutely increase lightness by amount
+---@field abs_li fun(amount: number): lush.HSL Alias for abs_lighten
+---@field darken fun(percent: number): lush.HSL Relatively decrease lightness by percentage
+---@field da fun(percent: number): lush.HSL Alias for darken
+---@field abs_darken fun(amount: number): lush.HSL Absolutely decrease lightness by amount
+---@field abs_da fun(amount: number): lush.HSL Alias for abs_darken
+---@field mix fun(target: lush.HSL, strength: number): lush.HSL Mix with another color by percentage
+---@field readable fun(): lush.HSL Make the color readable on its background (black or white)
+---@field hue fun(value: number): lush.HSL Set the hue to a specific value
+---@field saturation fun(value: number): lush.HSL Set the saturation to a specific value
+---@field lightness fun(value: number): lush.HSL Set the lightness to a specific value
+
+---@type fun(h_or_hex: string | table, s?: number, l?: number): lush.HSL
 local hsl = lush.hsl
 
 local M = {}
@@ -10,7 +42,32 @@ local function normal_bg()
 	end
 end
 
+---@class snazzy.Palette
+---@field base0 string
+---@field base1 string
+---@field base2 string
+---@field base3 string
+---@field base4 string
+---@field base5 string
+---@field base6 string
+---@field base7 string
+---@field base8 string
+---@field red lush.HSL
+---@field orange lush.HSL
+---@field yellow lush.HSL
+---@field green lush.HSL
+---@field blue lush.HSL
+---@field purple lush.HSL
+---@field black lush.HSL
+---@field white lush.HSL
+---@field pure_black lush.HSL
+---@field pure_white lush.HSL
+---@field blend_factor number
+
+---@class Snazzy.Palette
 M.dark = {
+	blend_factor = 0.22,
+
 	base0 = "#1B2229",
 	base1 = "#1c1f24",
 	base2 = "#202328",
@@ -30,8 +87,10 @@ M.dark = {
 	magenta = hsl("#ff6ac1"),
 	cyan = hsl("#9aedfe"),
 	white = hsl("#f1f1f0"),
+	pure_white = hsl("#ffffff"),
 	grey = hsl("#686868"),
 	black = hsl("#282a36"),
+	pure_black = hsl("#000000"),
 
 	search = hsl("#434805"),
 	incsearch = hsl("#434805"),
@@ -47,6 +106,7 @@ M.dark = {
 	ui_7 = "#536991",
 	ui_8 = "#606580",
 	ui_9 = "#3a3d4d",
+	ui_10 = "#313442",
 	ui_11 = "#282a36",
 	ui_12 = "#192224",
 
@@ -86,6 +146,7 @@ M.dark = {
 	},
 }
 
+---@class Snazzy.Palette
 M.light = {
 	base0 = "#1B2229",
 	base1 = "#1c1f24",
