@@ -46,7 +46,7 @@ local theme = lush(function(injected_functions)
 		StorageClass                                                                                                 { gui = "bold", fg = snazzy.blue }, -- StorageClass   xxx cterm=bold gui=bold guifg=#57c7ff
 		String                                                                                                       { fg = snazzy.green }, -- String         xxx guifg=#f3f99d
 		Structure                                                                                                    { gui = "bold", fg = "#536991" }, -- Structure      xxx cterm=bold gui=bold guifg=#536991
-		Substitute                                                                                                   { bg = snazzy.yellow.mix(snazzy.bg, 50), fg = snazzy.bg }, -- Substitute     xxx links to Search
+		Substitute                                                                                                   { bg = snazzy.yellow.mix(snazzy.absolute.black, 60)}, -- Substitute     xxx links to Search
 		TermCursor                                                                                                   { fg = "#192224" }, -- TermCursor     xxx guifg=#192224
 		Terminal                                                                                                     { fg = "#eff0eb" }, -- Terminal       xxx guifg=#eff0eb guibg=#282a36
 		Title                                                                                                        { gui = "bold", fg = snazzy.yellow }, -- Title          xxx cterm=bold gui=bold guifg=#f3f99d
@@ -55,8 +55,8 @@ local theme = lush(function(injected_functions)
 		Typedef                                                                                                      { gui = "bold", fg = "#536991" }, -- Typedef        xxx cterm=bold gui=bold guifg=#536991
 		Underlined                                                                                                   { sp = "#f1f1f0", gui = "underline", fg = "#f9f9ff" }, -- Underlined     xxx cterm=underline gui=underline guifg=#f9f9ff guisp=#f1f1f0
 		VertSplit                                                                                                    { bg = "#282a36", gui = "bold", fg = "#606580" }, -- VertSplit      xxx cterm=bold gui=bold guifg=#606580 guibg=#282a36
-		Visual                                                                                                       { sp = "#273d57", bg = "#273d57" }, -- Visual         xxx guibg=#273d57 guisp=#273d57
-		VisualNOS                                                                                                    { sp = "#273d57", bg = "#273d57" }, -- VisualNOS      xxx guibg=#273d57 guisp=#273d57
+		Visual                                                                                                       { sp = snazzy.ui.selection, bg = snazzy.ui.selection }, -- Visual         xxx guibg=#273d57 guisp=#273d57
+		VisualNOS                                                                                                    { sp = snazzy.ui.selection, bg = snazzy.ui.selection }, -- VisualNOS      xxx guibg=#273d57 guisp=#273d57
 		WarningMsg                                                                                                   { gui = "bold", fg = snazzy.orange }, -- WarningMsg     xxx cterm=bold gui=bold guifg=#ff9f43
 		Whitespace                                                                                                   { fg = "#3f444a" }, -- Whitespace     xxx guifg=#3f444a
 		WildMenu                                                                                                     { sp = "#a1a6a8", bg = "#a1a6a8" }, -- WildMenu       xxx guibg=#a1a6a8 guisp=#a1a6a8
@@ -925,7 +925,7 @@ local theme = lush(function(injected_functions)
 		BlinkCmpSignatureHelp                                                                                        { BlinkCmpMenu }, -- BlinkCmpSignatureHelp xxx links to NormalFloat
 		BlinkCmpSignatureHelpActiveParameter                                                                         { LspSignatureActiveParameter }, -- BlinkCmpSignatureHelpActiveParameter xxx links to LspSignatureActiveParameter
 		BlinkCmpSignatureHelpBorder                                                                                  { NormalFloat }, -- BlinkCmpSignatureHelpBorder xxx links to NormalFloat
-		BlinkCmpGhostText                                                                                            { fg = snazzy.ui_8 }
+		BlinkCmpGhostText                                                                                            { fg = snazzy.ui_8 },
 		--
 		--   Added                                                                                                   { fg="nvimlightgreen", }, -- Added          xxx ctermfg=10 guifg=NvimLightGreen
 		--   Changed                                                                                                 { fg="nvimlightcyan", }, -- Changed        xxx ctermfg=14 guifg=NvimLightCyan
@@ -987,7 +987,8 @@ local theme = lush(function(injected_functions)
 		--   MarkviewCheckboxProgress                                                                                { fg="#f3f99f", }, -- MarkviewCheckboxProgress xxx guifg=#f3f99f
 		--   MarkviewCheckboxStriked                                                                                 { fg="#606580", gui="strikethrough", }, -- MarkviewCheckboxStriked xxx cterm=strikethrough gui=strikethrough guifg=#606580
 		--   MarkviewCheckboxUnchecked                                                                               { fg="#ff5c57", }, -- MarkviewCheckboxUnchecked xxx guifg=#ff5c57
-		--   MarkviewCode                                                                                            { bg="#28283d", }, -- MarkviewCode   xxx guibg=#28283d
+					MarkviewCode                                                                                            { bg = snazzy.ui.cursorline }, -- MarkviewCode   xxx guibg=#28283d
+					MarkviewInlineCode                                                                                            { bg = snazzy.ui.cursorline }, -- MarkviewCode   xxx guibg=#28283d
 		--   MarkviewCodeInfo                                                                                        { fg="#606580", bg="#28283d", }, -- MarkviewCodeInfo xxx guifg=#606580 guibg=#28283d
 		--   MarkviewGradient1                                                                                       { fg="#cdd6f4", }, -- MarkviewGradient1 xxx guifg=#cdd6f4
 		--   MarkviewGradient10                                                                                      { fg="#f3f99f", }, -- MarkviewGradient10 xxx guifg=#f3f99f
