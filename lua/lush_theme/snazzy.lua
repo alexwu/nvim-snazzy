@@ -501,8 +501,8 @@ local theme = lush(function(injected_functions)
 		FidgetTitle                                                                                                         { Title }, -- FidgetTitle    xxx links to Title
 		Float                                                                                                               { fg = "#a1a6a8" }, -- Float          xxx guifg=#a1a6a8
 		FloatBorder                                                                                                         { fg = snazzy.blue }, -- FloatBorder    xxx guifg=#57c7ff
-		FloatShadow                                                                                                         { blend = 80, bg = "black" }, -- FloatShadow    xxx guibg=Black blend=80
-		FloatShadowThrough                                                                                                  { blend = 100, bg = "black" }, -- FloatShadowThrough xxx guibg=Black blend=100
+		FloatShadow                                                                                                         { blend = 80, bg = snazzy.bg }, -- FloatShadow    xxx guibg=Black blend=80
+		FloatShadowThrough                                                                                                  { blend = 100, bg = snazzy.bg }, -- FloatShadowThrough xxx guibg=Black blend=100
 		FloatTitle                                                                                                          { FloatBorder }, -- FloatTitle     xxx links to FloatBorder
 		FoldColumn                                                                                                          { gui = "italic", fg = snazzy.gray.medium_dark }, -- FoldColumn     xxx cterm=italic gui=italic guifg=#606580 guibg=#282a36
 		Folded                                                                                                              { bg = snazzy.statusline.bg }, -- Folded         xxx guibg=#3a3d4d
