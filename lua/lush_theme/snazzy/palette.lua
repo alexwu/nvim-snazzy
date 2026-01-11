@@ -43,108 +43,189 @@ local function normal_bg()
 end
 
 ---@class snazzy.Palette
----@field base0 string
----@field base1 string
----@field base2 string
----@field base3 string
----@field base4 string
----@field base5 string
----@field base6 string
----@field base7 string
----@field base8 string
----@field red lush.HSL
----@field orange lush.HSL
----@field yellow lush.HSL
----@field green lush.HSL
----@field blue lush.HSL
----@field purple lush.HSL
----@field black lush.HSL
----@field white lush.HSL
----@field pure_black lush.HSL
----@field pure_white lush.HSL
----@field blend_factor number
+---@field primary table Primary colors
+---@field syntax table Syntax highlighting colors
+---@field ui table UI element colors
+---@field states table State indicators
+---@field diff table Diff colors
+---@field special table Special purpose colors
+---@field hop table Hop.nvim colors
+---@field blend_factor number Default blend factor for mixing colors
 
----@class Snazzy.Palette
-M.dark = {
-	blend_factor = 0.22,
+-- Create the dark theme palette
+local dark = {}
 
-	base0 = "#1B2229",
-	base1 = "#1c1f24",
-	base2 = "#202328",
-	base3 = "#23272e",
-	base4 = "#3f444a",
-	base5 = "#5B6268",
-	base6 = "#73797e",
-	base7 = "#9ca0a4",
-	base8 = "#b1b1b1",
+-- Global settings
+dark.settings = {
+	blend_factor = 22,
+	normal_bg = normal_bg(),
+	none = nil,
+}
 
+-- Define base colors
+dark.core = {
+	white = hsl("#f1f1f0"),
+	black = hsl("#282a36"),
 	red = hsl("#ff5c57"),
-	orange = hsl("#FF9F43"),
-	yellow = hsl("#f3f99d"),
 	green = hsl("#5af78e"),
+	yellow = hsl("#f3f99d"),
 	blue = hsl("#57c7ff"),
-	purple = hsl("#A39DF9"),
 	magenta = hsl("#ff6ac1"),
 	cyan = hsl("#9aedfe"),
-	white = hsl("#f1f1f0"),
-	pure_white = hsl("#ffffff"),
-	grey = hsl("#686868"),
-	black = hsl("#282a36"),
-	pure_black = hsl("#000000"),
-
-	search = hsl("#434805"),
-	incsearch = hsl("#434805"),
-
-	-- Grayscale
-	ui_0 = "#F9F9F9",
-	ui_1 = "#f9f9ff",
-	ui_2 = "#eff0eb",
-	ui_3 = "#e2e4e5",
-	ui_4 = "#a1a6a8",
-	ui_5 = "#848688",
-	ui_6 = "#5e6c70",
-	ui_7 = "#536991",
-	ui_8 = "#606580",
-	ui_9 = "#3a3d4d",
-	ui_10 = "#313442",
-	ui_11 = "#282a36",
-	ui_12 = "#192224",
-
-	fg = hsl("#eff0eb"),
-	bg = hsl("#282a36"),
-
-	normal_bg = normal_bg(),
-
-	cursorline = hsl("#303340"),
-	foldline = hsl("#3a3d4d"),
-	selection_background = hsl("#273d57"),
-	statusline = {
-		bg = hsl("#3a3d4d"),
-	},
-	-- selection_background = "#3a3d4d",
-
-	-- cursorline = "#3a3d4d",
-	-- selection_background = "#3a3d4d",
-	-- cursorline = "#313442",
-	-- usage = "#313442",
-	usage = "#3a3d4d",
-	-- cursorline = "#303340",
-	current_node = "#303340",
-
-	diff = {
-		delete = hsl("#3a0603"),
-		change = hsl("#434805"),
-		add = hsl("#00331a"),
-	},
-	none = nil,
-
-	hop = {
-		next_key = hsl("#ff007c"),
-		next_key1 = hsl("#00dfff"),
-		next_key2 = hsl("#2b8db3"),
-		unmatched = hsl("#666666"),
-	},
+	orange = hsl("#FF8227"), -- More saturated, better contrast with yellow
+	purple = hsl("#A39DF9"),
 }
+
+dark.legacy = {
+	orange = hsl("#FF9F43"),
+}
+
+dark.alt = {
+	orange = hsl("#FF7842"), -- Slightly more reddish-orange, stands out nicely
+}
+
+-- Absolute colors
+dark.absolute = {
+	black = hsl("#000000"),
+	white = hsl("#ffffff"),
+}
+
+-- Define UI grayscale palette
+dark.gray = {
+	brightest = hsl("#F9F9F9"),
+	brighter = hsl("#f9f9ff"),
+	bright = hsl("#eff0eb"),
+	light = hsl("#e2e4e5"),
+	medium_light = hsl("#a1a6a8"),
+	medium = hsl("#848688"),
+	medium_dark = hsl("#606580"),
+	dark = hsl("#3a3d4d"),
+	darker = hsl("#313442"),
+	darkest = hsl("#1B2229"),
+}
+
+-- Define UI-specific colors derived from our base colors
+dark.ui = {
+	bg = dark.core.black,
+	fg = dark.gray.bright,
+	cursorline = dark.core.black.lighten(5), -- Could be dark.core.black.lighten(5)
+	selection = hsl("#273d57"),
+	-- selection = dark.core.blue.darken(40), -- Could be dark.core.blue.darken(40)
+	-- selection = dark.core.blue.mix(dark.absolute.black, dark.settings.blend_factor), -- Could be dark.core.blue.darken(40)
+	foldline = dark.gray.dark,
+	statusline_bg = dark.gray.dark,
+
+	-- Create variations of colors for different UI states
+	subtle_text = dark.gray.medium_dark,
+	comments = dark.gray.medium_dark,
+	line_numbers = dark.gray.medium_dark.lighten(5),
+	hints = dark.core.cyan.desaturate(20),
+	info = dark.core.blue.desaturate(10),
+	warning = dark.core.orange.saturate(10),
+	error = dark.core.red,
+
+	-- Derived background colors for semantic states
+	success_bg = dark.core.green.darken(40),
+	warning_bg = dark.core.yellow.darken(40),
+	error_bg = dark.core.red.darken(40),
+	info_bg = dark.core.blue.darken(40),
+
+	-- Create a set of accent colors
+	accent1 = dark.core.magenta,
+	accent2 = dark.core.cyan,
+	accent3 = dark.core.purple,
+	accent4 = dark.core.yellow,
+}
+
+-- Specific colors for diff mode
+dark.diff = {
+	add = hsl("#00331a"), -- Could be dark.ui.success_bg
+	change = hsl("#434805"), -- Could be dark.ui.warning_bg
+	delete = hsl("#3a0603"), -- Could be dark.ui.error_bg
+	text = dark.ui.fg,
+}
+
+-- Colors for hop.nvim plugin
+dark.hop = {
+	primary = hsl("#ff007c"),
+	secondary = hsl("#00dfff"),
+	tertiary = hsl("#2b8db3"),
+	dim = hsl("#666666"),
+}
+
+-- Create a muted version of every core color for subtle UI elements
+dark.muted = {}
+for name, color in pairs(dark.core) do
+	dark.muted[name] = color.desaturate(30).darken(10)
+end
+
+-- Base colors (for backward compatibility)
+dark.base0 = "#1B2229"
+dark.base1 = "#1c1f24"
+dark.base2 = "#202328"
+dark.base3 = "#23272e"
+dark.base4 = "#3f444a"
+dark.base5 = "#5B6268"
+dark.base6 = "#73797e"
+dark.base7 = "#9ca0a4"
+dark.base8 = "#b1b1b1"
+
+-- For backward compatibility, add direct keys
+dark.red = dark.core.red
+dark.orange = dark.core.orange
+dark.yellow = dark.core.yellow
+dark.green = dark.core.green
+dark.blue = dark.core.blue
+dark.purple = dark.core.purple
+dark.magenta = dark.core.magenta
+dark.cyan = dark.core.cyan
+dark.white = dark.core.white
+dark.black = dark.core.black
+dark.grey = hsl("#686868")
+dark.pure_white = dark.absolute.white
+dark.pure_black = dark.absolute.black
+
+dark.bg = dark.ui.bg
+dark.fg = dark.ui.fg
+dark.selection_background = dark.ui.selection
+dark.cursorline = dark.ui.cursorline
+dark.foldline = dark.ui.foldline
+dark.statusline = {
+	bg = dark.ui.statusline_bg,
+}
+
+dark.usage = "#3a3d4d"
+dark.current_node = "#303340"
+dark.search = dark.diff.change
+dark.incsearch = dark.diff.change
+
+dark.blend_factor = dark.settings.blend_factor
+dark.normal_bg = dark.settings.normal_bg
+dark.none = dark.settings.none
+
+-- Define UI scale (for backward compatibility)
+dark.ui_0 = "#F9F9F9"
+dark.ui_1 = "#f9f9ff"
+dark.ui_2 = "#eff0eb"
+dark.ui_3 = "#e2e4e5"
+dark.ui_4 = "#a1a6a8"
+dark.ui_5 = "#848688"
+dark.ui_6 = "#5e6c70"
+dark.ui_7 = "#536991"
+dark.ui_8 = hsl("#606580")
+dark.ui_9 = "#3a3d4d"
+dark.ui_10 = "#313442"
+dark.ui_11 = "#282a36"
+dark.ui_12 = "#192224"
+
+-- Example of creating new colors by mixing
+dark.orange_red = dark.core.orange.mix(dark.core.red, 50)
+dark.yellow_green = dark.core.yellow.mix(dark.core.green, 30)
+dark.info_subtle = dark.ui.info.desaturate(20).darken(10)
+dark.primary_button = dark.core.blue.saturate(10).lighten(5)
+dark.primary_button_hover = dark.primary_button.lighten(10)
+
+M.dark = dark
 
 ---@class Snazzy.Palette
 M.light = {
@@ -194,7 +275,7 @@ M.light = {
 	ui_5 = "#848688",
 	ui_6 = "#5e6c70",
 	ui_7 = "#536991",
-	ui_8 = "#606580",
+	ui_8 = hsl("#606580"),
 	ui_9 = "#3a3d4d",
 	ui_11 = "#282a36",
 	ui_12 = "#192224",
